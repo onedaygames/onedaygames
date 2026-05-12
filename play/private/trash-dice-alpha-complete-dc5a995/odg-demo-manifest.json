@@ -1,0 +1,12 @@
+{
+  "slug": "trash-dice-alpha-complete",
+  "name": "Trash Dice Alpha Complete",
+  "lane": "private",
+  "approvedBuild": "dc5a995",
+  "lockCommit": "e4d536e",
+  "sha256": "b2ad4757102fd844021574a67231a669148c32a9f2e236c7d5f03396d395f31f",
+  "publicApproved": false,
+  "listed": false,
+  "noIndex": true,
+  "rule": "Frozen evaluator build. Do not replace in place."
+}
