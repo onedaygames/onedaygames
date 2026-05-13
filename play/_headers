@@ -1,0 +1,5 @@
+/private/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/partner/*
+  X-Robots-Tag: noindex, nofollow, noarchive
