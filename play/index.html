@@ -393,11 +393,21 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--white);
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
     }
 
     .studio-mark img {
       width: 100%;
       height: auto;
+    }
+
+    .studio-mark:hover,
+    .studio-mark:focus-visible {
+      border-color: rgba(255, 138, 95, 0.55);
+      box-shadow: 0 16px 34px rgba(48, 48, 51, 0.12);
+      outline: none;
+      transform: translateY(-1px);
     }
 
     .contact-grid {
@@ -638,9 +648,9 @@
           <p>ODG is CJ Connoy's small-game label: compact ideas, playable web releases, and a bias toward finishing the thing people can actually try.</p>
           <p>The public shelf is intentionally simple right now: one live browser game, one press kit, and direct ways to follow the studio.</p>
         </div>
-        <div class="studio-mark" aria-hidden="true">
-          <img src="assets/odg/odg-logo-charcoal.png" alt="">
-        </div>
+        <a class="studio-mark" href="cj/" aria-label="Meet CJ Connoy">
+          <img src="assets/odg/odg-logo-charcoal.png" alt="One Day Games">
+        </a>
       </div>
     </section>
 
