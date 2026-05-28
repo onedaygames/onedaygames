@@ -14,7 +14,7 @@ The selected work section lives in `index.html`.
 
 ## Voice Guardrails
 
-- Use lowercase `i` in first-person prose.
+- Write the page in third person with `CJ`; avoid first-person phrasing.
 - Keep claims factual and specific.
 - Avoid job-search language, CTAs, testimonials, skill lists, and resume bullets.
 - Do not add stock imagery, social icons, video backgrounds, analytics, or framework dependencies.
