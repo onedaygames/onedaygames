@@ -20,23 +20,23 @@
   <title>One Day Games</title>
   <style>
     :root {
-      color-scheme: light;
-      --night: #121216;
-      --charcoal: #303033;
-      --warm-white: #F8F6F2;
-      --soft-sand: #EFE9DF;
-      --sunrise-gold: #FFC96E;
-      --sunrise-orange: #FF8A5F;
-      --sunrise-coral: #FF6E75;
-      --sunrise-pink: #E64B93;
-      --ink: #252527;
-      --muted: #66605b;
-      --line: rgba(48, 48, 51, 0.16);
-      --white: #ffffff;
+      --bg: #0d0d11;
+      --bg-2: #121218;
+      --panel: #16161d;
+      --line: rgba(255, 255, 255, 0.08);
+      --line-2: rgba(255, 255, 255, 0.14);
+      --ink: #f4f3ef;
+      --ink-2: #a9a7a0;
+      --ink-3: #6f6e69;
+      --accent: #e9573f;
+      --accent-soft: rgba(233, 87, 63, 0.12);
+      --max: 1080px;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
@@ -44,12 +44,11 @@
     }
 
     body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: var(--warm-white);
+      background: var(--bg);
       color: var(--ink);
-      letter-spacing: 0;
-      overflow-x: hidden;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
@@ -58,635 +57,770 @@
       max-width: 100%;
     }
 
-    a {
-      color: inherit;
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    .sunrise-strip {
-      height: 6px;
-      background: linear-gradient(90deg, var(--sunrise-gold), var(--sunrise-orange), var(--sunrise-coral), var(--sunrise-pink));
-    }
-
-    .site-header {
-      background: var(--night);
-      color: var(--warm-white);
-      border-bottom: 1px solid rgba(248, 246, 242, 0.12);
-    }
-
-    .header-inner,
-    .wrap {
-      width: min(1080px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .header-inner {
-      min-height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-      text-decoration: none;
-      font-weight: 800;
-    }
-
-    .brand img {
-      width: 34px;
-      height: 34px;
-      object-fit: contain;
-    }
-
-    .brand span {
-      white-space: nowrap;
-      font-size: 1rem;
+    ::selection {
+      background: var(--accent);
+      color: #fff;
     }
 
     nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 22px;
-      font-size: 0.95rem;
+      justify-content: space-between;
+      padding: 18px clamp(20px, 5vw, 48px);
+      background: rgba(13, 13, 17, 0.72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--ink);
+      font-size: 13px;
       font-weight: 700;
-    }
-
-    nav a {
-      color: rgba(248, 246, 242, 0.78);
+      letter-spacing: 0;
       text-decoration: none;
-      border-bottom: 2px solid transparent;
-      padding: 5px 0;
+      text-transform: uppercase;
     }
 
-    nav a:hover,
-    nav a:focus-visible {
-      color: var(--white);
-      border-bottom-color: var(--sunrise-orange);
+    .brand .mark {
+      width: 27px;
+      height: 27px;
+      border-radius: 6px;
+      border: 1px solid var(--line-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .brand .mark img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--ink-2);
+      font-size: 13px;
+      letter-spacing: 0;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--ink);
       outline: none;
     }
 
     .hero {
-      background: var(--night);
-      color: var(--warm-white);
+      position: relative;
+      padding: clamp(80px, 14vh, 150px) clamp(20px, 5vw, 48px) clamp(70px, 10vh, 120px);
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: radial-gradient(ellipse 70% 60% at 30% 20%, #000 0%, transparent 75%);
+      opacity: 0.5;
     }
 
     .hero-inner {
-      width: min(1080px, calc(100% - 40px));
-      min-height: clamp(420px, 46svh, 560px);
-      margin: 0 auto;
-      padding: 54px 0 50px;
-      display: grid;
-      align-content: center;
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
     }
 
-    .hero-logo {
-      width: min(430px, 100%);
-      height: auto;
-      margin-bottom: 28px;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 30px;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: 7px 15px;
+      color: var(--ink-2);
+      font-size: 12px;
+      letter-spacing: 0;
+      text-transform: uppercase;
     }
 
-    .kicker {
-      margin: 0 0 14px;
-      color: var(--sunrise-gold);
-      font-size: 1rem;
+    .eyebrow .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      margin-bottom: 26px;
+      font-size: clamp(34px, 5.4vw, 58px);
       font-weight: 800;
+      letter-spacing: 0;
+      line-height: 1.08;
     }
 
-    .hero-copy {
-      max-width: 650px;
-      margin: 0;
-      color: rgba(248, 246, 242, 0.84);
-      font-size: 1.3rem;
-      line-height: 1.55;
+    h1 .soft {
+      color: var(--ink-3);
     }
 
-    .hero-actions {
+    .mobile-break {
+      display: none;
+    }
+
+    .lede {
+      max-width: 600px;
+      margin-bottom: 18px;
+      color: var(--ink-2);
+      font-size: clamp(17px, 2.3vw, 21px);
+      line-height: 1.5;
+    }
+
+    .cred {
+      max-width: 620px;
+      margin-bottom: 38px;
+      border-left: 2px solid var(--accent);
+      padding-left: 16px;
+      color: var(--ink);
+      font-size: 15px;
+    }
+
+    .cred b {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .cta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 34px;
+      gap: 14px;
     }
 
-    .button {
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 46px;
-      font: inherit;
-      border: 1px solid rgba(248, 246, 242, 0.28);
-      border-radius: 6px;
-      padding: 12px 16px;
-      color: var(--warm-white);
-      text-decoration: none;
-      font-weight: 800;
-      background: transparent;
+      gap: 9px;
+      min-height: 48px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      padding: 13px 22px;
+      color: inherit;
       cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-decoration: none;
+      transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
     }
 
-    .button.primary {
-      border-color: var(--sunrise-gold);
-      background: var(--sunrise-gold);
-      color: var(--night);
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
     }
 
-    .button.dark {
-      border-color: var(--night);
-      background: var(--night);
-      color: var(--warm-white);
-    }
-
-    .button.light {
-      color: var(--night);
-      border-color: var(--line);
-      background: rgba(255, 255, 255, 0.62);
-    }
-
-    .button:hover,
-    .button:focus-visible {
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background: #ff6a51;
+      outline: none;
       transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--line-2);
+      color: var(--ink);
+    }
+
+    .btn-ghost:hover,
+    .btn-ghost:focus-visible {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: var(--ink-2);
       outline: none;
     }
 
-    .section {
-      padding: 76px 0;
+    section.band {
+      padding: clamp(60px, 9vh, 100px) clamp(20px, 5vw, 48px);
     }
 
-    .section.sand {
-      background: var(--soft-sand);
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
     }
 
-    .section.dark {
-      background: var(--charcoal);
-      color: var(--warm-white);
+    .band-alt {
+      background: var(--bg-2);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
-    .section-label {
-      margin: 0 0 12px;
-      color: var(--sunrise-pink);
-      font-size: 0.88rem;
-      font-weight: 850;
+    .kicker {
+      margin-bottom: 16px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
     }
 
     h2 {
-      margin: 0;
-      color: inherit;
-      font-size: 2.3rem;
-      line-height: 1.08;
+      margin-bottom: 20px;
+      font-size: clamp(26px, 3.6vw, 38px);
+      font-weight: 800;
+      letter-spacing: 0;
+      line-height: 1.12;
+    }
+
+    .section-lede {
+      max-width: 620px;
+      color: var(--ink-2);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 44px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--line);
+      overflow: hidden;
+    }
+
+    .step {
+      background: var(--panel);
+      padding: 30px 26px;
+    }
+
+    .step .num {
+      margin-bottom: 16px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
       letter-spacing: 0;
     }
 
-    p {
-      line-height: 1.65;
+    .step h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0;
     }
 
-    .release-grid,
-    .watch-grid,
-    .studio-grid,
-    .contact-grid {
+    .step p {
+      color: var(--ink-2);
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+
+    .work {
       display: grid;
-      grid-template-columns: minmax(0, 0.86fr) minmax(320px, 1.14fr);
-      gap: 42px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 40px;
       align-items: center;
+      margin-top: 44px;
     }
 
-    .release-copy p,
-    .studio-copy p,
-    .contact-copy p {
-      max-width: 620px;
-      color: var(--muted);
-      font-size: 1.05rem;
-      margin: 16px 0 0;
-    }
-
-    .release-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 26px;
-    }
-
-    .game-shot {
-      border: 1px solid rgba(48, 48, 51, 0.18);
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--night);
-      box-shadow: 0 18px 44px rgba(48, 48, 51, 0.18);
-    }
-
-    .game-shot img {
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-    }
-
-    .watch-grid {
-      grid-template-columns: minmax(0, 0.92fr) minmax(320px, 1.08fr);
-    }
-
-    .watch-copy p {
-      max-width: 560px;
-      color: rgba(248, 246, 242, 0.76);
-      font-size: 1.05rem;
-      margin: 16px 0 0;
-    }
-
-    .video-frame {
-      border: 1px solid rgba(248, 246, 242, 0.18);
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--night);
-    }
-
-    .video-link {
+    .shot {
       position: relative;
-      display: block;
-      color: var(--night);
-      text-decoration: none;
+      aspect-ratio: 16 / 10;
+      border: 1px solid var(--line-2);
+      border-radius: 14px;
+      background: #111118;
+      box-shadow: 0 26px 64px rgba(0, 0, 0, 0.24);
+      overflow: hidden;
     }
 
-    .video-link img {
+    .shot img {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      height: 100%;
       object-fit: cover;
-      opacity: 0.92;
     }
 
-    .video-link span {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      border-radius: 6px;
-      padding: 11px 13px;
-      background: var(--sunrise-gold);
-      color: var(--night);
-      font-weight: 850;
-    }
-
-    .video-link:hover img,
-    .video-link:focus-visible img {
-      opacity: 1;
-    }
-
-    .video-link:focus-visible {
-      outline: 3px solid var(--sunrise-gold);
-      outline-offset: 3px;
-    }
-
-    .follow-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 28px;
-      max-width: 520px;
-    }
-
-    .follow-row {
-      display: grid;
-      grid-template-columns: 110px minmax(0, 1fr);
-      gap: 14px;
-      align-items: baseline;
-      padding: 11px 0;
-      border-top: 1px solid rgba(248, 246, 242, 0.16);
-    }
-
-    .follow-row:last-child {
-      border-bottom: 1px solid rgba(248, 246, 242, 0.16);
-    }
-
-    .follow-row strong {
-      color: var(--sunrise-gold);
-      font-size: 0.92rem;
-    }
-
-    .follow-row a {
-      color: var(--warm-white);
-      text-decoration-color: var(--sunrise-orange);
-      text-underline-offset: 4px;
-      overflow-wrap: anywhere;
-    }
-
-    .studio-grid {
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
-      align-items: start;
-    }
-
-    .studio-mark {
-      justify-self: end;
-      width: min(300px, 100%);
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--white);
-      text-decoration: none;
-      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
-    }
-
-    .studio-mark img {
-      width: 100%;
-      height: auto;
-    }
-
-    .studio-mark:hover,
-    .studio-mark:focus-visible {
-      border-color: rgba(255, 138, 95, 0.55);
-      box-shadow: 0 16px 34px rgba(48, 48, 51, 0.12);
-      outline: none;
-      transform: translateY(-1px);
-    }
-
-    .contact-grid {
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: center;
-    }
-
-    .contact-email {
+    .work-meta .tag {
       display: inline-block;
-      margin-top: 12px;
+      margin-bottom: 14px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .work-meta h3 {
+      margin-bottom: 14px;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .work-meta p {
+      margin-bottom: 14px;
+      color: var(--ink-2);
+      font-size: 15.5px;
+    }
+
+    .proves {
+      margin-bottom: 22px;
+      border: 1px solid rgba(233, 87, 63, 0.2);
+      border-radius: 9px;
+      padding: 13px 16px;
+      background: var(--accent-soft);
       color: var(--ink);
-      font-weight: 850;
-      overflow-wrap: anywhere;
+      font-size: 14px;
     }
 
-    .contact-actions {
+    .proves b {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .work-links {
       display: flex;
-      gap: 10px;
       flex-wrap: wrap;
-      justify-content: flex-end;
+      gap: 18px;
     }
 
-    .contact-status {
-      flex-basis: 100%;
+    .work-links a {
+      border-bottom: 1px solid var(--line-2);
+      padding-bottom: 2px;
+      color: var(--ink);
+      font-size: 14px;
+      text-decoration: none;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .work-links a:hover,
+    .work-links a:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      outline: none;
+    }
+
+    .op-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-top: 40px;
+    }
+
+    .op-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      list-style: none;
+    }
+
+    .op-list li {
+      display: flex;
+      gap: 14px;
+      color: var(--ink-2);
+      font-size: 15px;
+    }
+
+    .op-list .ic {
+      flex-shrink: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .op-list b {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .stack {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+      padding: 26px;
+    }
+
+    .stack .label {
+      margin-bottom: 18px;
+      color: var(--ink-3);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .chip {
+      border: 1px solid var(--line-2);
+      border-radius: 7px;
+      padding: 6px 11px;
+      color: var(--ink-2);
+      font-size: 12.5px;
+      letter-spacing: 0;
+    }
+
+    .contact-card {
+      max-width: var(--max);
+      margin: 0 auto;
+      border: 1px solid var(--line-2);
+      border-radius: 18px;
+      padding: clamp(36px, 5vw, 56px);
+      background: radial-gradient(ellipse 80% 120% at 50% 0%, rgba(233, 87, 63, 0.08), transparent 60%), var(--panel);
+      text-align: center;
+    }
+
+    .contact-card h2 {
+      margin-bottom: 14px;
+    }
+
+    .contact-card p {
+      max-width: 480px;
+      margin: 0 auto 30px;
+      color: var(--ink-2);
+      font-size: 16px;
+    }
+
+    .email-row {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .email-pill {
+      border: 1px solid var(--line-2);
+      border-radius: 9px;
+      background: var(--bg);
+      padding: 12px 18px;
+      color: var(--ink);
+      font-family: monospace;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .copy-btn {
+      border: 1px solid var(--line-2);
+      border-radius: 9px;
+      background: transparent;
+      padding: 12px 16px;
+      color: var(--ink);
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+      transition: border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .copy-btn:hover,
+    .copy-btn:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      outline: none;
+    }
+
+    .copy-status {
       min-height: 1.3em;
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-      text-align: right;
+      margin: -14px 0 22px;
+      color: var(--ink-2);
+      font-size: 13px;
+    }
+
+    .social {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 22px;
+    }
+
+    .social a {
+      color: var(--ink-2);
+      font-size: 14px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .social a:hover,
+    .social a:focus-visible {
+      color: var(--ink);
+      outline: none;
     }
 
     footer {
-      background: var(--night);
-      color: rgba(248, 246, 242, 0.68);
-      padding: 24px 0;
-      font-size: 0.92rem;
+      border-top: 1px solid var(--line);
+      padding: 40px clamp(20px, 5vw, 48px);
+      color: var(--ink-3);
+      font-size: 13px;
+      text-align: center;
     }
 
-    .footer-row {
+    footer .fl {
       display: flex;
-      justify-content: space-between;
-      gap: 16px;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 12px;
     }
 
-    .footer-row a {
-      color: rgba(248, 246, 242, 0.9);
-      text-decoration-color: var(--sunrise-orange);
-      text-underline-offset: 4px;
+    footer a {
+      color: var(--ink-3);
+      text-decoration: none;
+    }
+
+    footer a:hover,
+    footer a:focus-visible {
+      color: var(--ink-2);
+      outline: none;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
     }
 
     @media (max-width: 820px) {
-      .header-inner {
-        min-height: 66px;
-      }
-
-      nav {
-        gap: 14px;
-        font-size: 0.88rem;
-      }
-
-      .hero-inner {
-        min-height: 480px;
-        padding: 48px 0 46px;
-      }
-
-      .hero-logo {
-        width: min(390px, 100%);
-      }
-
-      .hero-copy {
-        font-size: 1.12rem;
-      }
-
-      h2 {
-        font-size: 1.95rem;
-      }
-
-      .release-grid,
-      .watch-grid,
-      .studio-grid,
-      .contact-grid {
+      .work,
+      .op-grid {
         grid-template-columns: 1fr;
       }
 
-      .studio-mark {
-        justify-self: start;
+      .work {
+        gap: 28px;
       }
 
-      .contact-actions {
-        justify-content: flex-start;
-      }
-
-      .contact-status {
-        text-align: left;
+      .op-grid {
+        gap: 26px;
       }
     }
 
-    @media (max-width: 520px) {
-      .header-inner,
-      .hero-inner,
-      .wrap {
-        width: min(362px, calc(100% - 28px));
-        margin-left: 14px;
-        margin-right: auto;
+    @media (max-width: 760px) {
+      .steps {
+        grid-template-columns: 1fr;
       }
+    }
 
-      .brand span {
-        font-size: 0.94rem;
-      }
-
-      nav a:not(:first-child) {
+    @media (max-width: 680px) {
+      .nav-links {
         display: none;
       }
 
-      nav {
-        gap: 10px;
+      .brand {
+        font-size: 12px;
       }
 
-      .hero-inner {
-        min-height: 500px;
-        padding: 42px 0 42px;
-      }
-
-      .hero-logo {
-        width: min(330px, 100%);
-        margin-bottom: 26px;
-      }
-
-      .hero-actions .button,
-      .release-actions .button,
-      .contact-actions .button {
+      .hero {
         width: 100%;
+        max-width: 100%;
+        padding-right: 24px;
+        padding-left: 24px;
+        padding-top: 72px;
       }
 
-      .section {
-        padding: 58px 0;
+      .hero-inner,
+      .lede,
+      .cred {
+        width: calc(100vw - 48px);
+        max-width: 100%;
       }
 
-      .follow-row {
-        grid-template-columns: 1fr;
-        gap: 4px;
+      h1 {
+        font-size: clamp(24px, 7vw, 28px);
       }
 
-      .studio-mark {
-        width: 220px;
-        padding: 20px;
+      .mobile-break {
+        display: block;
       }
     }
   </style>
 </head>
 <body>
-  <div class="sunrise-strip" aria-hidden="true"></div>
+  <nav aria-label="Primary navigation">
+    <a class="brand" href="/" aria-label="One Day Games home">
+      <span class="mark" aria-hidden="true"><img src="assets/odg/odg-icon.png" alt=""></span>
+      <span>One Day Games</span>
+    </a>
+    <div class="nav-links">
+      <a href="#method">Method</a>
+      <a href="#work">Work</a>
+      <a href="#studio">Studio</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-  <header class="site-header" aria-label="Site header">
-    <div class="header-inner">
-      <a class="brand" href="/" aria-label="One Day Games home">
-        <img src="assets/odg/odg-icon.png" alt="">
-        <span>One Day Games</span>
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="#play">Play</a>
-        <a href="#watch">Watch</a>
-        <a href="live/tic-tac-toe/presskit.html">Press</a>
-        <a href="#contact">Contact</a>
-      </nav>
+  <header class="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Browser-playable digital companions</span>
+      <h1>Physical games are <br class="mobile-break">played<br>almost <span class="soft">everywhere.</span><br>Our companions are <br class="mobile-break">for <span class="soft">anywhere else.</span></h1>
+      <p class="lede">Built for the IP holders who own the games people already love. No install &mdash; play it in a tab, instantly.</p>
+      <p class="cred">Founded and led by <b>CJ Connoy</b> &mdash; a AAA production and design leader across Call of Duty: Black Ops, PlayStation/SIE, and Deviation Games, where he authored the game production playbook.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="live/tic-tac-toe/">Play Tic-Tac-Toe &rarr;</a>
+        <a class="btn btn-ghost" href="#method">The method</a>
+      </div>
     </div>
   </header>
 
   <main>
-    <section class="hero" aria-label="One Day Games">
-      <div class="hero-inner">
-        <h1 class="sr-only">One Day Games</h1>
-        <img class="hero-logo" src="assets/odg/odg-logo-white.png" alt="One Day Games">
-        <p class="kicker">Small games. Real releases.</p>
-        <p class="hero-copy">A founder-led studio making compact playable games with a production mindset.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="live/tic-tac-toe/">Play Tic-Tac-Toe</a>
-          <a class="button" href="#watch">Watch The Loop</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section sand" id="play">
-      <div class="wrap release-grid">
-        <div class="release-copy">
-          <p class="section-label">Now playing</p>
-          <h2>Tic-Tac-Toe Night Shift</h2>
-          <p>A browser Tic-Tac-Toe with day and night mood, music, and a friendly CPU.</p>
-          <p>It runs directly on the ODG site and stays mirrored on itch.io for players who follow games there.</p>
-          <div class="release-actions">
-            <a class="button dark" href="live/tic-tac-toe/">Play on ODG</a>
-            <a class="button light" href="https://onedaygames.itch.io/tic-tac-toe" target="_blank" rel="noopener">Play on itch.io</a>
-            <a class="button light" href="live/tic-tac-toe/presskit.html">Press Kit</a>
+    <section class="band band-alt" id="method">
+      <div class="wrap reveal">
+        <div class="kicker">The method</div>
+        <h2>Some games are too good to leave on the table.</h2>
+        <p class="section-lede"><span style="color: var(--ink); font-weight: 500;">A love letter to the physical game &mdash; not a copy of it.</span> The tactile feel, the players across from you, the energy in the room, the physicality &mdash; a digital companion that simply tries to copy that loses all of it the moment it leaves the table. One Day Games doesn't recreate the physical game. We channel its energy and translate it for the screen, rules and DNA intact. Reinterpreting the game &mdash; never reinventing it.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="num">01 / KEEP</div>
+            <h3>Hold the rules and DNA</h3>
+            <p>The rule set and the DNA are sacred. That's the part you don't touch.</p>
+          </div>
+          <div class="step">
+            <div class="num">02 / TRANSLATE</div>
+            <h3>The feel for the screen</h3>
+            <p>Let go of what a screen can't carry. Then craft the feeling native to tap and click &mdash; the tempo, the texture, the small frictions that made it good in the hand.</p>
+          </div>
+          <div class="step">
+            <div class="num">03 / EXECUTE</div>
+            <h3>One hand, vision to ship</h3>
+            <p>One person interprets the game, builds it, and produces it. No handoff, no telephone game between the idea and the code, so nothing gets lost on the way to a real, playable release.</p>
           </div>
         </div>
-        <figure class="game-shot" aria-label="Tic-Tac-Toe Night Shift screenshot">
-          <img src="live/tic-tac-toe/assets/ttt-night-shooting-star-x.png" alt="Tic-Tac-Toe Night Shift night screenshot">
-        </figure>
       </div>
     </section>
 
-    <section class="section dark" id="watch">
-      <div class="wrap watch-grid">
-        <div class="watch-copy">
-          <p class="section-label">Watch and follow</p>
-          <h2>One-hour ambient loop</h2>
-          <p>The Tic-Tac-Toe soundtrack has a one-hour YouTube loop for the room, a browser tab, or the background while you work.</p>
-          <div class="follow-list" aria-label="One Day Games links">
-            <div class="follow-row">
-              <strong>YouTube</strong>
-              <a href="https://youtube.com/@One_Day_Games" target="_blank" rel="noopener">youtube.com/@One_Day_Games</a>
-            </div>
-            <div class="follow-row">
-              <strong>X</strong>
-              <a href="https://x.com/onedaygames_" target="_blank" rel="noopener">x.com/onedaygames_</a>
-            </div>
-            <div class="follow-row">
-              <strong>CJ LinkedIn</strong>
-              <a href="https://www.linkedin.com/in/cjconnoy" target="_blank" rel="noopener">linkedin.com/in/cjconnoy</a>
+    <section class="band" id="work">
+      <div class="wrap">
+        <div class="reveal">
+          <div class="kicker">The work</div>
+          <h2>Proof the method ships.</h2>
+          <p class="section-lede">A live, finished game you can play right now &mdash; proof the method ships.</p>
+        </div>
+
+        <div class="work reveal">
+          <figure class="shot" aria-label="Tic-Tac-Toe live screenshot">
+            <img src="live/tic-tac-toe/assets/ttt-night-shooting-star-x.png" alt="Tic-Tac-Toe night game screenshot">
+          </figure>
+          <div class="work-meta">
+            <span class="tag">Live / plays in the browser</span>
+            <h3>Tic-Tac-Toe</h3>
+            <p>People have played tic-tac-toe for hundreds of years &mdash; Xs and Os scribbled on paper, in the sand, on foggy windows. Everywhere. I wanted to see it realized in a world of my own, on a screen, built in under a day. Original music, a friendly CPU, shipped and live &mdash; on the One Day Games site, mirrored on itch.io.</p>
+            <div class="proves"><b>What it proves:</b> One Day Games takes an idea all the way &mdash; finished, polished, and live in public. Not a prototype, not a pitch. And it can evolve a live game when there's a great idea to share: real updates &mdash; visuals, gameplay, mobile layout, review and readiness checks, release comms &mdash; moving through the pipeline cleanly. Grown because it's worth growing, not because a calendar says so.</div>
+            <div class="work-links">
+              <a href="live/tic-tac-toe/">Play on ODG</a>
+              <a href="https://onedaygames.itch.io/tic-tac-toe" target="_blank" rel="noopener">Play on itch.io</a>
+              <a href="live/tic-tac-toe/presskit.html">Press kit</a>
             </div>
           </div>
         </div>
-        <div class="video-frame">
-          <a class="video-link" href="https://www.youtube.com/watch?v=eU768UtVfC8" target="_blank" rel="noopener" aria-label="Watch Tic-Tac-Toe one-hour ambient loop on YouTube">
-            <img src="live/tic-tac-toe/assets/ttt-night-shooting-star-x.png" alt="Tic-Tac-Toe Night Shift ambient loop artwork">
-            <span>Watch on YouTube</span>
-          </a>
+      </div>
+    </section>
+
+    <section class="band band-alt" id="studio">
+      <div class="wrap reveal">
+        <div class="kicker">The studio</div>
+        <h2>A studio with a hand of its own.</h2>
+        <p class="section-lede">One Day Games is the interpretive hand between a physical game and its digital life &mdash; a single point of view that owns the translation from first read to live release. Small footprint, real craft and real infrastructure underneath.</p>
+        <div class="op-grid">
+          <ul class="op-list">
+            <li><span class="ic" aria-hidden="true">&rarr;</span><span><b>One point of contact.</b> Creative direction and production in one person. Nothing gets lost between the brief and the build.</span></li>
+            <li><span class="ic" aria-hidden="true">&rarr;</span><span><b>An autonomous pipeline.</b> Releases self-monitor and self-heal &mdash; they catch their own failures and recover without anyone stepping in, so the studio scales without scaling headcount.</span></li>
+            <li><span class="ic" aria-hidden="true">&rarr;</span><span><b>AAA process, indie speed.</b> The same production rigor used on multi-hundred-person teams, applied to nimble builds.</span></li>
+            <li><span class="ic" aria-hidden="true">&rarr;</span><span><b>One game at a time.</b> No assembly line, no slate of parallel projects &mdash; each game gets a single maker's full attention, start to finish. Old-world focus, modern tools: AI handles the scale so the craft stays personal.</span></li>
+          </ul>
+          <div class="stack">
+            <div class="label">Pipeline</div>
+            <div class="chips">
+              <span class="chip">Netlify</span>
+              <span class="chip">GitHub Actions</span>
+              <span class="chip">Sentry</span>
+              <span class="chip">Umami</span>
+              <span class="chip">UptimeRobot</span>
+              <span class="chip">Heartbeat monitors</span>
+              <span class="chip">Automated QA sweeps</span>
+              <span class="chip">Auto-devlog</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="studio">
-      <div class="wrap studio-grid">
-        <div class="studio-copy">
-          <p class="section-label">Studio</p>
-          <h2>Built small. Finished publicly.</h2>
-          <p>ODG is CJ Connoy's small-game label: compact ideas, playable web releases, and a bias toward finishing the thing people can actually try.</p>
-          <p>The public shelf is intentionally simple right now: one live browser game, one press kit, and direct ways to follow the studio.</p>
+    <section class="band" id="contact">
+      <div class="contact-card reveal">
+        <div class="kicker">Contact</div>
+        <h2>Have a game ready to travel?</h2>
+        <p>A One Day Games companion gives a physical game a fresh way to be learned, tried, shared &mdash; and bought. For publishing, platform, licensing, or collaboration, reach the studio directly.</p>
+        <div class="email-row">
+          <span class="email-pill" id="email" aria-label="play.onedaygames at gmail dot com">play.onedaygames<span aria-hidden="true">@</span>gmail.com</span>
+          <button class="copy-btn" id="copy" type="button">Copy email</button>
         </div>
-        <a class="studio-mark" href="cj/" aria-label="Meet CJ Connoy">
-          <img src="assets/odg/odg-logo-charcoal.png" alt="One Day Games">
-        </a>
-      </div>
-    </section>
-
-    <section class="section sand" id="contact">
-      <div class="wrap contact-grid">
-        <div class="contact-copy">
-          <p class="section-label">Contact</p>
-          <h2>Reach One Day Games</h2>
-          <p>For press, publishing, platform, or collaboration notes, email ODG directly.</p>
-          <span class="contact-email" aria-label="play.onedaygames at gmail dot com">play.onedaygames<span aria-hidden="true">@</span>gmail.com</span>
-        </div>
-        <div class="contact-actions">
-          <button class="button dark" type="button" data-copy-email>Copy Email</button>
-          <a class="button light" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=play.onedaygames%40gmail.com" target="_blank" rel="noopener">Open Gmail</a>
-          <a class="button light" href="https://x.com/onedaygames_" target="_blank" rel="noopener">Follow on X</a>
-          <p class="contact-status" data-copy-status aria-live="polite"></p>
+        <p class="copy-status" id="copy-status" aria-live="polite"></p>
+        <div class="social">
+          <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=play.onedaygames%40gmail.com" target="_blank" rel="noopener">Open Gmail</a>
+          <a href="https://x.com/onedaygames_" target="_blank" rel="noopener">X / @onedaygames_</a>
+          <a href="https://www.linkedin.com/in/cjconnoy" target="_blank" rel="noopener">CJ on LinkedIn</a>
+          <a href="https://youtube.com/@One_Day_Games" target="_blank" rel="noopener">YouTube</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap footer-row">
-      <span>&copy; 2026 One Day Games</span>
-      <span><a href="live/tic-tac-toe/">Play</a> &middot; <a href="live/tic-tac-toe/presskit.html">Press</a> &middot; <a href="cj/">CJ</a> &middot; <a href="#contact">Contact</a></span>
+    &copy; 2026 One Day Games - small games, real releases.
+    <div class="fl">
+      <a href="live/tic-tac-toe/">Play</a>
+      <a href="live/tic-tac-toe/presskit.html">Press</a>
+      <a href="cj/">CJ</a>
+      <a href="#contact">Contact</a>
     </div>
   </footer>
+
   <script>
     (() => {
-      const email = ['play.onedaygames', 'gmail.com'].join('@');
-      const copyButton = document.querySelector('[data-copy-email]');
-      const status = document.querySelector('[data-copy-status]');
+      const reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add('in');
+          });
+        }, { threshold: 0.12 });
+        reveals.forEach((element) => observer.observe(element));
+      } else {
+        reveals.forEach((element) => element.classList.add('in'));
+      }
 
-      if (!copyButton || !status) return;
+      const email = ['play.onedaygames', 'gmail.com'].join('@');
+      const button = document.getElementById('copy');
+      const status = document.getElementById('copy-status');
 
       const setStatus = (message) => {
+        if (!status) return;
         status.textContent = message;
         window.clearTimeout(setStatus.timer);
         setStatus.timer = window.setTimeout(() => {
@@ -707,18 +841,20 @@
         return copied;
       };
 
-      copyButton.addEventListener('click', async () => {
-        try {
-          if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(email);
-          } else if (!fallbackCopy()) {
-            throw new Error('copy failed');
+      if (button) {
+        button.addEventListener('click', async () => {
+          try {
+            if (navigator.clipboard && window.isSecureContext) {
+              await navigator.clipboard.writeText(email);
+            } else if (!fallbackCopy()) {
+              throw new Error('copy failed');
+            }
+            setStatus(`Copied ${email}`);
+          } catch {
+            setStatus(email);
           }
-          setStatus(`Copied ${email}`);
-        } catch {
-          setStatus(email);
-        }
-      });
+        });
+      }
     })();
   </script>
 </body>
