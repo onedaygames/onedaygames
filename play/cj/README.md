@@ -9,7 +9,7 @@ This page is a static, hand-written profile page for CJ Connoy as Founder & Dire
 The selected work section lives in `index.html`.
 
 - Tic-Tac-Toe copy: update the first `.work-item` when the public itch page, press kit, or shipped feature set changes. Keep the caption short and factual.
-- Trash Dice copy: update the second `.work-item` only with public-safe language. Do not include publisher names, partner names, platform deal terms, private URLs, or unapproved screenshots.
+- Companion copy: update the second `.work-item` only with public-safe language. Do not include publisher names, platform deal terms, private URLs, or unapproved screenshots.
 - Pipeline copy: update the third `.work-item` when there is a stronger public proof artifact. Keep internal details out of the page.
 
 ## Voice Guardrails

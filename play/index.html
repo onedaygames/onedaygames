@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="One Day Games is a founder-led studio making compact playable games. Play Tic-Tac-Toe Night Shift, watch the ambient loop, and follow ODG.">
+  <meta name="description" content="CJ Connoy's One Day Games builds faithful digital companions to physical games: a love letter, not a copy.">
   <meta name="theme-color" content="#121216">
   <meta property="og:title" content="One Day Games">
-  <meta property="og:description" content="Small games. Real releases. Play Tic-Tac-Toe Night Shift now.">
+  <meta property="og:description" content="Faithful digital companions to physical games, led by CJ Connoy.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://playonedaygames.com/">
   <meta property="og:image" content="https://playonedaygames.com/assets/odg/odg-social-card-dark.png">
@@ -14,10 +14,10 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="One Day Games">
-  <meta name="twitter:description" content="Small games. Real releases. Play Tic-Tac-Toe Night Shift now.">
+  <meta name="twitter:description" content="Faithful digital companions to physical games, led by CJ Connoy.">
   <meta name="twitter:image" content="https://playonedaygames.com/assets/odg/odg-social-card-dark.png">
   <link rel="icon" href="/favicon.ico">
-  <title>One Day Games</title>
+  <title>One Day Games - CJ Connoy</title>
   <style>
     :root {
       color-scheme: light;
@@ -177,11 +177,34 @@
       line-height: 1.55;
     }
 
+    .hero-name {
+      margin: 0 0 18px;
+      color: var(--warm-white);
+      font-size: clamp(3rem, 8vw, 6.4rem);
+      line-height: 0.92;
+      letter-spacing: 0;
+    }
+
+    .hero-thesis {
+      margin-top: 14px;
+    }
+
+    .hero-thesis strong {
+      color: var(--white);
+    }
+
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       margin-top: 34px;
+    }
+
+    .building {
+      margin: 24px 0 0;
+      color: rgba(248, 246, 242, 0.65);
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
     }
 
     .button {
@@ -410,6 +433,44 @@
       transform: translateY(-1px);
     }
 
+    .credits {
+      list-style: none;
+      margin: 28px 0 4px;
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .credits li {
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .credits li b {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--ink);
+      font-weight: 850;
+    }
+
+    .callout {
+      margin-top: 20px;
+      padding: 16px;
+      border: 1px solid rgba(255, 138, 95, 0.22);
+      border-radius: 10px;
+      background: rgba(255, 138, 95, 0.09);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    .callout b {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--sunrise-orange);
+      font-weight: 850;
+    }
+
     .contact-grid {
       grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
@@ -580,14 +641,16 @@
   <main>
     <section class="hero" aria-label="One Day Games">
       <div class="hero-inner">
-        <h1 class="sr-only">One Day Games</h1>
         <img class="hero-logo" src="assets/odg/odg-logo-white.png" alt="One Day Games">
-        <p class="kicker">Small games. Real releases.</p>
-        <p class="hero-copy">A founder-led studio making compact playable games with a production mindset.</p>
+        <p class="kicker">One Day Games</p>
+        <h1 class="hero-name">CJ Connoy</h1>
+        <p class="hero-copy">32 years in AAA games. Sony PlayStation, Treyarch (Call of Duty: Black Ops franchise), and founding design and production roles at two new AAA studios in the Sony orbit.</p>
+        <p class="hero-copy hero-thesis">One Day Games makes faithful digital companions to physical games &mdash; <strong>a love letter, not a copy.</strong></p>
         <div class="hero-actions">
           <a class="button primary" href="live/tic-tac-toe/">Play Tic-Tac-Toe</a>
           <a class="button" href="#watch">Watch The Loop</a>
         </div>
+        <p class="building">Currently building: digital companions for tabletop games.</p>
       </div>
     </section>
 
@@ -627,7 +690,7 @@
             </div>
             <div class="follow-row">
               <strong>CJ LinkedIn</strong>
-              <a href="https://www.linkedin.com/in/cjconnoy" target="_blank" rel="noopener">linkedin.com/in/cjconnoy</a>
+              <a href="https://linkedin.com/in/cjconnoy" target="_blank" rel="noopener">linkedin.com/in/cjconnoy</a>
             </div>
           </div>
         </div>
@@ -645,8 +708,22 @@
         <div class="studio-copy">
           <p class="section-label">Studio</p>
           <h2>Built small. Finished publicly.</h2>
-          <p>ODG is CJ Connoy's small-game label: compact ideas, playable web releases, and a bias toward finishing the thing people can actually try.</p>
-          <p>The public shelf is intentionally simple right now: one live browser game, one press kit, and direct ways to follow the studio.</p>
+          <p>32 years across the biggest names in games &mdash; and twice trusted by Sony to help stand up a brand-new AAA studio from zero.</p>
+          <p>One Day Games brings that craft to a smaller form: one person who interprets a physical game and builds its digital companion, start to ship.</p>
+          <ul class="credits">
+            <li><b>SIE &middot; Dark Outlaw Games</b>Founding Senior Lead, Design &mdash; new AAA IP. Sony first-party studio.</li>
+            <li><b>Deviation Games</b>Founding Senior Producer &mdash; new AAA IP. Sony-backed studio.</li>
+            <li><b>Activision &middot; Treyarch</b>Call of Duty: Black Ops 1&ndash;4.</li>
+            <li><b>Sony PlayStation</b>Shipped sports titles &mdash; NFL, NCAA, NBA, MLB.</li>
+          </ul>
+          <div class="callout">
+            <b>I don't just produce &mdash; I design and build.</b>
+            As Founding Senior Lead, Design at SIE Dark Outlaw, I started the co-op prototype that became the foundation of the studio's main AAA IP. One person interpreting and building &mdash; the same approach behind every ODG game.
+          </div>
+          <div class="callout">
+            <b>The games maintain themselves.</b>
+            ODG's live games handle their own maintenance &mdash; detecting issues, fixing them, and deploying the fix automatically. Feature work is done by hand; upkeep is automated.
+          </div>
         </div>
         <a class="studio-mark" href="cj/" aria-label="Meet CJ Connoy">
           <img src="assets/odg/odg-logo-charcoal.png" alt="One Day Games">

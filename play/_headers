@@ -1,17 +1,2 @@
 /private/*
   X-Robots-Tag: noindex, nofollow, noarchive
-
-/trash-dice/alpha-complete/*
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/trash-dice/beta-v2/*
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/trash-dice/play/*
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/trash-dice/qr-test/*
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/partner/*
-  X-Robots-Tag: noindex, nofollow, noarchive
