@@ -23,8 +23,18 @@ function isLiveIndexPath(pathname) {
   return pathname === "/live" || pathname === "/live/";
 }
 
+function isDoubleLivePath(pathname) {
+  return pathname === "/live/live" || pathname === "/live/live/" || pathname.startsWith("/live/live/");
+}
+
 function redirectToHome(url) {
   const target = new URL("/", url);
+  return Response.redirect(target.toString(), 302);
+}
+
+function redirectToSingleLive(url) {
+  const target = new URL(url);
+  target.pathname = target.pathname.replace(/^\/live\/live(?=\/|$)/, "/live");
   return Response.redirect(target.toString(), 302);
 }
 
@@ -89,6 +99,10 @@ export default {
 
     if (isLiveIndexPath(url.pathname)) {
       return redirectToHome(url);
+    }
+
+    if (isDoubleLivePath(url.pathname)) {
+      return redirectToSingleLive(url);
     }
 
     if (isAlphaPath(url.pathname)) {
