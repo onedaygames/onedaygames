@@ -19,6 +19,15 @@ function isOfflinePath(pathname) {
   ));
 }
 
+function isLiveIndexPath(pathname) {
+  return pathname === "/live" || pathname === "/live/";
+}
+
+function redirectToHome(url) {
+  const target = new URL("/", url);
+  return Response.redirect(target.toString(), 302);
+}
+
 function unauthorized() {
   return new Response("authentication required", {
     status: 401,
@@ -77,6 +86,10 @@ async function alphaResponse(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (isLiveIndexPath(url.pathname)) {
+      return redirectToHome(url);
+    }
 
     if (isAlphaPath(url.pathname)) {
       return alphaResponse(request, env);
