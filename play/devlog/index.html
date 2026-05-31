@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Devlog posts from One Day Games, CJ Connoy's solo studio for faithful digital companions to physical games.">
+  <meta name="theme-color" content="#121216">
+  <meta property="og:title" content="Devlog - One Day Games">
+  <meta property="og:description" content="Notes from One Day Games on shipping small, finished games and the studio operations behind them.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://playonedaygames.com/devlog/">
+  <meta property="og:image" content="https://playonedaygames.com/assets/odg/odg-social-card-dark.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Devlog - One Day Games">
+  <meta name="twitter:description" content="Notes from One Day Games on shipping small, finished games and the studio operations behind them.">
+  <meta name="twitter:image" content="https://playonedaygames.com/assets/odg/odg-social-card-dark.png">
+  <link rel="canonical" href="https://playonedaygames.com/devlog/">
+  <link rel="icon" href="/favicon.ico">
+  <title>Devlog - One Day Games</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --night: #121216;
+      --charcoal: #303033;
+      --warm-white: #F8F6F2;
+      --soft-sand: #EFE9DF;
+      --sunrise-gold: #FFC96E;
+      --sunrise-orange: #FF8A5F;
+      --sunrise-pink: #E64B93;
+      --ink: #252527;
+      --muted: #66605b;
+      --line: rgba(48, 48, 51, 0.16);
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--warm-white);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .sunrise-strip {
+      height: 6px;
+      background: linear-gradient(90deg, var(--sunrise-gold), var(--sunrise-orange), var(--sunrise-pink));
+    }
+
+    .wrap,
+    .header-inner {
+      width: min(980px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      background: var(--night);
+      color: var(--warm-white);
+      border-bottom: 1px solid rgba(248, 246, 242, 0.12);
+    }
+
+    .header-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--warm-white);
+      text-decoration: none;
+      font-weight: 850;
+    }
+
+    .brand img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-size: 0.94rem;
+      font-weight: 800;
+    }
+
+    nav a {
+      color: rgba(248, 246, 242, 0.78);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      padding: 5px 0;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--white);
+      border-bottom-color: var(--sunrise-orange);
+      outline: none;
+    }
+
+    .hero {
+      background: var(--night);
+      color: var(--warm-white);
+      padding: clamp(70px, 12vw, 128px) 0 clamp(54px, 9vw, 90px);
+    }
+
+    .kicker {
+      margin: 0 0 14px;
+      color: var(--sunrise-gold);
+      font-weight: 850;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(3rem, 9vw, 6.6rem);
+      line-height: 0.92;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      max-width: 660px;
+      margin: 22px 0 0;
+      color: rgba(248, 246, 242, 0.78);
+      font-size: clamp(1.12rem, 2.4vw, 1.35rem);
+      line-height: 1.55;
+    }
+
+    .posts {
+      padding: clamp(52px, 8vw, 80px) 0;
+    }
+
+    .post-link {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(260px, 1fr);
+      gap: 28px;
+      align-items: stretch;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--white);
+      color: inherit;
+      text-decoration: none;
+      box-shadow: 0 18px 42px rgba(48, 48, 51, 0.1);
+    }
+
+    .post-copy {
+      padding: clamp(26px, 4vw, 42px);
+    }
+
+    .post-copy p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 1.04rem;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .post-image {
+      min-height: 320px;
+      background: var(--charcoal);
+    }
+
+    .post-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-link:hover,
+    .post-link:focus-visible {
+      outline: 3px solid rgba(255, 138, 95, 0.38);
+      outline-offset: 4px;
+    }
+
+    footer {
+      background: var(--night);
+      color: rgba(248, 246, 242, 0.68);
+      padding: 24px 0;
+      font-size: 0.92rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-row a {
+      color: rgba(248, 246, 242, 0.9);
+      text-decoration-color: var(--sunrise-orange);
+      text-underline-offset: 4px;
+    }
+
+    @media (max-width: 760px) {
+      .post-link {
+        grid-template-columns: 1fr;
+      }
+
+      .post-image {
+        min-height: 230px;
+        order: -1;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .wrap,
+      .header-inner {
+        width: min(362px, calc(100% - 28px));
+        margin-left: 14px;
+        margin-right: auto;
+      }
+
+      .brand span {
+        font-size: 0.94rem;
+      }
+
+      nav {
+        gap: 12px;
+        font-size: 0.88rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sunrise-strip" aria-hidden="true"></div>
+
+  <header class="site-header" aria-label="Site header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="One Day Games home">
+        <img src="/assets/odg/odg-icon.png" alt="">
+        <span>One Day Games</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/live/tic-tac-toe/">Play</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Devlog">
+      <div class="wrap">
+        <p class="kicker">Devlog</p>
+        <h1>Notes from One Day Games</h1>
+        <p class="lede">How a solo studio ships small, finished games and the operations around them.</p>
+      </div>
+    </section>
+
+    <section class="posts" aria-label="Posts">
+      <div class="wrap">
+        <a class="post-link" href="/devlog/shipped-in-a-day/">
+          <div class="post-copy">
+            <h2>Shipped in a day. That's the whole name.</h2>
+            <p>The first One Day Games devlog: how Tic-Tac-Toe went from an idea in the morning to a live, playable game by the end of the day.</p>
+          </div>
+          <div class="post-image" aria-hidden="true">
+            <img src="/live/tic-tac-toe/assets/ttt-night-shooting-star-x.png" alt="">
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span>&copy; 2026 One Day Games</span>
+      <span><a href="/">Home</a> &middot; <a href="/live/tic-tac-toe/">Play Tic-Tac-Toe</a></span>
+    </div>
+  </footer>
+</body>
+</html>

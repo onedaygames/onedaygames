@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CJ Connoy on shipping Tic-Tac-Toe in a day, directing an AI coding agent, and building the One Day Games operating layer.">
+  <meta name="theme-color" content="#121216">
+  <meta property="og:title" content="Shipped in a day. That's the whole name.">
+  <meta property="og:description" content="The first One Day Games devlog: how Tic-Tac-Toe went from an idea in the morning to a live, playable game by the end of the day.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://playonedaygames.com/devlog/shipped-in-a-day/">
+  <meta property="og:image" content="https://playonedaygames.com/live/tic-tac-toe/assets/ttt-night-shooting-star-x.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shipped in a day. That's the whole name.">
+  <meta name="twitter:description" content="The first One Day Games devlog: how Tic-Tac-Toe went from an idea in the morning to a live, playable game by the end of the day.">
+  <meta name="twitter:image" content="https://playonedaygames.com/live/tic-tac-toe/assets/ttt-night-shooting-star-x.png">
+  <link rel="canonical" href="https://playonedaygames.com/devlog/shipped-in-a-day/">
+  <link rel="icon" href="/favicon.ico">
+  <title>Shipped in a day. That's the whole name. | One Day Games</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --night: #121216;
+      --charcoal: #303033;
+      --warm-white: #F8F6F2;
+      --soft-sand: #EFE9DF;
+      --sunrise-gold: #FFC96E;
+      --sunrise-orange: #FF8A5F;
+      --sunrise-pink: #E64B93;
+      --ink: #252527;
+      --muted: #66605b;
+      --line: rgba(48, 48, 51, 0.16);
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--warm-white);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .sunrise-strip {
+      height: 6px;
+      background: linear-gradient(90deg, var(--sunrise-gold), var(--sunrise-orange), var(--sunrise-pink));
+    }
+
+    .wrap,
+    .header-inner {
+      width: min(940px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      background: var(--night);
+      color: var(--warm-white);
+      border-bottom: 1px solid rgba(248, 246, 242, 0.12);
+    }
+
+    .header-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--warm-white);
+      text-decoration: none;
+      font-weight: 850;
+    }
+
+    .brand img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-size: 0.94rem;
+      font-weight: 800;
+    }
+
+    nav a {
+      color: rgba(248, 246, 242, 0.78);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      padding: 5px 0;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--white);
+      border-bottom-color: var(--sunrise-orange);
+      outline: none;
+    }
+
+    .hero {
+      background: var(--night);
+      color: var(--warm-white);
+      padding: clamp(62px, 11vw, 118px) 0 0;
+    }
+
+    .kicker {
+      margin: 0 0 14px;
+      color: var(--sunrise-gold);
+      font-weight: 850;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(3rem, 9vw, 6.6rem);
+      line-height: 0.92;
+      letter-spacing: 0;
+    }
+
+    .hero-image {
+      margin-top: clamp(42px, 7vw, 72px);
+      border-top: 1px solid rgba(248, 246, 242, 0.12);
+      background: #0d1020;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .article-shell {
+      padding: clamp(46px, 8vw, 82px) 0 clamp(60px, 9vw, 96px);
+    }
+
+    article {
+      max-width: 760px;
+    }
+
+    article p {
+      margin: 0 0 1.35em;
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      font-size: clamp(1.16rem, 2.2vw, 1.36rem);
+      line-height: 1.68;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      margin-top: 18px;
+      border: 1px solid var(--night);
+      border-radius: 6px;
+      padding: 13px 18px;
+      background: var(--night);
+      color: var(--warm-white);
+      text-decoration: none;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-weight: 850;
+    }
+
+    .cta:hover,
+    .cta:focus-visible {
+      background: var(--sunrise-gold);
+      border-color: var(--sunrise-gold);
+      color: var(--night);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    footer {
+      background: var(--night);
+      color: rgba(248, 246, 242, 0.68);
+      padding: 24px 0;
+      font-size: 0.92rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-row a {
+      color: rgba(248, 246, 242, 0.9);
+      text-decoration-color: var(--sunrise-orange);
+      text-underline-offset: 4px;
+    }
+
+    @media (max-width: 620px) {
+      .wrap,
+      .header-inner {
+        width: min(362px, calc(100% - 28px));
+        margin-left: 14px;
+        margin-right: auto;
+      }
+
+      .brand span {
+        font-size: 0.94rem;
+      }
+
+      nav {
+        gap: 12px;
+        font-size: 0.88rem;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      article p {
+        font-size: 1.08rem;
+        line-height: 1.62;
+      }
+
+      .cta {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sunrise-strip" aria-hidden="true"></div>
+
+  <header class="site-header" aria-label="Site header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="One Day Games home">
+        <img src="/assets/odg/odg-icon.png" alt="">
+        <span>One Day Games</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="/devlog/">Devlog</a>
+        <a href="/live/tic-tac-toe/">Play</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Devlog post">
+      <div class="wrap">
+        <p class="kicker">Devlog</p>
+        <h1>Shipped in a day. That's the whole name.</h1>
+      </div>
+      <figure class="hero-image" aria-label="Tic-Tac-Toe Night Shift">
+        <img src="/live/tic-tac-toe/assets/ttt-night-shooting-star-x.png" alt="Tic-Tac-Toe Night Shift gameplay scene">
+      </figure>
+    </section>
+
+    <section class="article-shell">
+      <div class="wrap">
+        <article>
+          <p>One Day Games is called that because of this game. I had Tic-Tac-Toe in my head in the morning and it was live and playable by the end of the day — designed, built, and shipped in one day. The studio name is just the thing that happened, turned into a promise.</p>
+          <p>Here's how it actually went, because the "in a day" part is true but it's not magic, and the honest version is more useful than the clean one.</p>
+          <p>I don't write code. I've spent 32 years in AAA games on the production and design side — Treyarch, PlayStation, founding roles at two new studios — and what that taught me is how to take a thing from an idea to a shipped, finished product: scoping it, directing it, knowing what "done" looks like and refusing to ship before it's there. That skill set turns out to transfer almost completely to directing an AI coding agent. I worked in plain English. I made the calls — design, feel, what's in, what's cut — and the agent executed the build.</p>
+          <p>The part that went fast was the part you'd expect to be hard: the game logic, getting a working, playable thing live. That came together quickly.</p>
+          <p>The part that was actually hard was the part you'd expect to be easy: the art and animation. Directing the agent to make specific visual changes — this exact motion, this timing, this look — took a lot of hand-holding. "Make it feel better" doesn't work. I had to get precise, iterate, reject, redirect, the same way I'd give notes to a human artist who can't yet see what's in my head. That's not a knock on the tool — it's the real texture of this method. The bottleneck wasn't the building. It was the directing of taste, which is exactly the job I already know how to do.</p>
+          <p>The music took its own time to get right, and it was worth it — what came out is a genuinely lovely little track.</p>
+          <p>The same production instinct didn't stop at "shipped." I built a maintenance operation around the game so it stays online and reports issues back to me without my having to go looking. Most of the time that means I get told what needs attention. In a few genuinely magical cases, the ops layer caught a problem and fixed it itself — detected, repaired, verified, back to green, without me directing the specific fix. I don't oversell that part; it's scoped to bugs and upkeep, and every creative and feature decision is still mine. But it's the thing I'm proudest of as a producer: I built a game that, in the small ways, takes care of itself.</p>
+          <p>The takeaway, and the reason this matters beyond one small game: I was able to use my AAA production and design experience to get a game designed, coded, produced, and shipped to live in a single day. Not by becoming a programmer. By doing the job I've always done — directing finished work into existence — with a new kind of team.</p>
+          <a class="cta" href="/live/tic-tac-toe/">Play Tic-Tac-Toe</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span>&copy; 2026 One Day Games</span>
+      <span><a href="/devlog/">Devlog</a> &middot; <a href="/live/tic-tac-toe/">Play Tic-Tac-Toe</a></span>
+    </div>
+  </footer>
+</body>
+</html>
