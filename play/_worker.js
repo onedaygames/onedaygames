@@ -7,10 +7,15 @@ const OFFLINE_PREFIXES = [
 ];
 
 const ALPHA_PREFIX = "/trash-dice/alpha-complete";
+const IOS_PREVIEW_PREFIX = "/trash-dice/ios-preview";
 const ALPHA_USER = "odg";
 
 function isAlphaPath(pathname) {
   return pathname === ALPHA_PREFIX || pathname.startsWith(`${ALPHA_PREFIX}/`);
+}
+
+function isIosPreviewPath(pathname) {
+  return pathname === IOS_PREVIEW_PREFIX || pathname.startsWith(`${IOS_PREVIEW_PREFIX}/`);
 }
 
 function isOfflinePath(pathname) {
@@ -105,7 +110,7 @@ export default {
       return redirectToSingleLive(url);
     }
 
-    if (isAlphaPath(url.pathname)) {
+    if (isAlphaPath(url.pathname) || isIosPreviewPath(url.pathname)) {
       return alphaResponse(request, env);
     }
 

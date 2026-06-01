@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Bangers';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./bangers-v25.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Chewy';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./chewy-v18.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Fredoka One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fredoka-one-v15.ttf') format('truetype');
+}

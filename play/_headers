@@ -3,3 +3,7 @@
 
 /trash-dice/alpha-complete/*
   X-Robots-Tag: noindex, nofollow, noarchive
+
+/trash-dice/ios-preview/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
