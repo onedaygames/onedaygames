@@ -4282,17 +4282,29 @@ body.mobile-roll-smoothing .victory-rain-die-lite.is-green {
   left: 50%;
   transform: translateX(-50%) rotate(-1deg);
   z-index: 9;
-  color: #0f5f32;
-  font-family: 'Bangers', 'Arial Black', sans-serif;
-  font-size: clamp(0.92rem, 2.1vw, 1.34rem);
+  color: #3d3d3f;
+  font-family: 'Fredoka One', 'Arial Black', sans-serif;
   line-height: 1;
-  letter-spacing: 0.06em;
   text-align: center;
   text-shadow:
-    1px 1.5px 0 rgba(255,255,255,0.52),
-    0 2px 5px rgba(74,82,18,0.18);
+    1px 1.5px 0 rgba(255,255,255,0.42),
+    0 2px 5px rgba(74,82,18,0.15);
   pointer-events: none;
   white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.08rem;
+}
+.bd-wordmark {
+  font-size: clamp(1.45rem, 5.9vw, 2.25rem);
+  letter-spacing: 0.04em;
+}
+.bd-presents {
+  color: #0f5f32;
+  font-family: 'Bangers', 'Arial Black', sans-serif;
+  font-size: clamp(0.72rem, 2.7vw, 1rem);
+  letter-spacing: 0.08em;
 }
 .start-overlay.hide {
   opacity: 0;
@@ -5631,7 +5643,10 @@ body.app-menu-paused .victory-screen * {
 </div>
 <!-- Start overlay -->
 <div class="start-overlay" id="startOverlay">
-  <div class="start-purpose-note">FOR EDUCATIONAL PURPOSES ONLY</div>
+  <div class="start-purpose-note" aria-label="BIG DISCOVERIES Presents">
+    <span class="bd-wordmark">BIG DISCOVERIES</span>
+    <span class="bd-presents">Presents</span>
+  </div>
   <div class="title-wrap big">
     <div class="splatter sp-y" style="width:70px;height:44px;top:-8px;left:2%;transform:rotate(18deg)"></div>
     <div class="splatter sp-g" style="width:50px;height:32px;bottom:0;right:4%;transform:rotate(-14deg)"></div>
