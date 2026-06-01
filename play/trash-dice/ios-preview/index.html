@@ -5798,6 +5798,10 @@ body.app-menu-paused .victory-screen * {
   let gameStarted;
   let roundWins = { p1: 0, p2: 0 };
   let openingComebackAssistRolls = 0;
+  let openingGraceConsumed = false;
+  let openingGraceActiveGame = false;
+  let openingGraceUses = 0;
+  let lastOpeningGraceAssist = null;
 
   const COLORS = ['yellow', 'green'];
   const COLOR_CLASS = { yellow: 'p1', green: 'p2' };
@@ -5881,6 +5885,13 @@ body.app-menu-paused .victory-screen * {
   const PLAYER_OPENING_COMEBACK_HIT_CHANCE = 0.36;
   const PLAYER_OPENING_COMEBACK_CLUTCH_CHANCE = 0.58;
   const CPU_OPENING_SWEEP_BRAKE_CHANCE = 0.48;
+  const OPENING_GRACE_MAX_ROUNDS = 3;
+  const OPENING_GRACE_MAX_USES = 5;
+  const OPENING_GRACE_PLAYER_ROUND_WIN_LIMIT = 1;
+  const OPENING_GRACE_PLAYER_DICE_LEAD_LIMIT = 3;
+  const OPENING_GRACE_PLAYER_HIT_CHANCE = 0.36;
+  const OPENING_GRACE_PLAYER_CLUTCH_CHANCE = 0.56;
+  const OPENING_GRACE_CPU_BRAKE_CHANCE = 0.3;
   const ENDURANCE_ASSIST_START_ROUND = 5;
   const ENDURANCE_ASSIST_START_ROLLS = 36;
   const ENDURANCE_ASSIST_MAX_USES = 4;
@@ -8557,6 +8568,32 @@ body.app-menu-paused .victory-screen * {
       totalDice('p2') > 0;
   }
 
+  function isOpeningGraceAssistActive() {
+    const p1Dice = totalDice('p1');
+    const p2Dice = totalDice('p2');
+    return !p0Autoplay &&
+      openingGraceActiveGame &&
+      round <= OPENING_GRACE_MAX_ROUNDS &&
+      roundWins &&
+      roundWins.p1 < OPENING_GRACE_PLAYER_ROUND_WIN_LIMIT &&
+      openingGraceUses < OPENING_GRACE_MAX_USES &&
+      p1Dice > 0 &&
+      p2Dice > 0 &&
+      p1Dice < p2Dice + OPENING_GRACE_PLAYER_DICE_LEAD_LIMIT;
+  }
+
+  function markOpeningGraceAssist(reason, face) {
+    openingGraceUses++;
+    lastOpeningGraceAssist = {
+      reason,
+      face,
+      round,
+      totalRolls,
+      uses: openingGraceUses,
+      at: Date.now()
+    };
+  }
+
   function createEnduranceAssistContext(openSlots = []) {
     const p1Dice = totalDice('p1');
     const p2Dice = totalDice('p2');
@@ -8623,7 +8660,18 @@ body.app-menu-paused .victory-screen * {
         }, [])
       : [];
     const comebackAssistActive = isOpeningComebackAssistActive();
+    const openingGraceActive = isOpeningGraceAssistActive();
     const enduranceContext = createEnduranceAssistContext(openSlots);
+    if (
+      openingGraceActive &&
+      player === 'p1' &&
+      openSlots.length > 1 &&
+      Math.random() < OPENING_GRACE_PLAYER_HIT_CHANCE
+    ) {
+      const face = randomFrom(openSlots);
+      markOpeningGraceAssist('player-open-slot', face);
+      return face;
+    }
     if (
       player === 'p1' &&
       !p0Autoplay &&
@@ -8636,10 +8684,13 @@ body.app-menu-paused .victory-screen * {
         : ENDURANCE_ASSIST_PLAYER_CLUTCH_CHANCE;
       const face = choosePlayerClutchFace(
         openSlots[0],
-        comebackAssistActive
+        openingGraceActive
+          ? OPENING_GRACE_PLAYER_CLUTCH_CHANCE
+          : comebackAssistActive
           ? PLAYER_OPENING_COMEBACK_CLUTCH_CHANCE
           : (enduranceContext.active ? enduranceClutchChance : PLAYER_CLUTCH_MAGNET_CHANCE)
       );
+      if (openingGraceActive && face === openSlots[0]) markOpeningGraceAssist('player-clutch', face);
       if (comebackAssistActive && face === openSlots[0]) openingComebackAssistRolls++;
       if (enduranceContext.active && face === openSlots[0]) markEnduranceAssist('player-clutch', face, enduranceContext);
       return face;
@@ -8653,6 +8704,14 @@ body.app-menu-paused .victory-screen * {
       if (Math.random() < hitChance) {
         const face = randomFrom(openSlots);
         markEnduranceAssist('player-open-slot', face, enduranceContext);
+        return face;
+      }
+    }
+    if (openingGraceActive && player === 'p2' && openSlots.length <= 2) {
+      const takenFaces = [1, 2, 3, 4, 5, 6].filter(face => !openSlots.includes(face));
+      if (takenFaces.length && Math.random() < OPENING_GRACE_CPU_BRAKE_CHANCE) {
+        const face = randomFrom(takenFaces);
+        markOpeningGraceAssist('cpu-soft-brake', face);
         return face;
       }
     }
@@ -8804,6 +8863,10 @@ body.app-menu-paused .victory-screen * {
     lastEnduranceAssist = null;
     roundWins = { p1: 0, p2: 0 };
     openingComebackAssistRolls = 0;
+    openingGraceActiveGame = !openingGraceConsumed;
+    openingGraceConsumed = true;
+    openingGraceUses = 0;
+    lastOpeningGraceAssist = null;
     gameStarted = true;
     Audio.setMusicActive(true);
 
@@ -9119,6 +9182,7 @@ body.app-menu-paused .victory-screen * {
   function recordRoundWin(winner) {
     if (!roundWins) roundWins = { p1: 0, p2: 0 };
     if (isValidPlayer(winner)) roundWins[winner]++;
+    if (winner === 'p1') openingGraceActiveGame = false;
   }
 
   function beginRoundResolution(winner = current) {
