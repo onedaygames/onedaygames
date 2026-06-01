@@ -8582,6 +8582,17 @@ body.app-menu-paused .victory-screen * {
       p1Dice < p2Dice + OPENING_GRACE_PLAYER_DICE_LEAD_LIMIT;
   }
 
+  function isOpeningRecoveryGuardActive() {
+    return !p0Autoplay &&
+      openingGraceActiveGame &&
+      round <= OPENING_GRACE_MAX_ROUNDS &&
+      roundWins &&
+      roundWins.p1 === 0 &&
+      roundWins.p2 >= 1 &&
+      totalDice('p1') > 0 &&
+      totalDice('p2') > 0;
+  }
+
   function markOpeningGraceAssist(reason, face) {
     openingGraceUses++;
     lastOpeningGraceAssist = {
@@ -8661,7 +8672,25 @@ body.app-menu-paused .victory-screen * {
       : [];
     const comebackAssistActive = isOpeningComebackAssistActive();
     const openingGraceActive = isOpeningGraceAssistActive();
+    const openingRecoveryGuardActive = isOpeningRecoveryGuardActive();
     const enduranceContext = createEnduranceAssistContext(openSlots);
+    if (
+      openingRecoveryGuardActive &&
+      player === 'p1' &&
+      openSlots.length > 0
+    ) {
+      const face = randomFrom(openSlots);
+      markOpeningGraceAssist('player-recovery-open-slot', face);
+      return face;
+    }
+    if (openingRecoveryGuardActive && player === 'p2') {
+      const takenFaces = [1, 2, 3, 4, 5, 6].filter(face => !openSlots.includes(face));
+      if (takenFaces.length) {
+        const face = randomFrom(takenFaces);
+        markOpeningGraceAssist('cpu-recovery-soft-brake', face);
+        return face;
+      }
+    }
     if (
       openingGraceActive &&
       player === 'p1' &&
