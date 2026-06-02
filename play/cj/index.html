@@ -250,6 +250,22 @@
       justify-content: center;
     }
 
+    .work-item.statement-tile {
+      background:
+        linear-gradient(145deg, rgba(255, 201, 110, 0.14), rgba(255, 201, 110, 0.035)),
+        rgba(248, 246, 242, 0.055);
+      border-color: rgba(255, 201, 110, 0.26);
+    }
+
+    .work-item.statement-tile .work-copy {
+      min-height: 100%;
+      padding: 28px;
+    }
+
+    .work-item.statement-tile h3 {
+      color: var(--accent);
+    }
+
     .work-visual {
       min-height: 180px;
       border-bottom: 1px solid var(--line);
@@ -310,6 +326,24 @@
       color: var(--muted);
       font-size: 0.98rem;
       line-height: 1.55;
+    }
+
+    .work-copy ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .work-copy li + li {
+      margin-top: 10px;
+    }
+
+    .recorded-label {
+      margin-bottom: 0;
+      color: var(--paper);
+      font-weight: 800;
     }
 
     .work-copy a {
@@ -459,10 +493,10 @@
             </div>
           </article>
 
-          <article class="work-item text-only">
+          <article class="work-item text-only statement-tile">
             <div class="work-copy">
               <h3>Physical-game companions</h3>
-              <p>Faithful digital companions for tabletop games. The studio's core focus.</p>
+              <p>The studio's core focus: taking a finished tabletop game and building its faithful digital companion &mdash; an interpretation, not a port, that stands beside the physical product without replacing it. First titles in development.</p>
             </div>
           </article>
 
@@ -476,7 +510,12 @@
             </div>
             <div class="work-copy">
               <h3>The production pipeline</h3>
-              <p>ODG runs production checks that detect issues, make bounded repairs, validate the result, and ship or promote the fix — with an audit trail, and without CJ finding or directing the specific repair. Creative work is done by hand; upkeep and recovery are increasingly automated. Recorded examples: a scheduled audit caught pipeline drift, patched it, validated with a dry-run, and pushed to main on its own (May 2026); and the live Tic-Tac-Toe build had an issue detected, repaired, shipped, and verified green without CJ directing the fix (April 2026).</p>
+              <p>ODG runs production checks that detect issues, make bounded repairs, validate the result, and ship or promote the fix &mdash; with an audit trail, and without CJ finding or directing the specific repair. Creative work is done by hand; upkeep and recovery are increasingly automated.</p>
+              <p class="recorded-label">Recorded examples:</p>
+              <ul>
+                <li>A scheduled audit caught pipeline drift, patched it, validated with a dry-run, and pushed to main on its own. (May 2026)</li>
+                <li>The live Tic-Tac-Toe build had an issue detected, repaired, shipped, and verified green &mdash; without CJ directing the fix. (April 2026)</li>
+              </ul>
             </div>
           </article>
         </div>
