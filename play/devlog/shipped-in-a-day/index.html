@@ -28,7 +28,7 @@
       --sunrise-orange: #FF8A5F;
       --sunrise-pink: #E64B93;
       --ink: #252527;
-      --muted: #66605b;
+      --muted: #595959;
       --line: rgba(48, 48, 51, 0.16);
       --white: #ffffff;
     }
@@ -59,16 +59,21 @@
     }
 
     .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
       background: var(--night);
       color: var(--warm-white);
       border-bottom: 1px solid rgba(248, 246, 242, 0.12);
     }
 
     .header-inner {
-      min-height: 74px;
+      min-height: 62px;
+      padding: 9px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
       gap: 20px;
     }
 
@@ -79,6 +84,7 @@
       color: var(--warm-white);
       text-decoration: none;
       font-weight: 850;
+      flex: 0 0 auto;
     }
 
     .brand img {
@@ -91,8 +97,11 @@
       display: flex;
       gap: 20px;
       align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
       font-size: 0.94rem;
       font-weight: 800;
+      min-width: 0;
     }
 
     nav a {
@@ -216,8 +225,10 @@
       }
 
       nav {
-        gap: 12px;
-        font-size: 0.88rem;
+        flex-basis: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+        font-size: 0.84rem;
       }
 
       .hero {
@@ -245,8 +256,12 @@
         <span>One Day Games</span>
       </a>
       <nav aria-label="Primary navigation">
+        <a href="/">Home</a>
         <a href="/devlog/">Devlog</a>
         <a href="/live/tic-tac-toe/">Play</a>
+        <a href="/#watch">Watch</a>
+        <a href="/live/tic-tac-toe/presskit">Press</a>
+        <a href="/#contact">Contact</a>
       </nav>
     </div>
   </header>

@@ -47,8 +47,8 @@
       --accent: #FFC96E;
       --accent-soft: rgba(255, 201, 110, 0.16);
       --line: rgba(248, 246, 242, 0.16);
-      --muted: rgba(248, 246, 242, 0.68);
-      --quiet: rgba(248, 246, 242, 0.48);
+      --muted: rgba(248, 246, 242, 0.78);
+      --quiet: rgba(248, 246, 242, 0.72);
     }
 
     * {
@@ -97,14 +97,20 @@
     }
 
     .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--night);
       border-bottom: 1px solid rgba(248, 246, 242, 0.1);
     }
 
     .header-inner {
-      min-height: 76px;
+      min-height: 62px;
+      padding: 9px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
       gap: 20px;
     }
 
@@ -116,6 +122,7 @@
       text-decoration: none;
       font-size: 0.94rem;
       font-weight: 800;
+      flex: 0 0 auto;
     }
 
     .brand img {
@@ -129,6 +136,31 @@
       font-size: 0.94rem;
       font-weight: 700;
       text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      min-width: 0;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      padding: 5px 0;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--paper);
+      border-bottom-color: var(--accent);
+      outline: none;
     }
 
     main {
@@ -204,6 +236,18 @@
       min-height: 100%;
       border: 1px solid var(--line);
       background: rgba(248, 246, 242, 0.045);
+    }
+
+    .work-item.text-only {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .work-item.text-only .work-copy {
+      display: flex;
+      min-height: 180px;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .work-visual {
@@ -330,11 +374,18 @@
       }
 
       .header-inner {
-        min-height: 68px;
+        min-height: 60px;
       }
 
       .brand span {
         display: none;
+      }
+
+      nav {
+        flex-basis: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+        font-size: 0.82rem;
       }
 
       .identity {
@@ -366,7 +417,14 @@
         <img src="../assets/odg/odg-icon.png" alt="">
         <span>One Day Games</span>
       </a>
-      <a class="home-link" href="/">playonedaygames.com</a>
+      <nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/live/tic-tac-toe/">Play</a>
+        <a href="/devlog/">Devlog</a>
+        <a href="/#watch">Watch</a>
+        <a href="/live/tic-tac-toe/presskit">Press</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
@@ -396,13 +454,12 @@
             </div>
             <div class="work-copy">
               <h3>Tic-Tac-Toe<br>April 2026</h3>
-              <p>A WarGames-aesthetic browser game. Generative ambient soundtrack, friendly AI opponent. Shipped in a single development day.</p>
+              <p>A hand-crafted browser Tic-Tac-Toe in a living world, with an original ambient soundtrack and a friendly CPU opponent, shipped in a single development day.</p>
               <a href="https://onedaygames.itch.io/tic-tac-toe" target="_blank" rel="noopener">onedaygames.itch.io/tic-tac-toe</a>
             </div>
           </article>
 
-          <article class="work-item">
-            <div class="text-visual" aria-hidden="true"></div>
+          <article class="work-item text-only">
             <div class="work-copy">
               <h3>Physical-game companions</h3>
               <p>Faithful digital companions for tabletop games. The studio's core focus.</p>
@@ -416,18 +473,17 @@
               <span>bad deploy detected</span>
               rollback complete
               <span>press kit verified</span>
-              public assets: 200
             </div>
             <div class="work-copy">
-              <h3>The autonomous pipeline</h3>
-              <p>The studio runs on an AI-augmented pipeline that releases, monitors, and patches itself with zero daily ops input. Documented self-recovery from a bad deploy in April 2026.</p>
+              <h3>The production pipeline</h3>
+              <p>ODG runs production checks that detect issues, make bounded repairs, validate the result, and ship or promote the fix — with an audit trail, and without CJ finding or directing the specific repair. Creative work is done by hand; upkeep and recovery are increasingly automated. Recorded examples: a scheduled audit caught pipeline drift, patched it, validated with a dry-run, and pushed to main on its own (May 2026); and the live Tic-Tac-Toe build had an issue detected, repaired, shipped, and verified green without CJ directing the fix (April 2026).</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-label="Contact">
+    <section class="section" id="contact" aria-label="Contact">
       <div class="wrap">
         <p class="section-label">Contact</p>
         <div class="contact-list">

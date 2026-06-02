@@ -29,8 +29,9 @@
       --sunrise-orange: #FF8A5F;
       --sunrise-coral: #FF6E75;
       --sunrise-pink: #E64B93;
+      --terracotta: #A8442A;
       --ink: #252527;
-      --muted: #66605b;
+      --muted: #595959;
       --line: rgba(48, 48, 51, 0.16);
       --white: #ffffff;
     }
@@ -49,7 +50,6 @@
       background: var(--warm-white);
       color: var(--ink);
       letter-spacing: 0;
-      overflow-x: hidden;
       overflow-x: hidden;
     }
 
@@ -80,6 +80,9 @@
     }
 
     .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
       background: var(--night);
       color: var(--warm-white);
       border-bottom: 1px solid rgba(248, 246, 242, 0.12);
@@ -92,10 +95,12 @@
     }
 
     .header-inner {
-      min-height: 74px;
+      min-height: 62px;
+      padding: 9px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
       gap: 24px;
     }
 
@@ -106,6 +111,7 @@
       min-width: 0;
       text-decoration: none;
       font-weight: 800;
+      flex: 0 0 auto;
     }
 
     .brand img {
@@ -123,9 +129,11 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
+      flex-wrap: wrap;
       gap: 22px;
       font-size: 0.95rem;
       font-weight: 700;
+      min-width: 0;
     }
 
     nav a {
@@ -149,17 +157,19 @@
 
     .hero-inner {
       width: min(1080px, calc(100% - 40px));
-      min-height: clamp(420px, 46svh, 560px);
+      min-height: 540px;
       margin: 0 auto;
       padding: 54px 0 50px;
       display: grid;
-      align-content: center;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.74fr);
+      align-items: center;
+      gap: 46px;
     }
 
     .hero-logo {
-      width: min(430px, 100%);
+      width: min(280px, 100%);
       height: auto;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
 
     .kicker {
@@ -172,39 +182,71 @@
     .hero-copy {
       max-width: 650px;
       margin: 0;
-      color: rgba(248, 246, 242, 0.84);
+      color: rgba(248, 246, 242, 0.9);
       font-size: 1.3rem;
       line-height: 1.55;
     }
 
-    .hero-name {
+    .hero-title {
+      max-width: 760px;
       margin: 0 0 18px;
       color: var(--warm-white);
-      font-size: clamp(3rem, 8vw, 6.4rem);
-      line-height: 0.92;
+      font-size: 4.15rem;
+      line-height: 1.02;
       letter-spacing: 0;
     }
 
-    .hero-thesis {
-      margin-top: 14px;
+    .hero-title strong {
+      color: var(--white);
     }
 
-    .hero-thesis strong {
-      color: var(--white);
+    .hero-proof {
+      max-width: 670px;
+      margin: 20px 0 0;
+      color: rgba(248, 246, 242, 0.82);
+      font-size: 1.08rem;
+      line-height: 1.55;
+      font-weight: 700;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 34px;
+      margin-top: 20px;
     }
 
     .building {
       margin: 24px 0 0;
-      color: rgba(248, 246, 242, 0.65);
+      color: rgba(248, 246, 242, 0.78);
       font-size: 0.8rem;
       letter-spacing: 0.02em;
+    }
+
+    .hero-product {
+      margin: 0;
+      border: 1px solid rgba(248, 246, 242, 0.18);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0d1020;
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
+    }
+
+    .hero-product img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .hero-product figcaption {
+      padding: 15px 16px 0;
+      color: rgba(248, 246, 242, 0.84);
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .hero-product .hero-actions {
+      padding: 0 16px 16px;
     }
 
     .button {
@@ -262,9 +304,13 @@
 
     .section-label {
       margin: 0 0 12px;
-      color: var(--sunrise-pink);
+      color: var(--terracotta);
       font-size: 0.88rem;
       font-weight: 850;
+    }
+
+    .section.dark .section-label {
+      color: var(--sunrise-gold);
     }
 
     h2 {
@@ -467,7 +513,7 @@
     .callout b {
       display: block;
       margin-bottom: 4px;
-      color: var(--sunrise-orange);
+      color: var(--terracotta);
       font-weight: 850;
     }
 
@@ -522,7 +568,7 @@
 
     @media (max-width: 820px) {
       .header-inner {
-        min-height: 66px;
+        min-height: 60px;
       }
 
       nav {
@@ -531,15 +577,21 @@
       }
 
       .hero-inner {
-        min-height: 480px;
+        min-height: 0;
         padding: 48px 0 46px;
+        grid-template-columns: 1fr;
       }
 
       .hero-logo {
-        width: min(390px, 100%);
+        width: min(260px, 100%);
       }
 
-      .hero-copy {
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .hero-copy,
+      .hero-proof {
         font-size: 1.12rem;
       }
 
@@ -580,22 +632,25 @@
         font-size: 0.94rem;
       }
 
-      nav a:not(:first-child) {
-        display: none;
-      }
-
       nav {
+        flex-basis: 100%;
+        justify-content: flex-start;
         gap: 10px;
+        font-size: 0.84rem;
       }
 
       .hero-inner {
-        min-height: 500px;
+        min-height: 0;
         padding: 42px 0 42px;
       }
 
       .hero-logo {
-        width: min(330px, 100%);
+        width: min(230px, 100%);
         margin-bottom: 26px;
+      }
+
+      .hero-title {
+        font-size: 2.35rem;
       }
 
       .hero-actions .button,
@@ -630,6 +685,7 @@
         <span>One Day Games</span>
       </a>
       <nav aria-label="Primary navigation">
+        <a href="/">Home</a>
         <a href="#play">Play</a>
         <a href="/devlog/">Devlog</a>
         <a href="#watch">Watch</a>
@@ -642,16 +698,21 @@
   <main>
     <section class="hero" aria-label="One Day Games">
       <div class="hero-inner">
-        <img class="hero-logo" src="assets/odg/odg-logo-white.png" alt="One Day Games">
-        <p class="kicker">One Day Games</p>
-        <h1 class="hero-name">CJ Connoy</h1>
-        <p class="hero-copy">32 years in AAA games. Sony PlayStation, Treyarch (Call of Duty: Black Ops franchise), and founding design and production roles at two new AAA studios in the Sony orbit.</p>
-        <p class="hero-copy hero-thesis">One Day Games makes faithful digital companions to physical games &mdash; <strong>a love letter, not a copy.</strong></p>
-        <div class="hero-actions">
-          <a class="button primary" href="/live/tic-tac-toe/">Play Tic-Tac-Toe</a>
-          <a class="button" href="#watch">Watch The Loop</a>
+        <div class="hero-copy-block">
+          <img class="hero-logo" src="assets/odg/odg-logo-white.png" alt="One Day Games">
+          <p class="kicker">One Day Games</p>
+          <h1 class="hero-title">One Day Games makes faithful digital companions to physical games &mdash; <strong>a love letter, not a copy.</strong></h1>
+          <p class="hero-proof">Founded by CJ Connoy &mdash; 32 years in AAA games (Call of Duty: Black Ops, PlayStation/SIE).</p>
+          <p class="building">Currently building: digital companions for tabletop games.</p>
         </div>
-        <p class="building">Currently building: digital companions for tabletop games.</p>
+        <figure class="hero-product" aria-label="Live Tic-Tac-Toe companion">
+          <img src="/live/tic-tac-toe/assets/ttt-night-shooting-star-x.png" alt="Tic-Tac-Toe Night Shift gameplay scene">
+          <figcaption>Now playing: Tic-Tac-Toe Night Shift</figcaption>
+          <div class="hero-actions">
+            <a class="button primary" href="/live/tic-tac-toe/">Play Tic-Tac-Toe</a>
+            <a class="button" href="#watch">Watch The Loop</a>
+          </div>
+        </figure>
       </div>
     </section>
 

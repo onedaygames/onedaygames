@@ -36,13 +36,78 @@
       font-family: "Trebuchet MS", Arial, sans-serif;
       background: radial-gradient(circle at 50% 0%, #315680 0%, var(--night) 62%, #040915 100%);
       color: var(--ink);
-      display: grid;
-      place-items: center;
-      padding: 24px;
+      padding: 0;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #040915;
+      color: var(--ink);
+      border-bottom: 1px solid rgba(255, 247, 215, 0.16);
+    }
+
+    .header-inner {
+      width: min(1100px, calc(100% - 40px));
+      min-height: 60px;
+      margin: 0 auto;
+      padding: 9px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      font-weight: 900;
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 0 0 auto;
+    }
+
+    .brand img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 18px;
+      min-width: 0;
+      font-size: 0.92rem;
+      font-weight: 900;
+    }
+
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      padding: 5px 0;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+      outline: none;
     }
 
     main {
       width: min(960px, 100%);
+      margin: 0 auto;
+      padding: 56px 24px;
     }
 
     img {
@@ -67,7 +132,7 @@
       line-height: 1.6;
     }
 
-    a {
+    .cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -81,18 +146,57 @@
       box-shadow: 0 8px 22px rgba(255, 216, 120, 0.28);
     }
 
-    a:focus-visible {
+    .cta:focus-visible {
       outline: 3px solid #fff7d7;
       outline-offset: 4px;
+    }
+
+    @media (max-width: 620px) {
+      .header-inner {
+        width: min(362px, calc(100% - 28px));
+        margin-left: 14px;
+        margin-right: auto;
+      }
+
+      .brand span {
+        display: none;
+      }
+
+      nav {
+        flex-basis: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+        font-size: 0.82rem;
+      }
+
+      main {
+        padding: 42px 14px;
+      }
     }
   </style>
 </head>
 <body>
+  <header class="site-header" aria-label="Site header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="One Day Games home">
+        <img src="/assets/odg/odg-icon.png" alt="">
+        <span>One Day Games</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/live/tic-tac-toe/">Play</a>
+        <a href="/devlog/">Devlog</a>
+        <a href="/#watch">Watch</a>
+        <a href="/live/tic-tac-toe/presskit">Press</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
   <main>
     <img src="assets/ttt-night-shooting-star-x.png" alt="Tic-Tac-Toe Night Shift scene with a shooting star"/>
     <h1>Tic-Tac-Toe: Night Shift</h1>
     <p>Moonlight, lanterns, wisps, airborne flowers, cozy house light, full-sky shooting stars, and a Player 0 reclaim hotfix are live now.</p>
-    <a href="https://onedaygames.itch.io/tic-tac-toe">Play free on itch.io</a>
+    <a class="cta" href="https://onedaygames.itch.io/tic-tac-toe">Play free on itch.io</a>
   </main>
 </body>
 </html>
