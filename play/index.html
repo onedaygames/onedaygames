@@ -232,6 +232,27 @@
       box-shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
     }
 
+    .image-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .image-link img {
+      display: block;
+      transition: filter 160ms ease, transform 160ms ease;
+    }
+
+    .image-link:hover img,
+    .image-link:focus-visible img {
+      filter: brightness(1.06) saturate(1.04);
+    }
+
+    .image-link:focus-visible {
+      outline: 3px solid var(--sun);
+      outline-offset: -3px;
+    }
+
     .hero-product img {
       width: 100%;
       aspect-ratio: 16 / 10;
@@ -706,7 +727,9 @@
           <p class="building">Currently building: digital companions for tabletop games.</p>
         </div>
         <figure class="hero-product" aria-label="Live Tic-Tac-Toe companion">
-          <img src="/live/tic-tac-toe/assets/ttt-night-shooting-star-x.png" alt="Tic-Tac-Toe gameplay scene">
+          <a class="image-link" href="/live/tic-tac-toe/" aria-label="Play Tic-Tac-Toe on One Day Games">
+            <img src="/live/tic-tac-toe/assets/ttt-night-shooting-star-x.png" alt="Tic-Tac-Toe gameplay scene">
+          </a>
           <figcaption>Now playing: Tic-Tac-Toe</figcaption>
           <div class="hero-actions">
             <a class="button primary" href="/live/tic-tac-toe/">Play Tic-Tac-Toe</a>
@@ -730,7 +753,9 @@
           </div>
         </div>
         <figure class="game-shot" aria-label="Tic-Tac-Toe Night Shift screenshot">
-          <img src="/live/tic-tac-toe/assets/ttt-night-shooting-star-x.png" alt="Tic-Tac-Toe Night Shift night screenshot">
+          <a class="image-link" href="/live/tic-tac-toe/" aria-label="Play Tic-Tac-Toe on One Day Games">
+            <img src="/live/tic-tac-toe/assets/ttt-night-shooting-star-x.png" alt="Tic-Tac-Toe Night Shift night screenshot">
+          </a>
         </figure>
       </div>
     </section>
