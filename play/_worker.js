@@ -1,6 +1,5 @@
 const OFFLINE_PREFIXES = [
   "/trash-dice/beta-v2",
-  "/trash-dice/play",
   "/trash-dice/qr-test",
   "/private/trash-dice-alpha-complete-dc5a995",
   "/partner/big-discoveries",
