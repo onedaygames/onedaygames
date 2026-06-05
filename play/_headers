@@ -7,3 +7,7 @@
 /trash-dice/ios-preview/*
   X-Robots-Tag: noindex, nofollow, noarchive
   Cache-Control: no-store
+
+/trash-dice/play/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store

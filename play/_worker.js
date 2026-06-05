@@ -7,7 +7,9 @@ const OFFLINE_PREFIXES = [
 
 const ALPHA_PREFIX = "/trash-dice/alpha-complete";
 const IOS_PREVIEW_PREFIX = "/trash-dice/ios-preview";
+const PLAY_REVIEW_PREFIX = "/trash-dice/play";
 const ALPHA_USER = "odg";
+const PLAY_REVIEW_REALM = "Trash Dice Play Review";
 
 function isAlphaPath(pathname) {
   return pathname === ALPHA_PREFIX || pathname.startsWith(`${ALPHA_PREFIX}/`);
@@ -15,6 +17,10 @@ function isAlphaPath(pathname) {
 
 function isIosPreviewPath(pathname) {
   return pathname === IOS_PREVIEW_PREFIX || pathname.startsWith(`${IOS_PREVIEW_PREFIX}/`);
+}
+
+function isPlayReviewPath(pathname) {
+  return pathname === PLAY_REVIEW_PREFIX || pathname.startsWith(`${PLAY_REVIEW_PREFIX}/`);
 }
 
 function isOfflinePath(pathname) {
@@ -42,11 +48,11 @@ function redirectToSingleLive(url) {
   return Response.redirect(target.toString(), 302);
 }
 
-function unauthorized() {
+function unauthorized(realm = "Trash Dice Alpha Complete") {
   return new Response("authentication required", {
     status: 401,
     headers: {
-      "www-authenticate": `Basic realm="Trash Dice Alpha Complete", charset="UTF-8"`,
+      "www-authenticate": `Basic realm="${realm}", charset="UTF-8"`,
       "content-type": "text/plain; charset=utf-8",
       "cache-control": "no-store",
       "x-robots-tag": "noindex, nofollow, noarchive",
@@ -81,10 +87,10 @@ function hasAlphaAccess(request, env) {
   }
 }
 
-async function alphaResponse(request, env) {
+async function alphaResponse(request, env, realm) {
   const allowed = hasAlphaAccess(request, env);
   if (allowed === null) return authNotConfigured();
-  if (!allowed) return unauthorized();
+  if (!allowed) return unauthorized(realm);
 
   const response = await env.ASSETS.fetch(request);
   const headers = new Headers(response.headers);
@@ -111,6 +117,10 @@ export default {
 
     if (isAlphaPath(url.pathname) || isIosPreviewPath(url.pathname)) {
       return alphaResponse(request, env);
+    }
+
+    if (isPlayReviewPath(url.pathname)) {
+      return alphaResponse(request, env, PLAY_REVIEW_REALM);
     }
 
     if (isOfflinePath(url.pathname)) {
