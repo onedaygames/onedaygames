@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`21e31a0 Use canon WUYB open-piles labels`
+`48bd21d Fix missing card art on subpath preview deploys`
 
 Build base:
 
