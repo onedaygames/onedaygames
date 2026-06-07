@@ -1,6 +1,10 @@
 /private/*
   X-Robots-Tag: noindex, nofollow, noarchive
 
+/private/wuyb-preview/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
+
 /trash-dice/alpha-complete/*
   X-Robots-Tag: noindex, nofollow, noarchive
 
