@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`ce0afb3 Clarify new pile card selection`
+`032cc24 Add biggest pile race scoreboard`
 
 Build base:
 
