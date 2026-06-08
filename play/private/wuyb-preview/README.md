@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`0da5b4e Add hand tray scroll cues`
+`694cc33 Pulse active hand tray`
 
 Build base:
 
