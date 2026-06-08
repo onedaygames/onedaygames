@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`694cc33 Pulse active hand tray`
+`e53256e Make mobile round progress readable`
 
 Build base:
 
