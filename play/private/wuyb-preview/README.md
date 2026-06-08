@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`536170c Turn notify mini card into stack fanfare`
+`0143ce6 Make mobile hand and scroll cues louder`
 
 Build base:
 
