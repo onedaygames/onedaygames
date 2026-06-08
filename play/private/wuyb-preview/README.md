@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`041de5b Prototype phone landscape tabletop`
+`b68d379 Fix top pile labels and stack counts`
 
 Build base:
 
