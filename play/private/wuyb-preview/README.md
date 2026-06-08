@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`621eeb4 Scrollable equal-size hand; remove player panel; mark center red`
+`73181bd Fix piles-mode player hand presentation`
 
 Build base:
 
