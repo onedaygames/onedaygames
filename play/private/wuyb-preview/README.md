@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`73181bd Fix piles-mode player hand presentation`
+`05a6cf7 Apply CJ mobile pile interaction notes`
 
 Build base:
 
