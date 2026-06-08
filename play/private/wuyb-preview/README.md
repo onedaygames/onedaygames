@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`05a6cf7 Apply CJ mobile pile interaction notes`
+`b60d852 Try unified open piles carousel`
 
 Build base:
 
