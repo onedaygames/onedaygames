@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`a5673da Use owner colors for pile borders`
+`81ff581 Dim hand on CPU turns`
 
 Build base:
 
