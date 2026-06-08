@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`61f8804 Add selected-card match guidance to piles board`
+`8ec928e Streamline piles board: equal cards, drop turn/new-pile panels`
 
 Build base:
 
