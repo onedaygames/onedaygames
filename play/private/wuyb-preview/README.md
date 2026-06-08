@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`8ec928e Streamline piles board: equal cards, drop turn/new-pile panels`
+`621eeb4 Scrollable equal-size hand; remove player panel; mark center red`
 
 Build base:
 
