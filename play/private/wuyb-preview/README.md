@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`50810a3 Use took copy for player pile captures`
+`2f64212 Normalize pile card art scale`
 
 Build base:
 
