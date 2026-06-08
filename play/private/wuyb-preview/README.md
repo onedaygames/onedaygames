@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`63eac91 Make pile report notifications heroic`
+`aa75e3a Disable desktop hand card dragging`
 
 Build base:
 
