@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`92d2124 Match hand card art scale`
+`cb74f86 Make scroll hints boundary aware`
 
 Build base:
 
