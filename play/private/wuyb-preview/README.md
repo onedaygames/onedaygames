@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`4b69519 Clarify human turn and target focus`
+`6689b27 Add player move recap strip`
 
 Build base:
 
