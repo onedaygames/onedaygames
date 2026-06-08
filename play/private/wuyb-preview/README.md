@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`032cc24 Add biggest pile race scoreboard`
+`536170c Turn notify mini card into stack fanfare`
 
 Build base:
 
