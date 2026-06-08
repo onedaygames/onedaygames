@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`af5db55 Make next round CTA conspicuous`
+`50810a3 Use took copy for player pile captures`
 
 Build base:
 
