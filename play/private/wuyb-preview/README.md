@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`b60d852 Try unified open piles carousel`
+`23be893 Serve new pile target and stack piles`
 
 Build base:
 
