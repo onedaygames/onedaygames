@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`b68d379 Fix top pile labels and stack counts`
+`4b69519 Clarify human turn and target focus`
 
 Build base:
 
