@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`cb74f86 Make scroll hints boundary aware`
+`243e57e Reserve steal copy for Nightmare cards`
 
 Build base:
 
