@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`2f64212 Normalize pile card art scale`
+`a5673da Use owner colors for pile borders`
 
 Build base:
 
