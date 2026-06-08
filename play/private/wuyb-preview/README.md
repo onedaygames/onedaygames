@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`6689b27 Add player move recap strip`
+`0da5b4e Add hand tray scroll cues`
 
 Build base:
 
