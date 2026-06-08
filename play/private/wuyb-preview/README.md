@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`2271753 Fix mobile portrait pile layout`
+`92d2124 Match hand card art scale`
 
 Build base:
 
