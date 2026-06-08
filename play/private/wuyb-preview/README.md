@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`aa75e3a Disable desktop hand card dragging`
+`af5db55 Make next round CTA conspicuous`
 
 Build base:
 
