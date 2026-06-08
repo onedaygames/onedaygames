@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`0143ce6 Make mobile hand and scroll cues louder`
+`2271753 Fix mobile portrait pile layout`
 
 Build base:
 
