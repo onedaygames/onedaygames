@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`81ff581 Dim hand on CPU turns`
+`ce0afb3 Clarify new pile card selection`
 
 Build base:
 
