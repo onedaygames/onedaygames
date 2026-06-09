@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`7ff7960 Fix middle card clipping and readable pile stacks`
+`6dd1575 Seat-color turn fanfares and stable hand tray`
 
 Build base:
 
