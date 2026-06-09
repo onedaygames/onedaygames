@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`243e57e Reserve steal copy for Nightmare cards`
+`77ea8b7 Replace score pills with biggest-pile race bars`
 
 Build base:
 
