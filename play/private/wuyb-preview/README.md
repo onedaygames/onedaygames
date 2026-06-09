@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`77ea8b7 Replace score pills with biggest-pile race bars`
+`e3a8a00 Fit player hand above the mobile fold`
 
 Build base:
 
