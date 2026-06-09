@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`e3a8a00 Fit player hand above the mobile fold`
+`7ff7960 Fix middle card clipping and readable pile stacks`
 
 Build base:
 
