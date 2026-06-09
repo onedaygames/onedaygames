@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`6dd1575 Seat-color turn fanfares and stable hand tray`
+`8886b6f Art-forward cards with tap-to-focus selection`
 
 Build base:
 
