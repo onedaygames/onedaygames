@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`ec8a5cf Hold notifications through round ends and steady the scoreboard`
+`4864e15 Unify move vocabulary across recap and pop-up`
 
 Build base:
 
