@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`4864e15 Unify move vocabulary across recap and pop-up`
+`1b1cb03 Fix switch-pick reset lint error and commit nightmare styles`
 
 Build base:
 
