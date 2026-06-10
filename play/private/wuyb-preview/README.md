@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`4f422d0 Let plays finish on the board before the recap pop-up; bigger ALL PILES cards; hand peek hint`
+`f028692 Show landed pile instead of flying cards; fix recap ordering; + card only without a match`
 
 Build base:
 
