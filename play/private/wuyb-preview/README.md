@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`c6450b4 Add ALL PILES view toggle`
+`4f422d0 Let plays finish on the board before the recap pop-up; bigger ALL PILES cards; hand peek hint`
 
 Build base:
 
