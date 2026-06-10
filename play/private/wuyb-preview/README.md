@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`f028692 Show landed pile instead of flying cards; fix recap ordering; + card only without a match`
+`2827c62 Remove fanfare cards, freeze pile positions, big PLUS tap target, hand docks on CPU turns`
 
 Build base:
 
