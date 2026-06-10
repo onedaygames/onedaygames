@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`321f1c6 Show draw-deck remaining on the round tile`
+`390ebc6 Make bots hunt the leader`
 
 Build base:
 
