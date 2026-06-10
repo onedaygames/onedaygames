@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`390ebc6 Make bots hunt the leader`
+`8927373 Apply Alex's rules rulings`
 
 Build base:
 
