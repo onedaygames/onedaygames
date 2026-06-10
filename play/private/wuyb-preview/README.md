@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`afbdeca Explain the dead-nightmare discard choice`
+`321f1c6 Show draw-deck remaining on the round tile`
 
 Build base:
 
