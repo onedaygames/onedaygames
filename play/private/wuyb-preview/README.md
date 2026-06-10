@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`8927373 Apply Alex's rules rulings`
+`c6450b4 Add ALL PILES view toggle`
 
 Build base:
 
