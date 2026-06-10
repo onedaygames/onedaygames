@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`6e98454 Keep the header above pop-up notification scrims`
+`afbdeca Explain the dead-nightmare discard choice`
 
 Build base:
 
