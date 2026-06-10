@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`cc5ca42 Move scoreboard into pulsing YOUR TURN banner`
+`94264b6 Scoreboard-only turn banner and Player naming`
 
 Build base:
 
