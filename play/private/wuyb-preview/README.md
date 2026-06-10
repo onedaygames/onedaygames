@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`94264b6 Scoreboard-only turn banner and Player naming`
+`ec8a5cf Hold notifications through round ends and steady the scoreboard`
 
 Build base:
 
