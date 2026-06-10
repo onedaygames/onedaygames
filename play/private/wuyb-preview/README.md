@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`8886b6f Art-forward cards with tap-to-focus selection`
+`e843929 Let mobile cards use the full board space`
 
 Build base:
 
