@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`1b1cb03 Fix switch-pick reset lint error and commit nightmare styles`
+`dcf9fa5 Keep the new-pile target a blank frame`
 
 Build base:
 
