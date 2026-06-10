@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`dcf9fa5 Keep the new-pile target a blank frame`
+`6e98454 Keep the header above pop-up notification scrims`
 
 Build base:
 
