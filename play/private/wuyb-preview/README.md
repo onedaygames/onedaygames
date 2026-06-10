@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`e843929 Let mobile cards use the full board space`
+`cc5ca42 Move scoreboard into pulsing YOUR TURN banner`
 
 Build base:
 
