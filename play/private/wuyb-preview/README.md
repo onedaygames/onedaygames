@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`1e5b025 Piles travel to their new homes; columns scoreboard; board view default; PILES VIEW rename; PLUS explains why; colored empty slots`
+`3630e70 Fix stuck/double-spawned CPU drag card; hand stays docked through CPU recaps; Split travel; white scoreboard text`
 
 Build base:
 
