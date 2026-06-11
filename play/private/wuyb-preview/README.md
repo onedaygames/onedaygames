@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`3630e70 Fix stuck/double-spawned CPU drag card; hand stays docked through CPU recaps; Split travel; white scoreboard text`
+`c31d5fc SWITCH VIEW toggle, big board cards by default, aligned scoreboard order, team PLAY chip, hand scroll arrow, explanatory Rotate, no docked glow`
 
 Build base:
 
