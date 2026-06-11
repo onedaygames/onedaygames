@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`c31d5fc SWITCH VIEW toggle, big board cards by default, aligned scoreboard order, team PLAY chip, hand scroll arrow, explanatory Rotate, no docked glow`
+`c162192 Piles view default at game start; scoreboard column dividers`
 
 Build base:
 
