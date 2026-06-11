@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`04036b1 Anchor player piles left/middle/right in turn order; board and cards supersize on CPU turns`
+`413df90 Human cards fly to their new home; ALL PILES default; Switch/Rotate ring every changed pile`
 
 Build base:
 
