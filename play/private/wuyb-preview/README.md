@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`c162192 Piles view default at game start; scoreboard column dividers`
+`1cfac97 Give the flying played card a conspicuous player-color border`
 
 Build base:
 
