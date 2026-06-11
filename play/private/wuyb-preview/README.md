@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`2827c62 Remove fanfare cards, freeze pile positions, big PLUS tap target, hand docks on CPU turns`
+`04036b1 Anchor player piles left/middle/right in turn order; board and cards supersize on CPU turns`
 
 Build base:
 
