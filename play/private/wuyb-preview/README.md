@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`413df90 Human cards fly to their new home; ALL PILES default; Switch/Rotate ring every changed pile`
+`1e5b025 Piles travel to their new homes; columns scoreboard; board view default; PILES VIEW rename; PLUS explains why; colored empty slots`
 
 Build base:
 
