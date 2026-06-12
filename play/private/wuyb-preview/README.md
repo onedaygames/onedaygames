@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`1cfac97 Give the flying played card a conspicuous player-color border`
+`9b191bd Show the big recap pop-up for Switch, Rotate, and Split plays`
 
 Build base:
 
