@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`9b191bd Show the big recap pop-up for Switch, Rotate, and Split plays`
+`59c8411 QA pass: pile report for dead nightmares, split vocabulary, grow copy`
 
 Build base:
 
