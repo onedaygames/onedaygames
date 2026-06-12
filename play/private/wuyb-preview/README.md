@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`59c8411 QA pass: pile report for dead nightmares, split vocabulary, grow copy`
+`e0429e1 Make lead changes the social event: crown, trash talk, match story, revenge`
 
 Build base:
 
