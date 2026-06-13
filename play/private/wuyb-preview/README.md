@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`8a9866d Full-screen fanfare on theft and lead change (CJ go-big test)`
+`af43855 Ship the curated 3-round deck (sim config B) as the live deck`
 
 Build base:
 
