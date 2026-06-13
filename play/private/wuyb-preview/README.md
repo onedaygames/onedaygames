@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`af43855 Ship the curated 3-round deck (sim config B) as the live deck`
+`297525a Relabel deck-remaining tile: 'X in deck' -> 'DECK: X LEFT'`
 
 Build base:
 
