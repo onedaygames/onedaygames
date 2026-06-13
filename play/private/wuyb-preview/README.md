@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`e0429e1 Make lead changes the social event: crown, trash talk, match story, revenge`
+`8a9866d Full-screen fanfare on theft and lead change (CJ go-big test)`
 
 Build base:
 
