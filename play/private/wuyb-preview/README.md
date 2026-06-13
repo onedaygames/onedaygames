@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`297525a Relabel deck-remaining tile: 'X in deck' -> 'DECK: X LEFT'`
+`322453c Simplify Rotate to a single 'Rotate Choice' card (player always picks)`
 
 Build base:
 
