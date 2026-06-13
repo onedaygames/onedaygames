@@ -4,7 +4,7 @@ Purpose: evergreen internal CJ playtest link for Game 2 / WUYB.
 
 Source repo:
 
-`C:/Users/shove/Documents/Codex/2026-05-13/i-m-calling-this-new-chat`
+`C:/Users/shove/OneDrive/Desktop/OneDayGames/wuyb`
 
 Source commit:
 
