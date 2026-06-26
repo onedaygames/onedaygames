@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`322453c Simplify Rotate to a single 'Rotate Choice' card (player always picks)`
+`0359bb4 Add a comic-book card-clash on player-vs-player steals`
 
 Build base:
 
