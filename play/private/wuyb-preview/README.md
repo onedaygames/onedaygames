@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`5fd4207 Make the steal clash brutal (camera punch, freeze-frame, slash, blood burst)`
+`9821fa8 Push the steal clash to cataclysm scale (slow-mo, screen-fill, world shake)`
 
 Build base:
 
