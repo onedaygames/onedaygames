@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`0359bb4 Add a comic-book card-clash on player-vs-player steals`
+`5fd4207 Make the steal clash brutal (camera punch, freeze-frame, slash, blood burst)`
 
 Build base:
 
