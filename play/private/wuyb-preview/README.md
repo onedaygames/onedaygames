@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`28da02d Give Fight Lab monsters signature attacks`
+`657cf76 Turn Fight Lab attacks into signature performances`
 
 Build base:
 
