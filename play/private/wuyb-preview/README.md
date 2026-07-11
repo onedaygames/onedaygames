@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`d27a92e Clear the fight money shot`
+`101d44c Stage fight fanfare after contact`
 
 Build base:
 
