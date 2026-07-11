@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`723a1ea Animate Grand Slam with stop-motion frames`
+`a1c3b01 Animate bespoke fighter idle and victory loops`
 
 Build base:
 
