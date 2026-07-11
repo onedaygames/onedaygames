@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`0f40cf6 Add outcome-driven fighter poses`
+`d27a92e Clear the fight money shot`
 
 Build base:
 
