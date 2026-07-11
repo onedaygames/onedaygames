@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`101d44c Stage fight fanfare after contact`
+`28da02d Give Fight Lab monsters signature attacks`
 
 Build base:
 
