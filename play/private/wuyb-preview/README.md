@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`657cf76 Turn Fight Lab attacks into signature performances`
+`723a1ea Animate Grand Slam with stop-motion frames`
 
 Build base:
 
