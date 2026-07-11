@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`92ef1c4 Prototype one-on-one monster fight`
+`9c04266 Make Fight Lab landscape only`
 
 Build base:
 
