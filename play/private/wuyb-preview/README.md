@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`9c04266 Make Fight Lab landscape only`
+`0f40cf6 Add outcome-driven fighter poses`
 
 Build base:
 
