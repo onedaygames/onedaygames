@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`9821fa8 Push the steal clash to cataclysm scale (slow-mo, screen-fill, world shake)`
+`92ef1c4 Prototype one-on-one monster fight`
 
 Build base:
 
