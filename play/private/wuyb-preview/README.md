@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`a1c3b01 Animate bespoke fighter idle and victory loops`
+`803079a Smooth Fight Lab attacks into anime impacts`
 
 Build base:
 
