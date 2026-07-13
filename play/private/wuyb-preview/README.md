@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`554f9d8 Prototype five-second WUYB stack duel`
+`161024d Gate duel play until monster assets load`
 
 Build base:
 
