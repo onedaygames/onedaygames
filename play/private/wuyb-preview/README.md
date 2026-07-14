@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`9a3ea02 Prototype T-Rex Nightmare Lab encounter`
+`d8fb7cb Deepen Nightmare Lab peek and attack beats`
 
 Build base:
 
