@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`6b3d79e Make Nightmare Lab hold interaction real`
+`b3f0d44 Restore tap Nightmare Lab encounters`
 
 Build base:
 
