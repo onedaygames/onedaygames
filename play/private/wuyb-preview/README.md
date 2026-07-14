@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`161024d Gate duel play until monster assets load`
+`0bb4fbf Prototype under-bed nightmare encounter`
 
 Build base:
 
