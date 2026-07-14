@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`14fcf99 Reset tap Nightmare Lab replay piles`
+`089fbea Prototype two-second nightmare hunt`
 
 Build base:
 
