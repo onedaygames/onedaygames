@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`0bb4fbf Prototype under-bed nightmare encounter`
+`9a3ea02 Prototype T-Rex Nightmare Lab encounter`
 
 Build base:
 
