@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`280d8a6 Stage Hunt nightmare asset loading`
+`201b691 Escalate Nightmare Hunt attempts`
 
 Build base:
 
