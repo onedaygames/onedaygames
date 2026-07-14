@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`d8fb7cb Deepen Nightmare Lab peek and attack beats`
+`6b3d79e Make Nightmare Lab hold interaction real`
 
 Build base:
 
