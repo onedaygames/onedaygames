@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`b3f0d44 Restore tap Nightmare Lab encounters`
+`14fcf99 Reset tap Nightmare Lab replay piles`
 
 Build base:
 
