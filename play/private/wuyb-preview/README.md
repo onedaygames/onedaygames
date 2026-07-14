@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`089fbea Prototype two-second nightmare hunt`
+`280d8a6 Stage Hunt nightmare asset loading`
 
 Build base:
 
