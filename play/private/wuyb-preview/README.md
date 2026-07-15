@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`6cc54bc Replace Hunt gouges with scattered claw marks`
+`ad681dc Add full Hunt monster roster and ambient lullaby`
 
 Build base:
 
