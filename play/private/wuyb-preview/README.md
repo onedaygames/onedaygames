@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`de3dcfb Make Hunt timer unmistakable`
+`c113216 Make Hunt monster attacks hit harder`
 
 Build base:
 
