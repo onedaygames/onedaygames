@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`201b691 Escalate Nightmare Hunt attempts`
+`de3dcfb Make Hunt timer unmistakable`
 
 Build base:
 
