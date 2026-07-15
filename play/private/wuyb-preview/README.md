@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`b7e4764 Keep the under-bed set readable through the choose idle`
+`e7a1769 Make T-Rex's attack the bite and voice the thunder for phone speakers`
 
 Build base:
 
