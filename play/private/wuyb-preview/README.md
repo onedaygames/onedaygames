@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`3458e08 Revert "Improve Hunt lightning audio"`
+`5bcbb5b Add three Nightmare Hunt monsters`
 
 Build base:
 
