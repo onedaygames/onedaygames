@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`5bcbb5b Add three Nightmare Hunt monsters`
+`dbfcbb4 Clarify Hunt under-bed idle set`
 
 Build base:
 
