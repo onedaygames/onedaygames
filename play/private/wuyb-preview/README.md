@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`87335e5 Improve Hunt lightning audio`
+`3458e08 Revert "Improve Hunt lightning audio"`
 
 Build base:
 
