@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`dbfcbb4 Clarify Hunt under-bed idle set`
+`ed2d21d Add monster scratches to Hunt idle set`
 
 Build base:
 
