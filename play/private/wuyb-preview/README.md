@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`4b3969a Build three-round Nightmare Hunt`
+`11b05e1 Make Hunt monsters close in`
 
 Build base:
 
