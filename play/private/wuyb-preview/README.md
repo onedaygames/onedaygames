@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`c113216 Make Hunt monster attacks hit harder`
+`4b3969a Build three-round Nightmare Hunt`
 
 Build base:
 
