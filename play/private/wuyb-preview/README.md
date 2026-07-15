@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`11b05e1 Make Hunt monsters close in`
+`b7e4764 Keep the under-bed set readable through the choose idle`
 
 Build base:
 
