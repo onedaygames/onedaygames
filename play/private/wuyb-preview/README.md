@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`ed2d21d Add monster scratches to Hunt idle set`
+`6cc54bc Replace Hunt gouges with scattered claw marks`
 
 Build base:
 
