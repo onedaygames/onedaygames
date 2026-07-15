@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`e7a1769 Make T-Rex's attack the bite and voice the thunder for phone speakers`
+`87335e5 Improve Hunt lightning audio`
 
 Build base:
 
