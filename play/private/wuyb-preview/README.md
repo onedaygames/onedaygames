@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`9a5839e Make Hunt lullaby loop seamless`
+`4fcd7ae Keep Hunt speed PR session only`
 
 Build base:
 
