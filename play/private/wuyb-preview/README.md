@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`2a4b91e Celebrate Hunt session records`
+`af9069f Favor close Hunt matches`
 
 Build base:
 
