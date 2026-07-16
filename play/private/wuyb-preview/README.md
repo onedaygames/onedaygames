@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`ad681dc Add full Hunt monster roster and ambient lullaby`
+`cc13a24 Reduce Hunt startup preload pressure`
 
 Build base:
 
