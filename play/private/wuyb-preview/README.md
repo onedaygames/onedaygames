@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`d7e4697 Accept Hunt card taps during preload`
+`087d9c7 Add Nightmare Hunt press play title`
 
 Build base:
 
