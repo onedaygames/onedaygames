@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`9e21ee1 Remove storm audio from Hunt lullaby mix`
+`d7e4697 Accept Hunt card taps during preload`
 
 Build base:
 
