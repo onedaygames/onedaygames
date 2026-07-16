@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`5d9135c Gate Hunt cards on current scene art`
+`de8ea7b Use music-only Option A ambient track`
 
 Build base:
 
