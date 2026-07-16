@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`4fcd7ae Keep Hunt speed PR session only`
+`d79ab3a Make Hunt matches feel glorious`
 
 Build base:
 
