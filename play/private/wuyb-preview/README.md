@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`6fd05c1 Normalize Scissors Hunt staging`
+`962b4d1 Add title Monster staging review`
 
 Build base:
 
