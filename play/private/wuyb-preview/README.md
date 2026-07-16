@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`aff19dd Cycle all Hunt title monsters before repeats`
+`6fd05c1 Normalize Scissors Hunt staging`
 
 Build base:
 
