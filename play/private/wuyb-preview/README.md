@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`d79ab3a Make Hunt matches feel glorious`
+`2a4b91e Celebrate Hunt session records`
 
 Build base:
 
