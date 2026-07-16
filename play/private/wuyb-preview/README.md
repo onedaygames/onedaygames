@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`962b4d1 Add title Monster staging review`
+`9a5839e Make Hunt lullaby loop seamless`
 
 Build base:
 
