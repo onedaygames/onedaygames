@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`6532788 Expand Hunt match field to six cards`
+`9e21ee1 Remove storm audio from Hunt lullaby mix`
 
 Build base:
 
