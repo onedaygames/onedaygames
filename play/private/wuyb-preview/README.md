@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`087d9c7 Add Nightmare Hunt press play title`
+`aff19dd Cycle all Hunt title monsters before repeats`
 
 Build base:
 
