@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`de8ea7b Use music-only Option A ambient track`
+`6532788 Expand Hunt match field to six cards`
 
 Build base:
 
