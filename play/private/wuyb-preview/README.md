@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`cc13a24 Reduce Hunt startup preload pressure`
+`5d9135c Gate Hunt cards on current scene art`
 
 Build base:
 
