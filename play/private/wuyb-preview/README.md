@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`af9069f Favor close Hunt matches`
+`3f6099d Align Hunt copy with WUYB glossary`
 
 Build base:
 
