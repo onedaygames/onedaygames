@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`4ea7d4c Widen Hunt close-match mercy`
+`d4a3431 Make Hunt title CTA inviting`
 
 Build base:
 
