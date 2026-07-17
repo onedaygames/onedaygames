@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`02d2d29 Make WUYB perfect round creepy horror`
+`c0157cb Make WUYB title logo a clean medallion`
 
 Build base:
 
