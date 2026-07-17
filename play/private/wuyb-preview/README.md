@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`03c531c Unify WUYB Monster Match UI layout`
+`840a8be Theme WUYB Monster Match result panels`
 
 Build base:
 
