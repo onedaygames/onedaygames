@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`ebde1aa Show previous Hunt speed PR`
+`1ccc203 Clarify Hunt hand and attack focus`
 
 Build base:
 
