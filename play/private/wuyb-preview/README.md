@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`81ba658 Tune WUYB match praise copy`
+`be84151 Make WUYB title logo a hero asset`
 
 Build base:
 
