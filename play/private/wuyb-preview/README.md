@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`def360a Stabilize WUYB asset readiness`
+`b122b6b Version WUYB deployed art`
 
 Build base:
 
