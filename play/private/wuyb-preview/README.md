@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`3585904 Add WUYB instructions logo to title screen`
+`81ba658 Tune WUYB match praise copy`
 
 Build base:
 
