@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`1ccc203 Clarify Hunt hand and attack focus`
+`f14732c Clarify Hunt personal record results`
 
 Build base:
 
