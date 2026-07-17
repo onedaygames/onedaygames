@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`840a8be Theme WUYB Monster Match result panels`
+`3585904 Add WUYB instructions logo to title screen`
 
 Build base:
 
