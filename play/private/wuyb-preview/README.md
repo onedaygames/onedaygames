@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`5d61dc8 Unify Hunt curtains and staging`
+`ebde1aa Show previous Hunt speed PR`
 
 Build base:
 
