@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`a09f704 Remove fixed-six pile scoring`
+`c3f19a6 Hide WUYB stamp during monster attacks`
 
 Build base:
 
