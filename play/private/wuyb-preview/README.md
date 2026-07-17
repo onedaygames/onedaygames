@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`3f6099d Align Hunt copy with WUYB glossary`
+`5d61dc8 Unify Hunt curtains and staging`
 
 Build base:
 
