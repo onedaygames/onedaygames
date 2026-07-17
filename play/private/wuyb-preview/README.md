@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`4a57b01 Make Hunt match cards heroic`
+`3c68d36 Make Monster Match the canonical WUYB route`
 
 Build base:
 
