@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`b122b6b Version WUYB deployed art`
+`03c531c Unify WUYB Monster Match UI layout`
 
 Build base:
 
