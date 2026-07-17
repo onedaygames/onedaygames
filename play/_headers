@@ -1,9 +1,17 @@
 /private/*
   X-Robots-Tag: noindex, nofollow, noarchive
 
-/private/wuyb-preview/*
+/private/wuyb-preview/
   X-Robots-Tag: noindex, nofollow, noarchive
   Cache-Control: no-store
+
+/private/wuyb-preview/index.html
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
+
+/private/wuyb-preview/assets/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: public, max-age=0, must-revalidate
 
 /trash-dice/alpha-complete/*
   X-Robots-Tag: noindex, nofollow, noarchive

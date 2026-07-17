@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`c3f19a6 Hide WUYB stamp during monster attacks`
+`def360a Stabilize WUYB asset readiness`
 
 Build base:
 
