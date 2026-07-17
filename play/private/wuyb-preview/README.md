@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`93f14db Invite title-screen lullaby listening`
+`a09f704 Remove fixed-six pile scoring`
 
 Build base:
 
