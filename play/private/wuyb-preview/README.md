@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`f14732c Clarify Hunt personal record results`
+`4ea7d4c Widen Hunt close-match mercy`
 
 Build base:
 
