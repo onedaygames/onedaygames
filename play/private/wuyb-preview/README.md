@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`d4a3431 Make Hunt title CTA inviting`
+`4a57b01 Make Hunt match cards heroic`
 
 Build base:
 
