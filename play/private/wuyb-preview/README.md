@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`d5715f5 Stabilize WUYB title start`
+`6f58445 Fix WUYB asset version injection`
 
 Build base:
 
