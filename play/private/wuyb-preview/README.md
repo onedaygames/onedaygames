@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`1d64039 Add WUYB hand play cue`
+`15d25ef Restore WUYB title music unlock`
 
 Build base:
 
