@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`74a416f Polish WUYB title logo breathing`
+`3a59f5c Add WUYB perfect game fanfare`
 
 Build base:
 
