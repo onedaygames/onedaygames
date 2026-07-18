@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`0f74978 Fix WUYB title IP credit`
+`74a416f Polish WUYB title logo breathing`
 
 Build base:
 
