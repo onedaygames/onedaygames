@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`9a38116 Make WUYB attack landing sting audible`
+`b5d147f Push WUYB attack stinger too far`
 
 Build base:
 
