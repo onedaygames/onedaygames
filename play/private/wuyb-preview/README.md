@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`b3aee42 Start WUYB title music on click`
+`964c967 Retry WUYB speaker music on click`
 
 Build base:
 
