@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`54e4ea4 Share WUYB title music unlock`
+`b3aee42 Start WUYB title music on click`
 
 Build base:
 
