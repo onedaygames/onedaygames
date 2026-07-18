@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`b1af1a7 Add WUYB attack landing stinger`
+`9a38116 Make WUYB attack landing sting audible`
 
 Build base:
 
