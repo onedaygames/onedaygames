@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`1dcb8e4 Center WUYB match fanfare`
+`d5715f5 Stabilize WUYB title start`
 
 Build base:
 
