@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`8649709 Tune WUYB end-game replay CTA`
+`1d64039 Add WUYB hand play cue`
 
 Build base:
 
