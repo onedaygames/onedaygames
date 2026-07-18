@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`c0157cb Make WUYB title logo a clean medallion`
+`9c78284 Align WUYB title with ODG credits`
 
 Build base:
 
