@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`9c78284 Align WUYB title with ODG credits`
+`0f74978 Fix WUYB title IP credit`
 
 Build base:
 
