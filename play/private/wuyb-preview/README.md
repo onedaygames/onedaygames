@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`3a59f5c Add WUYB perfect game fanfare`
+`1dcb8e4 Center WUYB match fanfare`
 
 Build base:
 
