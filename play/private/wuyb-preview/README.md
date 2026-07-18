@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`bf8cd12 Fix WUYB ambient audio state`
+`b1af1a7 Add WUYB attack landing stinger`
 
 Build base:
 
