@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`964c967 Retry WUYB speaker music on click`
+`bf8cd12 Fix WUYB ambient audio state`
 
 Build base:
 
