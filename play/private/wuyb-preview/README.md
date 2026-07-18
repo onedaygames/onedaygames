@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`15d25ef Restore WUYB title music unlock`
+`78b96bf Start WUYB fallback music on title tap`
 
 Build base:
 
