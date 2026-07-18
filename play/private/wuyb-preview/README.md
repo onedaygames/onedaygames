@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`6f58445 Fix WUYB asset version injection`
+`8649709 Tune WUYB end-game replay CTA`
 
 Build base:
 
