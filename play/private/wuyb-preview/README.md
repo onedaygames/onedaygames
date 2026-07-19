@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`2f6a8c5 Replace WUYB attack roar with terror scream`
+`30008eb Boost WUYB attack terror scream`
 
 Build base:
 
