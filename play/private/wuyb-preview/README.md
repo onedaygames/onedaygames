@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`2f746d2 Replace WUYB attack synth with roar sample`
+`e6f9ad3 Replace WUYB attack sample with roar composite`
 
 Build base:
 
