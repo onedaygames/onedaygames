@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`4691e7a Keep WUYB monster approach moving to blackout`
+`5d427f2 Smooth WUYB ambient music loop`
 
 Build base:
 
