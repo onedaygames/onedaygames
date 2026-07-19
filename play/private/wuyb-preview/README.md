@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`8edfdfd Make WUYB attack scream too big`
+`c934825 Make WUYB attack scream longer`
 
 Build base:
 
