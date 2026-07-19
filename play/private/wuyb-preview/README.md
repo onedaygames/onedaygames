@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`b5d147f Push WUYB attack stinger too far`
+`2f746d2 Replace WUYB attack synth with roar sample`
 
 Build base:
 
