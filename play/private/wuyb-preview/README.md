@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`c934825 Make WUYB attack scream longer`
+`4691e7a Keep WUYB monster approach moving to blackout`
 
 Build base:
 
