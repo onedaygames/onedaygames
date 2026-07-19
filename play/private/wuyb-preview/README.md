@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`e6f9ad3 Replace WUYB attack sample with roar composite`
+`2f6a8c5 Replace WUYB attack roar with terror scream`
 
 Build base:
 
