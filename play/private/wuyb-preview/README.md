@@ -8,7 +8,7 @@ Source repo:
 
 Source commit:
 
-`0d26755 Make WUYB attack scream vocal-forward`
+`8edfdfd Make WUYB attack scream too big`
 
 Build base:
 
