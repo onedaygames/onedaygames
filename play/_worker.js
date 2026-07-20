@@ -6,6 +6,9 @@ const OFFLINE_PREFIXES = [
 ];
 
 const ALPHA_PREFIX = "/trash-dice/alpha-complete";
+const WUYB_ALPHA_PREFIX = "/wuyb/alpha-complete";
+const WUYB_PREVIEW_PREFIX = "/private/wuyb-preview";
+const WUYB_ALPHA_VERSION = "7cf0045";
 const IOS_PREVIEW_PREFIX = "/trash-dice/ios-preview";
 const PLAY_REVIEW_PREFIX = "/trash-dice/play";
 const ALPHA_USER = "odg";
@@ -13,6 +16,20 @@ const PLAY_REVIEW_REALM = "Trash Dice Play Review";
 
 function isAlphaPath(pathname) {
   return pathname === ALPHA_PREFIX || pathname.startsWith(`${ALPHA_PREFIX}/`);
+}
+
+function isWuybAlphaPath(pathname) {
+  return pathname === WUYB_ALPHA_PREFIX || pathname.startsWith(`${WUYB_ALPHA_PREFIX}/`);
+}
+
+function isWuybAlphaHomePath(pathname) {
+  return pathname === WUYB_ALPHA_PREFIX ||
+    pathname === `${WUYB_ALPHA_PREFIX}/` ||
+    pathname === `${WUYB_ALPHA_PREFIX}/index.html`;
+}
+
+function isWuybPreviewPath(pathname) {
+  return pathname === WUYB_PREVIEW_PREFIX || pathname.startsWith(`${WUYB_PREVIEW_PREFIX}/`);
 }
 
 function isIosPreviewPath(pathname) {
@@ -48,6 +65,21 @@ function redirectToSingleLive(url) {
   return Response.redirect(target.toString(), 302);
 }
 
+function redirectToWuybAlpha(url) {
+  const target = new URL(url);
+  target.pathname = target.pathname.replace(/^\/private\/wuyb-preview(?=\/|$)/, WUYB_ALPHA_PREFIX);
+  if (target.pathname === WUYB_ALPHA_PREFIX) {
+    target.pathname = `${WUYB_ALPHA_PREFIX}/`;
+  }
+  if (isWuybAlphaHomePath(target.pathname) && !target.searchParams.has("match") && !target.searchParams.has("hunt")) {
+    target.searchParams.set("match", "1");
+  }
+  if (isWuybAlphaHomePath(target.pathname) && !target.searchParams.has("v")) {
+    target.searchParams.set("v", WUYB_ALPHA_VERSION);
+  }
+  return Response.redirect(target.toString(), 302);
+}
+
 function unauthorized(realm = "Trash Dice Alpha Complete") {
   return new Response("authentication required", {
     status: 401,
@@ -72,7 +104,7 @@ function authNotConfigured() {
 }
 
 function hasAlphaAccess(request, env) {
-  const expectedPassword = env.TRASH_DICE_ALPHA_PASSWORD;
+  const expectedPassword = env.ODG_ALPHA_PASSWORD || env.TRASH_DICE_ALPHA_PASSWORD;
   if (!expectedPassword) return null;
 
   const authorization = request.headers.get("authorization") || "";
@@ -115,8 +147,20 @@ export default {
       return redirectToSingleLive(url);
     }
 
+    if (isWuybPreviewPath(url.pathname)) {
+      return redirectToWuybAlpha(url);
+    }
+
+    if (isWuybAlphaHomePath(url.pathname) && !url.searchParams.has("match") && !url.searchParams.has("hunt")) {
+      return redirectToWuybAlpha(url);
+    }
+
     if (isAlphaPath(url.pathname) || isIosPreviewPath(url.pathname)) {
       return alphaResponse(request, env);
+    }
+
+    if (isWuybAlphaPath(url.pathname)) {
+      return alphaResponse(request, env, "WUYB Alpha Complete");
     }
 
     if (isPlayReviewPath(url.pathname)) {

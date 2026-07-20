@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /play/private/
 Disallow: /play/partner/
+Disallow: /play/wuyb/alpha-complete/

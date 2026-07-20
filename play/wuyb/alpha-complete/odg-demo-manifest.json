@@ -1,0 +1,14 @@
+{
+  "slug": "wuyb-alpha-complete",
+  "name": "WUYB Alpha Complete",
+  "lane": "unlisted-canonical",
+  "canonicalUrl": "https://playonedaygames.com/wuyb/alpha-complete/",
+  "defaultPlayUrl": "https://playonedaygames.com/wuyb/alpha-complete/?match=1&v=7cf0045",
+  "approvedBuild": "7cf0045",
+  "approvedBuildSubject": "Harden Monster Match timing and audio resources",
+  "sha256": "1F2B0721C800ABE80127B3B7826572693DF0750C661D987497149776AF88BE67",
+  "publicApproved": false,
+  "listed": false,
+  "noIndex": true,
+  "rule": "CJ-designated Alpha Complete evaluator route. Old /private/wuyb-preview/ links redirect here. Do not replace in place without explicit CJ re-approval."
+}
