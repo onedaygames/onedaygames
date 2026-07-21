@@ -13,6 +13,14 @@
 /wuyb/alpha-complete/index.html
   Cache-Control: no-store
 
+/wuyb/alpha-complete/login/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
+
+/wuyb/alpha-complete/logout/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
+
 /wuyb/alpha-complete/assets/*
   Cache-Control: public, max-age=14400, must-revalidate
 

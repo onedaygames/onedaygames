@@ -8,6 +8,11 @@ Canonical URL:
 Default play URL:
 `https://playonedaygames.com/wuyb/alpha-complete/?match=1&v=7cf0045`
 
+Evaluator login:
+`https://playonedaygames.com/wuyb/alpha-complete/login/`
+
+Login uses the shared ODG Alpha credentials source (`ODG_ALPHA_PASSWORD`, falling back to `TRASH_DICE_ALPHA_PASSWORD`) and sets a scoped WUYB Alpha session cookie.
+
 Approved source commit: `7cf0045 Harden Monster Match timing and audio resources`
 
 Frozen route SHA-256:
