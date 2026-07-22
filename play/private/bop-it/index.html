@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>BOP PHONE</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-user-select:none; user-select:none; -webkit-tap-highlight-color:transparent; }
+  html, body { height:100%; overflow:hidden; background:#0d0d14; overscroll-behavior:none; }
+  body {
+    font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+    color:#eee;
+    touch-action:none; /* iOS: must be on the element receiving touches, see #stage too */
+  }
+  #stage {
+    position:fixed; inset:0;
+    touch-action:none;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  #hud {
+    position:fixed; top:calc(env(safe-area-inset-top) + 10px); left:0; right:0;
+    display:flex; justify-content:space-between; padding:0 24px;
+    font-size:18px; font-weight:700; letter-spacing:1px; color:#9aa;
+  }
+  #cmdWrap { text-align:center; }
+  #icon {
+    width:56vw; height:56vw; max-width:280px; max-height:280px;
+    margin:0 auto 28px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:70px; transition:transform .12s ease;
+    border:6px solid transparent;
+  }
+  #cmdText { font-size:44px; font-weight:900; letter-spacing:2px; }
+  #timerBar {
+    position:fixed; bottom:calc(env(safe-area-inset-bottom) + 30px); left:10vw; width:80vw; height:10px;
+    background:#222; border-radius:5px; overflow:hidden;
+  }
+  #timerFill { height:100%; width:100%; background:#4cd964; border-radius:5px; }
+  .bop   { background:#0e3a4a; border-color:#37c8f0 !important; box-shadow:0 0 60px #37c8f055; }
+  .pull  { background:#4a3c0e; border-color:#f0c837 !important; box-shadow:0 0 60px #f0c83755; }
+  .twist { background:#0e4a24; border-color:#4cd964 !important; box-shadow:0 0 60px #4cd96455; }
+  .flash { transform:scale(1.15); }
+  #overlay {
+    position:fixed; inset:0; background:#0d0d14;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:30px; z-index:10; touch-action:none;
+  }
+  #overlay h1 { font-size:52px; font-weight:900; letter-spacing:3px; margin-bottom:8px;
+    background:linear-gradient(90deg,#37c8f0,#f0c837,#4cd964); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  #overlay p { color:#9aa; font-size:17px; line-height:1.6; margin-bottom:26px; }
+  #bigBtn {
+    font-size:26px; font-weight:900; letter-spacing:2px; color:#0d0d14;
+    background:#4cd964; border:none; border-radius:50px; padding:20px 60px;
+  }
+  #warn { color:#f0c837; font-size:14px; margin-top:20px; min-height:20px; }
+  #ver { position:fixed; bottom:calc(env(safe-area-inset-bottom) + 6px); right:10px; font-size:11px; color:#445; z-index:11; }
+  .hidden { display:none !important; }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div id="hud"><span id="score">0</span><span id="best">BEST 0</span></div>
+  <div id="cmdWrap">
+    <div id="icon"></div>
+    <div id="cmdText"></div>
+  </div>
+  <div id="timerBar"><div id="timerFill"></div></div>
+</div>
+
+<div id="overlay">
+  <h1>BOP PHONE</h1>
+  <p id="ovMsg">BOP IT — tap the screen<br>PULL IT — swipe down<br>TWIST IT — twist the phone<br><br>Obey the voice. It gets faster.</p>
+  <button id="bigBtn">START</button>
+  <div id="warn"></div>
+</div>
+
+<div id="ver">bop-phone v1</div>
+
+<script>
+'use strict';
+
+// ---------- tiny synth (no audio files, ever) ----------
+let AC = null;
+function ac() { if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === 'suspended') AC.resume(); return AC; }
+function blip(freq, dur, type, when, gain) {
+  const a = ac(), t = a.currentTime + (when || 0);
+  const o = a.createOscillator(), g = a.createGain();
+  o.type = type || 'square'; o.frequency.setValueAtTime(freq, t);
+  g.gain.setValueAtTime(gain || 0.18, t);
+  g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+  o.connect(g); g.connect(a.destination); o.start(t); o.stop(t + dur + 0.02);
+}
+const SFX = {
+  bop()   { blip(880, 0.09, 'square'); },
+  pull()  { blip(440, 0.06, 'sawtooth'); blip(660, 0.09, 'sawtooth', 0.07); },
+  twist() { blip(523, 0.05, 'triangle'); blip(659, 0.05, 'triangle', 0.05); blip(784, 0.08, 'triangle', 0.10); },
+  good()  { blip(1046, 0.07, 'sine', 0, 0.22); },
+  over()  { blip(300, 0.25, 'sawtooth'); blip(200, 0.35, 'sawtooth', 0.2); blip(120, 0.6, 'sawtooth', 0.45, 0.25); }
+};
+
+// ---------- voice ----------
+function say(text, rate) {
+  if (!('speechSynthesis' in window)) return;
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = rate || 1; u.pitch = 1.1; u.volume = 1;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+
+// ---------- commands ----------
+const CMDS = {
+  BOP:   { label: 'BOP IT!',   icon: '👊', cls: 'bop',   speak: 'Bop it',   sfx: 'bop'   },
+  PULL:  { label: 'PULL IT!',  icon: '⬇️', cls: 'pull',  speak: 'Pull it',  sfx: 'pull'  },
+  TWIST: { label: 'TWIST IT!', icon: '🔄', cls: 'twist', speak: 'Twist it', sfx: 'twist' }
+};
+
+// ---------- state ----------
+const el = id => document.getElementById(id);
+let state = 'menu';           // menu | announce | waiting | gameover
+let cmd = null;               // current command key
+let score = 0;
+let best = +(localStorage.getItem('bopphone_best') || 0);
+let windowMs = 2500;          // time allowed per command
+let deadline = 0;
+let twistOK = false;          // motion listener installed + permitted
+let gyroSeen = false;         // real rotation data has actually arrived (desktop Chrome defines DeviceMotionEvent with no gyro)
+let rafId = 0;
+
+el('best').textContent = 'BEST ' + best;
+
+// ---------- twist detection (gyroscope) ----------
+// Integrate deliberate rotation around the screen-normal (alpha) or long axis (gamma).
+// Gate at 150 deg/s so hand jitter, walking, and tap-jolts don't accumulate.
+let twistAccum = 0;
+let lastMotionT = 0;
+function onMotion(e) {
+  const r = e.rotationRate;
+  if (!r || (r.alpha == null && r.gamma == null)) return;
+  gyroSeen = true;
+  const now = performance.now();
+  const dt = lastMotionT ? Math.min((now - lastMotionT) / 1000, 0.1) : 0;
+  lastMotionT = now;
+  const rate = Math.max(Math.abs(r.alpha || 0), Math.abs(r.gamma || 0)); // deg/s
+  if (state === 'waiting' && rate > 150) {
+    twistAccum += rate * dt;
+    if (twistAccum > 80) input('TWIST');
+  }
+}
+
+async function enableMotion() {
+  if (typeof DeviceMotionEvent === 'undefined') return false;
+  try {
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+      const res = await DeviceMotionEvent.requestPermission(); // must be inside a user gesture
+      if (res !== 'granted') return false;
+    }
+    window.addEventListener('devicemotion', onMotion);
+    return true;
+  } catch (e) { return false; }
+}
+
+// ---------- touch: tap vs swipe ----------
+// iOS Safari holds taps ~350ms for double-tap zoom; raw non-passive touchstart +
+// touch-action:none escapes it. Tap resolves on touchend (<30px moved);
+// swipe fires the instant travel exceeds 70px.
+let tX = 0, tY = 0, tracking = false, swiped = false;
+function touchStart(x, y) { tX = x; tY = y; tracking = true; swiped = false; }
+function touchMove(x, y) {
+  if (!tracking || swiped) return;
+  if (Math.hypot(x - tX, y - tY) > 70) { swiped = true; input('PULL'); }
+}
+function touchEnd(x, y) {
+  if (!tracking) return;
+  tracking = false;
+  if (!swiped && Math.hypot(x - tX, y - tY) < 30) input('BOP');
+}
+
+const stage = el('stage');
+stage.addEventListener('touchstart', e => { e.preventDefault(); const t = e.changedTouches[0]; touchStart(t.clientX, t.clientY); }, { passive: false });
+stage.addEventListener('touchmove',  e => { e.preventDefault(); const t = e.changedTouches[0]; touchMove(t.clientX, t.clientY); },  { passive: false });
+stage.addEventListener('touchend',   e => { e.preventDefault(); const t = e.changedTouches[0]; touchEnd(t.clientX, t.clientY); },   { passive: false });
+
+// mouse fallback for desktop debugging (skipped for touch to avoid double-firing)
+let mouseDown = false;
+stage.addEventListener('pointerdown', e => { if (e.pointerType === 'touch') return; mouseDown = true; touchStart(e.clientX, e.clientY); });
+stage.addEventListener('pointermove', e => { if (e.pointerType === 'touch' || !mouseDown) return; touchMove(e.clientX, e.clientY); });
+stage.addEventListener('pointerup',   e => { if (e.pointerType === 'touch') return; mouseDown = false; touchEnd(e.clientX, e.clientY); });
+
+// keyboard for desktop debugging: B / P / T
+window.addEventListener('keydown', e => {
+  if (e.key === 'b') input('BOP');
+  if (e.key === 'p') input('PULL');
+  if (e.key === 't') input('TWIST');
+});
+
+// ---------- game loop ----------
+function pickCmd() {
+  const pool = (twistOK && gyroSeen) ? ['BOP', 'PULL', 'TWIST'] : ['BOP', 'PULL'];
+  let next;
+  do { next = pool[Math.floor(Math.random() * pool.length)]; }
+  while (pool.length > 1 && next === cmd && Math.random() < 0.5); // dampen repeats
+  return next;
+}
+
+function announce() {
+  state = 'announce';
+  cmd = pickCmd();
+  const c = CMDS[cmd];
+  const icon = el('icon');
+  icon.className = c.cls;
+  icon.textContent = c.icon;
+  el('cmdText').textContent = c.label;
+  SFX[c.sfx]();
+  say(c.speak, Math.min(1.7, 1 + score * 0.025));
+  twistAccum = 0;
+  deadline = performance.now() + windowMs;
+  state = 'waiting';
+}
+
+function input(kind) {
+  if (state !== 'waiting') return;
+  if (kind === cmd) {
+    state = 'announce'; // lock input during the beat between commands
+    score++;
+    el('score').textContent = score;
+    SFX.good();
+    el('icon').classList.add('flash');
+    windowMs = Math.max(900, 2500 - score * 45);
+    setTimeout(() => { el('icon').classList.remove('flash'); announce(); }, 260);
+  } else {
+    gameOver('You ' + (kind === 'BOP' ? 'bopped' : kind === 'PULL' ? 'pulled' : 'twisted') + ' — it said ' + CMDS[cmd].label);
+  }
+}
+
+function tick(now) {
+  if (state === 'waiting') {
+    const left = deadline - now;
+    el('timerFill').style.width = Math.max(0, (left / windowMs) * 100) + '%';
+    el('timerFill').style.background = left < windowMs * 0.3 ? '#f05537' : '#4cd964';
+    if (left <= 0) { gameOver('Too slow!'); return; }
+  }
+  rafId = requestAnimationFrame(tick);
+}
+
+function gameOver(reason) {
+  state = 'gameover';
+  cancelAnimationFrame(rafId);
+  SFX.over();
+  say('Game over. Score, ' + score, 1);
+  if (score > best) { best = score; localStorage.setItem('bopphone_best', best); }
+  el('overlay').classList.remove('hidden');
+  el('overlay').querySelector('h1').textContent = 'SCORE ' + score;
+  el('ovMsg').innerHTML = reason + '<br><br>Best: ' + best;
+  el('bigBtn').textContent = 'PLAY AGAIN';
+  el('warn').textContent = (twistOK && gyroSeen) ? '' : 'No gyroscope — playing without TWIST IT';
+}
+
+async function start() {
+  ac();                       // unlock audio inside the gesture
+  say(' ');                   // unlock speech synthesis on iOS
+  if (!twistOK) twistOK = await enableMotion();
+  el('warn').textContent = twistOK ? '' : 'Motion access denied — playing without TWIST IT';
+  score = 0;
+  windowMs = 2500;
+  el('score').textContent = '0';
+  el('best').textContent = 'BEST ' + best;
+  el('overlay').classList.add('hidden');
+  state = 'announce';
+  setTimeout(announce, 500);
+  rafId = requestAnimationFrame(tick);
+}
+
+el('bigBtn').addEventListener('click', start);
+// iOS: also fire on raw touchend so the button has zero delay
+el('bigBtn').addEventListener('touchend', e => { e.preventDefault(); start(); }, { passive: false });
+</script>
+</body>
+</html>

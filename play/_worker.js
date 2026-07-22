@@ -14,6 +14,8 @@ const WUYB_ALPHA_VERSION = "7cf0045";
 const WUYB_SESSION_COOKIE = "odg_wuyb_alpha_session";
 const WUYB_SESSION_TTL_SECONDS = 60 * 60 * 24 * 7;
 const IOS_PREVIEW_PREFIX = "/trash-dice/ios-preview";
+const BOPIT_PREFIX = "/private/bop-it";
+const BOPIT_REALM = "Bop Phone Prototype";
 const PLAY_REVIEW_PREFIX = "/trash-dice/play";
 const ALPHA_USER = "odg";
 const PLAY_REVIEW_REALM = "Trash Dice Play Review";
@@ -48,6 +50,10 @@ function isWuybPreviewPath(pathname) {
 
 function isIosPreviewPath(pathname) {
   return pathname === IOS_PREVIEW_PREFIX || pathname.startsWith(`${IOS_PREVIEW_PREFIX}/`);
+}
+
+function isBopItPath(pathname) {
+  return pathname === BOPIT_PREFIX || pathname.startsWith(`${BOPIT_PREFIX}/`);
 }
 
 function isPlayReviewPath(pathname) {
@@ -568,6 +574,10 @@ export default {
 
     if (isPlayReviewPath(url.pathname)) {
       return alphaResponse(request, env, PLAY_REVIEW_REALM);
+    }
+
+    if (isBopItPath(url.pathname)) {
+      return alphaResponse(request, env, BOPIT_REALM);
     }
 
     if (isOfflinePath(url.pathname)) {
