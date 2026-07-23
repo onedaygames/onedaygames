@@ -1,12 +1,12 @@
-{
+﻿{
     "slug":  "wuyb-alpha-complete",
     "name":  "WUYB Alpha Complete",
     "lane":  "unlisted-canonical",
     "canonicalUrl":  "https://playonedaygames.com/wuyb/alpha-complete/",
-    "defaultPlayUrl":  "https://playonedaygames.com/wuyb/alpha-complete/?match=1\u0026v=1263d02",
-    "approvedBuild":  "1263d02",
-    "approvedBuildSubject":  "Guide WUYB rescue match with frozen timer",
-    "sha256":  "78FBBACFE3EA683828E8BB3C5656A7B647D429D96A3A40BD48734FAD5DC965EF",
+    "defaultPlayUrl":  "https://playonedaygames.com/wuyb/alpha-complete/?match=1\u0026v=914d326",
+    "approvedBuild":  "914d326",
+    "approvedBuildSubject":  "Extend WUYB guided match assist",
+    "sha256":  "8EECC0520A63AC197D98F22DB47ADB8DE0A23CDEC22C2B4AD753D42C1830A813",
     "publicApproved":  false,
     "listed":  false,
     "noIndex":  true,
