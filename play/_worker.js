@@ -15,12 +15,70 @@ const WUYB_SESSION_COOKIE = "odg_wuyb_alpha_session";
 const WUYB_SESSION_TTL_SECONDS = 60 * 60 * 24 * 7;
 const IOS_PREVIEW_PREFIX = "/trash-dice/ios-preview";
 const BOPIT_PREFIX = "/private/bop-it";
-const BOPIT_REALM = "Bop Phone Prototype";
 const PLAY_REVIEW_PREFIX = "/trash-dice/play";
 const ALPHA_USER = "odg";
-const PLAY_REVIEW_REALM = "Trash Dice Play Review";
 const textEncoder = new TextEncoder();
 const textDecoder = new TextDecoder();
+
+const WUYB_ALPHA_GATE = {
+  prefix: WUYB_ALPHA_PREFIX,
+  loginPath: WUYB_LOGIN_PATH,
+  logoutPath: WUYB_LOGOUT_PATH,
+  cookieName: WUYB_SESSION_COOKIE,
+  title: "WUYB Alpha Complete",
+  mark: "W",
+  statusLine: "Protected Alpha review",
+  sessionScope: "wuyb-alpha-complete",
+  sessionKeyNamespace: "wuyb-alpha-session",
+  defaultNextUrl: defaultWuybPlayUrl,
+  isPath: isWuybAlphaPath,
+};
+
+const PLAY_REVIEW_GATE = {
+  prefix: PLAY_REVIEW_PREFIX,
+  loginPath: `${PLAY_REVIEW_PREFIX}/login`,
+  logoutPath: `${PLAY_REVIEW_PREFIX}/logout`,
+  cookieName: "odg_trash_dice_play_session",
+  title: "Trash Dice Play Review",
+  mark: "TD",
+  statusLine: "Protected review",
+  sessionScope: "trash-dice-play-review",
+  sessionKeyNamespace: "trash-dice-play-review-session",
+  isPath: isPlayReviewPath,
+};
+
+const IOS_PREVIEW_GATE = {
+  prefix: IOS_PREVIEW_PREFIX,
+  loginPath: `${IOS_PREVIEW_PREFIX}/login`,
+  logoutPath: `${IOS_PREVIEW_PREFIX}/logout`,
+  cookieName: "odg_trash_dice_ios_session",
+  title: "Trash Dice iOS Preview",
+  mark: "iOS",
+  statusLine: "Protected review",
+  sessionScope: "trash-dice-ios-preview",
+  sessionKeyNamespace: "trash-dice-ios-preview-session",
+  isPath: isIosPreviewPath,
+};
+
+const BOPIT_GATE = {
+  prefix: BOPIT_PREFIX,
+  loginPath: `${BOPIT_PREFIX}/login`,
+  logoutPath: `${BOPIT_PREFIX}/logout`,
+  cookieName: "odg_bop_it_session",
+  title: "Bop Phone Prototype",
+  mark: "B",
+  statusLine: "Protected prototype review",
+  sessionScope: "bop-it-prototype",
+  sessionKeyNamespace: "bop-it-prototype-session",
+  isPath: isBopItPath,
+};
+
+const REVIEW_GATES = [
+  WUYB_ALPHA_GATE,
+  PLAY_REVIEW_GATE,
+  IOS_PREVIEW_GATE,
+  BOPIT_GATE,
+];
 
 function isAlphaPath(pathname) {
   return pathname === ALPHA_PREFIX || pathname.startsWith(`${ALPHA_PREFIX}/`);
@@ -118,24 +176,11 @@ function redirectToWuybAlpha(url) {
 }
 
 function sanitizeWuybNext(rawNext, baseUrl) {
-  const fallback = defaultWuybPlayUrl(baseUrl).toString();
-  if (!rawNext) return fallback;
-
-  try {
-    const candidate = new URL(String(rawNext), baseUrl);
-    if (candidate.origin !== baseUrl.origin) return fallback;
-    if (!isWuybAlphaPath(candidate.pathname)) return fallback;
-    if (isWuybLoginPath(candidate.pathname) || isWuybLogoutPath(candidate.pathname)) return fallback;
-    return candidate.toString();
-  } catch {
-    return fallback;
-  }
+  return sanitizeReviewNext(WUYB_ALPHA_GATE, rawNext, baseUrl);
 }
 
 function redirectToWuybLogin(url) {
-  const target = new URL(`${WUYB_LOGIN_PATH}/`, url);
-  target.searchParams.set("next", sanitizeWuybNext(url.toString(), url));
-  return protectedRedirect(target);
+  return redirectToReviewLogin(WUYB_ALPHA_GATE, url);
 }
 
 function unauthorized(realm = "Trash Dice Alpha Complete") {
@@ -210,10 +255,10 @@ function base64UrlToBytes(value) {
   return bytes;
 }
 
-async function signWuybSession(payload, password) {
+async function signReviewSession(gate, payload, password) {
   const key = await crypto.subtle.importKey(
     "raw",
-    textEncoder.encode(`wuyb-alpha-session:${password}`),
+    textEncoder.encode(`${gate.sessionKeyNamespace}:${password}`),
     { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign"],
@@ -240,36 +285,73 @@ function getCookie(request, name) {
   return "";
 }
 
-async function createWuybSessionCookie(password) {
+function isGateLoginPath(gate, pathname) {
+  return pathname === gate.loginPath || pathname === `${gate.loginPath}/`;
+}
+
+function isGateLogoutPath(gate, pathname) {
+  return pathname === gate.logoutPath || pathname === `${gate.logoutPath}/`;
+}
+
+function defaultReviewNextUrl(gate, url) {
+  const target = new URL(url);
+  target.pathname = `${gate.prefix}/`;
+  target.search = "";
+  return target;
+}
+
+function sanitizeReviewNext(gate, rawNext, baseUrl) {
+  const fallbackFactory = gate.defaultNextUrl || ((url) => defaultReviewNextUrl(gate, url));
+  const fallback = fallbackFactory(baseUrl).toString();
+  if (!rawNext) return fallback;
+
+  try {
+    const candidate = new URL(String(rawNext), baseUrl);
+    if (candidate.origin !== baseUrl.origin) return fallback;
+    if (!gate.isPath(candidate.pathname)) return fallback;
+    if (isGateLoginPath(gate, candidate.pathname) || isGateLogoutPath(gate, candidate.pathname)) return fallback;
+    return candidate.toString();
+  } catch {
+    return fallback;
+  }
+}
+
+function redirectToReviewLogin(gate, url) {
+  const target = new URL(`${gate.loginPath}/`, url);
+  target.searchParams.set("next", sanitizeReviewNext(gate, url.toString(), url));
+  return protectedRedirect(target);
+}
+
+async function createReviewSessionCookie(gate, password) {
   const payload = bytesToBase64Url(textEncoder.encode(JSON.stringify({
-    scope: "wuyb-alpha-complete",
+    scope: gate.sessionScope,
     exp: Math.floor(Date.now() / 1000) + WUYB_SESSION_TTL_SECONDS,
   })));
-  const signature = await signWuybSession(payload, password);
-  return `${WUYB_SESSION_COOKIE}=${payload}.${signature}; Path=${WUYB_ALPHA_PREFIX}; Max-Age=${WUYB_SESSION_TTL_SECONDS}; HttpOnly; Secure; SameSite=Lax`;
+  const signature = await signReviewSession(gate, payload, password);
+  return `${gate.cookieName}=${payload}.${signature}; Path=${gate.prefix}; Max-Age=${WUYB_SESSION_TTL_SECONDS}; HttpOnly; Secure; SameSite=Lax`;
 }
 
-function clearWuybSessionCookie() {
-  return `${WUYB_SESSION_COOKIE}=; Path=${WUYB_ALPHA_PREFIX}; Max-Age=0; HttpOnly; Secure; SameSite=Lax`;
+function clearReviewSessionCookie(gate) {
+  return `${gate.cookieName}=; Path=${gate.prefix}; Max-Age=0; HttpOnly; Secure; SameSite=Lax`;
 }
 
-async function hasWuybSessionAccess(request, env) {
+async function hasReviewSessionAccess(request, env, gate) {
   const expectedPassword = getAlphaPassword(env);
   if (!expectedPassword) return null;
 
-  const token = getCookie(request, WUYB_SESSION_COOKIE);
+  const token = getCookie(request, gate.cookieName);
   if (!token) return false;
 
   const parts = token.split(".");
   if (parts.length !== 2) return false;
 
   const [payload, signature] = parts;
-  const expectedSignature = await signWuybSession(payload, expectedPassword);
+  const expectedSignature = await signReviewSession(gate, payload, expectedPassword);
   if (!constantTimeEqual(signature, expectedSignature)) return false;
 
   try {
     const session = JSON.parse(textDecoder.decode(base64UrlToBytes(payload)));
-    return session.scope === "wuyb-alpha-complete" &&
+    return session.scope === gate.sessionScope &&
       Number.isFinite(session.exp) &&
       session.exp >= Math.floor(Date.now() / 1000);
   } catch {
@@ -277,11 +359,11 @@ async function hasWuybSessionAccess(request, env) {
   }
 }
 
-async function hasWuybRequestAccess(request, env) {
+async function hasReviewRequestAccess(request, env, gate) {
   const basicAllowed = hasAlphaAccess(request, env);
   if (basicAllowed === true) return true;
   if (basicAllowed === null) return null;
-  return hasWuybSessionAccess(request, env);
+  return hasReviewSessionAccess(request, env, gate);
 }
 
 async function protectedAssetResponse(request, env) {
@@ -304,9 +386,9 @@ async function alphaResponse(request, env, realm) {
   return protectedAssetResponse(request, env);
 }
 
-function renderWuybLoginPage(url, options = {}) {
+function renderReviewLoginPage(gate, url, options = {}) {
   const status = options.status || 200;
-  const next = sanitizeWuybNext(options.next || url.searchParams.get("next"), url);
+  const next = sanitizeReviewNext(gate, options.next || url.searchParams.get("next"), url);
   const error = options.error ? `<p class="login-error" role="alert">${escapeHtml(options.error)}</p>` : "";
 
   return new Response(`<!doctype html>
@@ -315,7 +397,7 @@ function renderWuybLoginPage(url, options = {}) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow,noarchive" />
-  <title>WUYB Alpha Complete Login</title>
+  <title>${escapeHtml(gate.title)} Login</title>
   <style>
     :root {
       color-scheme: dark;
@@ -451,13 +533,13 @@ function renderWuybLoginPage(url, options = {}) {
   <main class="login-shell">
     <section class="login-panel" aria-labelledby="login-title">
       <div class="brand-row">
-        <div class="brand-mark" aria-hidden="true">W</div>
+        <div class="brand-mark" aria-hidden="true">${escapeHtml(gate.mark)}</div>
         <div>
           <p class="eyebrow">One Day Games</p>
-          <h1 id="login-title">WUYB Alpha Complete</h1>
+          <h1 id="login-title">${escapeHtml(gate.title)}</h1>
         </div>
       </div>
-      <form method="post" action="${WUYB_LOGIN_PATH}/">
+      <form method="post" action="${gate.loginPath}/">
         <input type="hidden" name="next" value="${escapeHtml(next)}" />
         ${error}
         <label>
@@ -470,7 +552,7 @@ function renderWuybLoginPage(url, options = {}) {
         </label>
         <button type="submit">Sign in</button>
       </form>
-      <p class="status-line">Protected Alpha review · No indexing · One Day Games</p>
+      <p class="status-line">${escapeHtml(gate.statusLine || "Protected review")} &middot; No indexing &middot; One Day Games</p>
     </section>
   </main>
 </body>
@@ -484,15 +566,19 @@ function renderWuybLoginPage(url, options = {}) {
   });
 }
 
-async function handleWuybLogin(request, env) {
+function renderWuybLoginPage(url, options = {}) {
+  return renderReviewLoginPage(WUYB_ALPHA_GATE, url, options);
+}
+
+async function handleReviewLogin(request, env, gate) {
   const url = new URL(request.url);
   if (request.method !== "POST") {
-    const allowed = await hasWuybRequestAccess(request, env);
+    const allowed = await hasReviewRequestAccess(request, env, gate);
     if (allowed === null) return authNotConfigured();
     if (allowed) {
-      return protectedRedirect(new URL(sanitizeWuybNext(url.searchParams.get("next"), url)), 303);
+      return protectedRedirect(new URL(sanitizeReviewNext(gate, url.searchParams.get("next"), url)), 303);
     }
-    return renderWuybLoginPage(url);
+    return renderReviewLoginPage(gate, url);
   }
 
   const expectedPassword = getAlphaPassword(env);
@@ -502,7 +588,7 @@ async function handleWuybLogin(request, env) {
   try {
     form = await request.formData();
   } catch {
-    return renderWuybLoginPage(url, {
+    return renderReviewLoginPage(gate, url, {
       status: 400,
       error: "Could not read that login attempt.",
     });
@@ -510,10 +596,10 @@ async function handleWuybLogin(request, env) {
 
   const username = String(form.get("username") || "").trim();
   const password = String(form.get("password") || "");
-  const next = sanitizeWuybNext(form.get("next") || url.searchParams.get("next"), url);
+  const next = sanitizeReviewNext(gate, form.get("next") || url.searchParams.get("next"), url);
 
   if (username !== ALPHA_USER || password !== expectedPassword) {
-    return renderWuybLoginPage(url, {
+    return renderReviewLoginPage(gate, url, {
       status: 401,
       error: "That login did not match.",
       next,
@@ -521,14 +607,26 @@ async function handleWuybLogin(request, env) {
   }
 
   return protectedRedirect(new URL(next), 303, {
-    "set-cookie": await createWuybSessionCookie(expectedPassword),
+    "set-cookie": await createReviewSessionCookie(gate, expectedPassword),
   });
 }
 
+async function handleWuybLogin(request, env) {
+  return handleReviewLogin(request, env, WUYB_ALPHA_GATE);
+}
+
 async function wuybAlphaResponse(request, env) {
-  const allowed = await hasWuybRequestAccess(request, env);
+  const allowed = await hasReviewRequestAccess(request, env, WUYB_ALPHA_GATE);
   if (allowed === null) return authNotConfigured();
-  if (!allowed) return redirectToWuybLogin(new URL(request.url));
+  if (!allowed) return redirectToReviewLogin(WUYB_ALPHA_GATE, new URL(request.url));
+
+  return protectedAssetResponse(request, env);
+}
+
+async function reviewGateResponse(request, env, gate) {
+  const allowed = await hasReviewRequestAccess(request, env, gate);
+  if (allowed === null) return authNotConfigured();
+  if (!allowed) return redirectToReviewLogin(gate, new URL(request.url));
 
   return protectedAssetResponse(request, env);
 }
@@ -553,18 +651,20 @@ export default {
       return redirectToWuybAlpha(url);
     }
 
-    if (isWuybLoginPath(url.pathname)) {
-      return handleWuybLogin(request, env);
+    const loginGate = REVIEW_GATES.find((gate) => isGateLoginPath(gate, url.pathname));
+    if (loginGate) {
+      return handleReviewLogin(request, env, loginGate);
     }
 
-    if (isWuybLogoutPath(url.pathname)) {
-      const target = new URL(`${WUYB_LOGIN_PATH}/`, url);
+    const logoutGate = REVIEW_GATES.find((gate) => isGateLogoutPath(gate, url.pathname));
+    if (logoutGate) {
+      const target = new URL(`${logoutGate.loginPath}/`, url);
       return protectedRedirect(target, 303, {
-        "set-cookie": clearWuybSessionCookie(),
+        "set-cookie": clearReviewSessionCookie(logoutGate),
       });
     }
 
-    if (isAlphaPath(url.pathname) || isIosPreviewPath(url.pathname)) {
+    if (isAlphaPath(url.pathname)) {
       return alphaResponse(request, env);
     }
 
@@ -572,12 +672,16 @@ export default {
       return wuybAlphaResponse(request, env);
     }
 
+    if (isIosPreviewPath(url.pathname)) {
+      return reviewGateResponse(request, env, IOS_PREVIEW_GATE);
+    }
+
     if (isPlayReviewPath(url.pathname)) {
-      return alphaResponse(request, env, PLAY_REVIEW_REALM);
+      return reviewGateResponse(request, env, PLAY_REVIEW_GATE);
     }
 
     if (isBopItPath(url.pathname)) {
-      return alphaResponse(request, env, BOPIT_REALM);
+      return reviewGateResponse(request, env, BOPIT_GATE);
     }
 
     if (isOfflinePath(url.pathname)) {
