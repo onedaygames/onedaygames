@@ -6,12 +6,13 @@ const OFFLINE_PREFIXES = [
 ];
 
 const ALPHA_PREFIX = "/trash-dice/alpha-complete";
-const WUYB_ALPHA_PREFIX = "/wuyb/alpha-complete";
-const WUYB_LOGIN_PATH = `${WUYB_ALPHA_PREFIX}/login`;
-const WUYB_LOGOUT_PATH = `${WUYB_ALPHA_PREFIX}/logout`;
+const WUYB_PLAY_PREFIX = "/wuyb/play";
+const WUYB_LEGACY_ALPHA_PREFIX = "/wuyb/alpha-complete";
+const WUYB_LOGIN_PATH = `${WUYB_PLAY_PREFIX}/login`;
+const WUYB_LOGOUT_PATH = `${WUYB_PLAY_PREFIX}/logout`;
 const WUYB_PREVIEW_PREFIX = "/private/wuyb-preview";
-const WUYB_ALPHA_VERSION = "7cf0045";
-const WUYB_SESSION_COOKIE = "odg_wuyb_alpha_session";
+const WUYB_PLAY_VERSION = "0eaaaa3";
+const WUYB_SESSION_COOKIE = "odg_wuyb_play_session";
 const WUYB_SESSION_TTL_SECONDS = 60 * 60 * 24 * 7;
 const IOS_PREVIEW_PREFIX = "/trash-dice/ios-preview";
 const BOPIT_PREFIX = "/private/bop-it";
@@ -20,18 +21,18 @@ const ALPHA_USER = "odg";
 const textEncoder = new TextEncoder();
 const textDecoder = new TextDecoder();
 
-const WUYB_ALPHA_GATE = {
-  prefix: WUYB_ALPHA_PREFIX,
+const WUYB_PLAY_GATE = {
+  prefix: WUYB_PLAY_PREFIX,
   loginPath: WUYB_LOGIN_PATH,
   logoutPath: WUYB_LOGOUT_PATH,
   cookieName: WUYB_SESSION_COOKIE,
-  title: "WUYB Alpha Complete",
+  title: "WUYB Play Review",
   mark: "W",
-  statusLine: "Protected Alpha review",
-  sessionScope: "wuyb-alpha-complete",
-  sessionKeyNamespace: "wuyb-alpha-session",
+  statusLine: "Protected review",
+  sessionScope: "wuyb-play-review",
+  sessionKeyNamespace: "wuyb-play-review-session",
   defaultNextUrl: defaultWuybPlayUrl,
-  isPath: isWuybAlphaPath,
+  isPath: isWuybPlayPath,
 };
 
 const PLAY_REVIEW_GATE = {
@@ -74,7 +75,7 @@ const BOPIT_GATE = {
 };
 
 const REVIEW_GATES = [
-  WUYB_ALPHA_GATE,
+  WUYB_PLAY_GATE,
   PLAY_REVIEW_GATE,
   IOS_PREVIEW_GATE,
   BOPIT_GATE,
@@ -84,14 +85,18 @@ function isAlphaPath(pathname) {
   return pathname === ALPHA_PREFIX || pathname.startsWith(`${ALPHA_PREFIX}/`);
 }
 
-function isWuybAlphaPath(pathname) {
-  return pathname === WUYB_ALPHA_PREFIX || pathname.startsWith(`${WUYB_ALPHA_PREFIX}/`);
+function isWuybPlayPath(pathname) {
+  return pathname === WUYB_PLAY_PREFIX || pathname.startsWith(`${WUYB_PLAY_PREFIX}/`);
 }
 
-function isWuybAlphaHomePath(pathname) {
-  return pathname === WUYB_ALPHA_PREFIX ||
-    pathname === `${WUYB_ALPHA_PREFIX}/` ||
-    pathname === `${WUYB_ALPHA_PREFIX}/index.html`;
+function isWuybPlayHomePath(pathname) {
+  return pathname === WUYB_PLAY_PREFIX ||
+    pathname === `${WUYB_PLAY_PREFIX}/` ||
+    pathname === `${WUYB_PLAY_PREFIX}/index.html`;
+}
+
+function isWuybLegacyAlphaPath(pathname) {
+  return pathname === WUYB_LEGACY_ALPHA_PREFIX || pathname.startsWith(`${WUYB_LEGACY_ALPHA_PREFIX}/`);
 }
 
 function isWuybLoginPath(pathname) {
@@ -153,34 +158,36 @@ function protectedRedirect(target, status = 302, extraHeaders = {}) {
 
 function defaultWuybPlayUrl(url) {
   const target = new URL(url);
-  target.pathname = `${WUYB_ALPHA_PREFIX}/`;
+  target.pathname = `${WUYB_PLAY_PREFIX}/`;
   target.search = "";
   target.searchParams.set("match", "1");
-  target.searchParams.set("v", WUYB_ALPHA_VERSION);
+  target.searchParams.set("v", WUYB_PLAY_VERSION);
   return target;
 }
 
-function redirectToWuybAlpha(url) {
+function redirectToWuybPlay(url) {
   const target = new URL(url);
-  target.pathname = target.pathname.replace(/^\/private\/wuyb-preview(?=\/|$)/, WUYB_ALPHA_PREFIX);
-  if (target.pathname === WUYB_ALPHA_PREFIX) {
-    target.pathname = `${WUYB_ALPHA_PREFIX}/`;
+  target.pathname = target.pathname
+    .replace(/^\/private\/wuyb-preview(?=\/|$)/, WUYB_PLAY_PREFIX)
+    .replace(/^\/wuyb\/alpha-complete(?=\/|$)/, WUYB_PLAY_PREFIX);
+  if (target.pathname === WUYB_PLAY_PREFIX) {
+    target.pathname = `${WUYB_PLAY_PREFIX}/`;
   }
-  if (isWuybAlphaHomePath(target.pathname) && !target.searchParams.has("match") && !target.searchParams.has("hunt")) {
+  if (isWuybPlayHomePath(target.pathname) && !target.searchParams.has("match") && !target.searchParams.has("hunt")) {
     target.searchParams.set("match", "1");
   }
-  if (isWuybAlphaHomePath(target.pathname) && !target.searchParams.has("v")) {
-    target.searchParams.set("v", WUYB_ALPHA_VERSION);
+  if (isWuybPlayHomePath(target.pathname) && !target.searchParams.has("v")) {
+    target.searchParams.set("v", WUYB_PLAY_VERSION);
   }
   return protectedRedirect(target);
 }
 
 function sanitizeWuybNext(rawNext, baseUrl) {
-  return sanitizeReviewNext(WUYB_ALPHA_GATE, rawNext, baseUrl);
+  return sanitizeReviewNext(WUYB_PLAY_GATE, rawNext, baseUrl);
 }
 
 function redirectToWuybLogin(url) {
-  return redirectToReviewLogin(WUYB_ALPHA_GATE, url);
+  return redirectToReviewLogin(WUYB_PLAY_GATE, url);
 }
 
 function unauthorized(realm = "Trash Dice Alpha Complete") {
@@ -567,7 +574,7 @@ function renderReviewLoginPage(gate, url, options = {}) {
 }
 
 function renderWuybLoginPage(url, options = {}) {
-  return renderReviewLoginPage(WUYB_ALPHA_GATE, url, options);
+  return renderReviewLoginPage(WUYB_PLAY_GATE, url, options);
 }
 
 async function handleReviewLogin(request, env, gate) {
@@ -612,13 +619,13 @@ async function handleReviewLogin(request, env, gate) {
 }
 
 async function handleWuybLogin(request, env) {
-  return handleReviewLogin(request, env, WUYB_ALPHA_GATE);
+  return handleReviewLogin(request, env, WUYB_PLAY_GATE);
 }
 
-async function wuybAlphaResponse(request, env) {
-  const allowed = await hasReviewRequestAccess(request, env, WUYB_ALPHA_GATE);
+async function wuybPlayResponse(request, env) {
+  const allowed = await hasReviewRequestAccess(request, env, WUYB_PLAY_GATE);
   if (allowed === null) return authNotConfigured();
-  if (!allowed) return redirectToReviewLogin(WUYB_ALPHA_GATE, new URL(request.url));
+  if (!allowed) return redirectToReviewLogin(WUYB_PLAY_GATE, new URL(request.url));
 
   return protectedAssetResponse(request, env);
 }
@@ -643,12 +650,12 @@ export default {
       return redirectToSingleLive(url);
     }
 
-    if (isWuybPreviewPath(url.pathname)) {
-      return redirectToWuybAlpha(url);
+    if (isWuybPreviewPath(url.pathname) || isWuybLegacyAlphaPath(url.pathname)) {
+      return redirectToWuybPlay(url);
     }
 
-    if (isWuybAlphaHomePath(url.pathname) && !url.searchParams.has("match") && !url.searchParams.has("hunt")) {
-      return redirectToWuybAlpha(url);
+    if (isWuybPlayHomePath(url.pathname) && !url.searchParams.has("match") && !url.searchParams.has("hunt")) {
+      return redirectToWuybPlay(url);
     }
 
     const loginGate = REVIEW_GATES.find((gate) => isGateLoginPath(gate, url.pathname));
@@ -668,8 +675,8 @@ export default {
       return alphaResponse(request, env);
     }
 
-    if (isWuybAlphaPath(url.pathname)) {
-      return wuybAlphaResponse(request, env);
+    if (isWuybPlayPath(url.pathname)) {
+      return wuybPlayResponse(request, env);
     }
 
     if (isIosPreviewPath(url.pathname)) {

@@ -24,6 +24,27 @@
 /wuyb/alpha-complete/assets/*
   Cache-Control: public, max-age=14400, must-revalidate
 
+/wuyb/play/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
+
+/wuyb/play/
+  Cache-Control: no-store
+
+/wuyb/play/index.html
+  Cache-Control: no-store
+
+/wuyb/play/login/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
+
+/wuyb/play/logout/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
+
+/wuyb/play/assets/*
+  Cache-Control: public, max-age=14400, must-revalidate
+
 /trash-dice/ios-preview/*
   X-Robots-Tag: noindex, nofollow, noarchive
   Cache-Control: no-store

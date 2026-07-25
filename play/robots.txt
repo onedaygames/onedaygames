@@ -4,3 +4,4 @@ Disallow: /trash-dice/alpha-complete/
 Disallow: /wuyb/alpha-complete/
 Disallow: /trash-dice/ios-preview/
 Disallow: /trash-dice/play/
+Disallow: /wuyb/play/
