@@ -1,14 +1,14 @@
-{
-  "slug": "wuyb-play",
-  "name": "WUYB Play",
-  "lane": "protected-review",
-  "canonicalUrl": "https://playonedaygames.com/wuyb/play/",
-  "defaultPlayUrl": "https://playonedaygames.com/wuyb/play/?match=1&v=0eaaaa3",
-  "approvedBuild": "0eaaaa3",
-  "approvedBuildSubject": "Add WUYB title play cue",
-  "sha256": "7E4FECC021F016E2481936D1B2578370FC67E88BE839FB2637D2CE2C0CFD2BF6",
-  "publicApproved": false,
-  "listed": false,
-  "noIndex": true,
-  "rule": "Canonical WUYB protected review route; matches the Trash Dice /trash-dice/play/ URL format. Old /wuyb/alpha-complete/ and /private/wuyb-preview/ links redirect here."
+﻿{
+    "slug":  "wuyb-play",
+    "name":  "WUYB Play",
+    "lane":  "protected-review",
+    "canonicalUrl":  "https://playonedaygames.com/wuyb/play/",
+    "defaultPlayUrl":  "https://playonedaygames.com/wuyb/play/?match=1\u0026v=ed513f2",
+    "approvedBuild":  "ed513f2",
+    "approvedBuildSubject":  "Generalize WUYB route sync",
+    "sha256":  "BD07523503DE4F90AE78BD6A49C8BD9CDE3D84BF152A550BDC55EAB3B6D684EB",
+    "publicApproved":  false,
+    "listed":  false,
+    "noIndex":  true,
+    "rule":  "Canonical WUYB protected review route; matches the Trash Dice /trash-dice/play/ URL format. Old /wuyb/alpha-complete/ and /private/wuyb-preview/ links redirect here."
 }
