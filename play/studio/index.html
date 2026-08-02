@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Day Games — Take Your Tabletop Game Digital</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root{
+    --obsidian:#0C0D10;
+    --obsidian-soft:#15161B;
+    --ivory:#F7F1E6;
+    --ivory-card:#FFFDF8;
+    --ink:#1A1A1A;
+    --mute:#6B6B6B;
+    --coral:#F0662E;
+    --gold:#F5A623;
+    --line-dark:#24252C;
+    --line-warm:#E7DECF;
+    --bone:#EDE9E0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--ivory);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 40px;}
+  @media(max-width:640px){.wrap{padding:0 24px;}}
+
+  /* ---------- HERO (dark, AAA) ---------- */
+  .hero{background:var(--obsidian);color:var(--ivory);position:relative;overflow:hidden;}
+  .hero::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:180px;
+    background:radial-gradient(ellipse 70% 100% at 50% 100%, rgba(240,102,46,.14), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-inner{padding:38px 40px 96px;max-width:1080px;margin:0 auto;position:relative;z-index:1;}
+  @media(max-width:640px){.hero-inner{padding:32px 24px 72px;}}
+
+  .brandbar{display:flex;align-items:center;gap:12px;margin-bottom:88px;}
+  .brandbar .mark{width:30px;height:auto;flex:none;display:block;}
+  .brandbar .name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;letter-spacing:.02em;}
+  @media(max-width:640px){.brandbar{margin-bottom:56px;}}
+
+  .credential{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;color:#9A9AA4;margin-bottom:30px;
+  }
+  .credential b{color:var(--gold);font-weight:500;}
+
+  h1{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:clamp(38px,6.2vw,72px);line-height:1.02;letter-spacing:-.02em;
+    max-width:16ch;margin-bottom:28px;
+  }
+  h1 .accent{
+    background:linear-gradient(100deg,var(--gold),var(--coral));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .hero-sub{font-size:clamp(17px,2.1vw,21px);line-height:1.5;color:#C7C7CE;max-width:52ch;margin-bottom:44px;}
+
+  .cta-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .cta{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;
+    padding:16px 28px;border-radius:12px;text-decoration:none;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .cta-primary{background:linear-gradient(100deg,var(--gold),var(--coral));color:#1A0E06;box-shadow:0 8px 30px rgba(240,102,46,.28);}
+  .cta-primary:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(240,102,46,.4);}
+  .cta-ghost{color:var(--ivory);border:1px solid var(--line-dark);}
+  .cta-ghost:hover{border-color:#3A3B44;background:rgba(255,255,255,.03);}
+
+  /* ---------- WHAT WE DO ---------- */
+  .band{padding:80px 0;}
+  .lead-statement{
+    font-family:'Space Grotesk',sans-serif;font-weight:500;
+    font-size:clamp(24px,3.4vw,36px);line-height:1.28;letter-spacing:-.01em;
+    max-width:24ch;
+  }
+  .lead-statement .em{color:var(--coral);}
+  .lead-body{font-size:17px;line-height:1.7;color:#3A3A3A;max-width:60ch;margin-top:24px;}
+
+  /* ---------- PROOF (the two games) ---------- */
+  .proof{background:var(--ivory-card);border-top:1px solid var(--line-warm);border-bottom:1px solid var(--line-warm);}
+  .proof-inner{padding:78px 0;}
+  .section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:14px;}
+  .section-head{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-.01em;margin-bottom:8px;}
+  .section-note{color:var(--mute);font-size:16px;max-width:54ch;margin-bottom:44px;}
+
+  .game{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:center;padding:36px 0;}
+  .game + .game{border-top:1px solid var(--line-warm);}
+  @media(max-width:760px){.game{grid-template-columns:1fr;gap:24px;}}
+
+  .game-flag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:12px;}
+  .game-flag b{color:var(--coral);font-weight:500;}
+  .game-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;letter-spacing:-.01em;margin-bottom:12px;}
+  .game-desc{font-size:16px;line-height:1.65;color:#3A3A3A;margin-bottom:20px;max-width:44ch;}
+  .game-link{display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--coral);text-decoration:none;border-bottom:2px solid transparent;transition:border-color .15s;}
+  .game-link:hover{border-color:var(--coral);}
+
+  .game-visual{
+    aspect-ratio:16/10;border-radius:14px;overflow:hidden;position:relative;
+    border:1px solid var(--line-warm);
+    display:flex;align-items:center;justify-content:center;
+    background:var(--obsidian);
+  }
+  .game-visual img{width:100%;height:100%;object-fit:cover;display:block;}
+  .visual-scrim{position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(to top, rgba(0,0,0,.55), transparent);pointer-events:none;}
+  .visual-label{position:absolute;bottom:12px;left:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);}
+
+  /* ---------- WHY ME (the AAA quiet flex) ---------- */
+  .why{padding:80px 0;}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+  @media(max-width:760px){.why-grid{grid-template-columns:1fr;gap:32px;}}
+  .why h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-.01em;line-height:1.2;}
+  .why h2 .em{color:var(--coral);}
+  .why-points{display:flex;flex-direction:column;gap:22px;}
+  .pt .pt-h{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;margin-bottom:5px;}
+  .pt .pt-b{font-size:15px;line-height:1.6;color:#3A3A3A;}
+
+  /* ---------- CLOSE / CTA ---------- */
+  .close{background:var(--obsidian);color:var(--ivory);}
+  .close-inner{padding:90px 40px;max-width:1080px;margin:0 auto;text-align:center;position:relative;overflow:hidden;}
+  .close::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 0%, rgba(245,166,35,.10), transparent 65%);pointer-events:none;}
+  .close h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4.6vw,52px);letter-spacing:-.02em;line-height:1.05;margin-bottom:20px;position:relative;max-width:18ch;margin-left:auto;margin-right:auto;}
+  .close h2 .accent{background:linear-gradient(100deg,var(--gold),var(--coral));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .close p{color:#C7C7CE;font-size:18px;max-width:46ch;margin:0 auto 40px;position:relative;}
+  .close .cta-row{justify-content:center;position:relative;}
+  .close .contact-line{margin-top:34px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.08em;color:#9A9AA4;position:relative;}
+  .close .contact-line a{color:var(--gold);text-decoration:none;}
+
+  .foot{background:var(--obsidian);color:#6A6A72;border-top:1px solid var(--line-dark);}
+  .foot-inner{max-width:1080px;margin:0 auto;padding:26px 40px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="brandbar"><img class="mark" src="assets/odg-icon.png" alt="One Day Games" width="30" height="14"><span class="name">One Day Games</span></div>
+
+      <div class="credential">32 years in AAA game production · <b>Call of Duty: Black Ops</b> · <b>PlayStation</b></div>
+
+      <h1>Take your tabletop game <span class="accent">digital.</span></h1>
+      <p class="hero-sub">We build faithful digital companions to physical tabletop games — instant-play, no install, true to the feel of the game you already made. A love letter to your world, not a copy of it.</p>
+
+      <div class="cta-row">
+        <a href="#talk" class="cta cta-primary">Bring us your game →</a>
+        <a href="#work" class="cta cta-ghost">See what we've shipped</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- WHAT WE DO -->
+  <section class="band">
+    <div class="wrap">
+      <p class="lead-statement">You made the game. We make the version people can <span class="em">play in ten seconds, anywhere</span> — and then send back to your table.</p>
+      <p class="lead-body">Physical games are played almost everywhere. Our companions are for anywhere else — the phone in line, the link in a group chat, the QR on the box. A taste of your game's heart that drives discovery, then points players straight back to buy the real thing.</p>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="proof" id="work">
+    <div class="wrap proof-inner">
+      <div class="section-eyebrow">Shipped work</div>
+      <h2 class="section-head">Two games. Two completely different feels.</h2>
+      <p class="section-note">The point isn't one game — it's range. Whatever your game's vibe, we can capture it.</p>
+
+      <!-- WUYB -->
+      <div class="game">
+        <div>
+          <div class="game-flag">Featured · with <b>Lethal Chicken Games</b></div>
+          <div class="game-title">What's Under Your Bed?</div>
+          <p class="game-desc">A spooky, instant-play companion to the tabletop game — match your Monster Cards against the clock, and if you miss, the monster under the bed comes out for you. Built with the game's own creators.</p>
+          <a class="game-link" href="https://playonedaygames.com/wuyb/play/">Play it →</a>
+        </div>
+        <div class="game-visual">
+          <img src="assets/wuyb-screenshot.jpg" alt="What's Under Your Bed? gameplay screenshot" loading="lazy" decoding="async">
+          <span class="visual-scrim" aria-hidden="true"></span>
+          <span class="visual-label">Digital companion · horror</span>
+        </div>
+      </div>
+
+      <!-- TTT -->
+      <div class="game">
+        <div>
+          <div class="game-flag">Range · a completely different vibe</div>
+          <div class="game-title">Tic-Tac-Toe</div>
+          <p class="game-desc">Cozy, warm, and alive — a hand-crafted living world with ambient music and a friendly opponent. Proof the same studio can go from jump-scares to bedtime-gentle without missing the feel.</p>
+          <a class="game-link" href="https://playonedaygames.com/live/tic-tac-toe">Play it →</a>
+        </div>
+        <div class="game-visual">
+          <img src="assets/ttt-screenshot.png" alt="Tic-Tac-Toe Night Shift scene screenshot" loading="lazy" decoding="async">
+          <span class="visual-scrim" aria-hidden="true"></span>
+          <span class="visual-label">Digital companion · cozy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY ME -->
+  <section class="why">
+    <div class="wrap why-grid">
+      <h2>Not a hobbyist.<br>A production veteran who <span class="em">chose</span> this.</h2>
+      <div class="why-points">
+        <div class="pt"><div class="pt-h">Three decades of shipping</div><div class="pt-b">32 years in AAA production and creative leadership — Call of Duty: Black Ops at Treyarch, PlayStation. I know how to take something to Final and get it out the door.</div></div>
+        <div class="pt"><div class="pt-h">One focused month, start to ship</div><div class="pt-b">A companion goes from your game to live and playable in about a month — solo, end-to-end, with a modern AI-native pipeline that keeps it fast without cutting the craft.</div></div>
+        <div class="pt"><div class="pt-h">Faithful, never a knock-off</div><div class="pt-b">We reinterpret, we don't reinvent. Your IP stays yours; the companion sends players back to your table to buy the physical game.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="close" id="talk">
+    <div class="close-inner">
+      <h2>Have a tabletop game? <span class="accent">Let's take it digital.</span></h2>
+      <p>Tell me about your game. If it's a fit, I'll show you exactly what its companion could be.</p>
+      <div class="cta-row">
+        <a href="mailto:cj@playonedaygames.com?subject=Taking%20my%20tabletop%20game%20digital" class="cta cta-primary">Start the conversation →</a>
+      </div>
+      <div class="contact-line">Or email directly: <a href="mailto:cj@playonedaygames.com">cj@playonedaygames.com</a> · you're talking straight to the developer</div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="foot-inner">
+      <span>One Day Games</span>
+      <span>Faithful digital companions to physical games</span>
+    </div>
+  </footer>
+
+</body>
+</html>
