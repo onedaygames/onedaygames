@@ -4,6 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>One Day Games — Take Your Tabletop Game Digital</title>
+<meta name="description" content="One Day Games turns physical tabletop games into faithful, instant-play digital companions — a love letter, not a copy. Led by CJ Connoy, 32 years in AAA production.">
+<meta name="theme-color" content="#0C0D10">
+<link rel="canonical" href="https://playonedaygames.com/studio/">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="Take Your Tabletop Game Digital — One Day Games">
+<meta property="og:description" content="Faithful, instant-play digital companions to physical tabletop games. Built by a 32-year AAA production veteran, start to ship in about a month.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://playonedaygames.com/studio/">
+<meta property="og:image" content="https://playonedaygames.com/assets/odg/odg-social-card-dark.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Take Your Tabletop Game Digital — One Day Games">
+<meta name="twitter:description" content="Faithful, instant-play digital companions to physical tabletop games. Built by a 32-year AAA production veteran, start to ship in about a month.">
+<meta name="twitter:image" content="https://playonedaygames.com/assets/odg/odg-social-card-dark.png">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -38,7 +53,9 @@
   .site-header nav a{color:rgba(247,241,230,.78);text-decoration:none;border-bottom:2px solid transparent;padding:5px 0;transition:color .15s,border-color .15s;}
   .site-header nav a:hover,.site-header nav a:focus-visible{color:var(--ivory);border-bottom-color:var(--coral);outline:none;}
   .site-header nav a[aria-current="page"]{color:var(--gold);}
-  @media(max-width:640px){.header-inner{width:calc(100% - 32px);} .site-header nav{gap:14px;font-size:14px;}}
+  /* 7 links need ~377px at full size; a 375px phone has ~343px. Tighten so the nav
+     stays one row instead of wrapping into a 151px sticky bar (19% of the screen). */
+  @media(max-width:640px){.header-inner{width:calc(100% - 32px);gap:10px;} .site-header nav{gap:10px;font-size:13px;} .site-header nav a{padding:8px 0;}}
 
   /* ---------- HERO (dark, AAA) ---------- */
   .hero{background:var(--obsidian);color:var(--ivory);position:relative;overflow:hidden;}
@@ -147,7 +164,7 @@
   <header class="site-header" aria-label="Site header">
     <div class="header-inner">
       <a class="brand" href="/" aria-label="One Day Games home">
-        <img src="assets/odg-icon.png" alt="" width="30" height="14">
+        <img src="assets/odg-icon-small.png" alt="" width="30" height="14">
         <span>One Day Games</span>
       </a>
       <nav aria-label="Primary navigation">
@@ -156,11 +173,13 @@
         <a href="/devlog/">Devlog</a>
         <a href="/#watch">Watch</a>
         <a href="/live/tic-tac-toe/presskit">Press</a>
-        <a href="/studio/" aria-current="page">Work With Us</a>
+        <a href="/studio/" aria-current="page">Studio</a>
         <a href="/#contact">Contact</a>
       </nav>
     </div>
   </header>
+
+  <main>
 
   <!-- HERO -->
   <section class="hero" aria-label="One Day Games — take your tabletop game digital">
@@ -201,7 +220,7 @@
           <a class="game-link" href="https://playonedaygames.com/wuyb/play/">Play it →</a>
         </div>
         <div class="game-visual">
-          <img src="assets/wuyb-screenshot.jpg" alt="What's Under Your Bed? gameplay screenshot" loading="lazy" decoding="async">
+          <img src="assets/wuyb-screenshot.jpg" alt="What's Under Your Bed? gameplay screenshot" loading="lazy" decoding="async" width="1200" height="750">
           <span class="visual-scrim" aria-hidden="true"></span>
           <span class="visual-label">Digital companion · horror</span>
         </div>
@@ -216,7 +235,7 @@
           <a class="game-link" href="https://playonedaygames.com/live/tic-tac-toe">Play it →</a>
         </div>
         <div class="game-visual">
-          <img src="assets/ttt-screenshot.png" alt="Tic-Tac-Toe Night Shift scene screenshot" loading="lazy" decoding="async">
+          <img src="assets/ttt-screenshot.jpg" alt="Tic-Tac-Toe Night Shift scene screenshot" loading="lazy" decoding="async" width="1200" height="675">
           <span class="visual-scrim" aria-hidden="true"></span>
           <span class="visual-label">Digital companion · cozy</span>
         </div>
@@ -247,6 +266,8 @@
       <div class="contact-line">Or email directly: <a href="mailto:cj@playonedaygames.com">cj@playonedaygames.com</a> · you're talking straight to the developer</div>
     </div>
   </section>
+
+  </main>
 
   <footer class="foot">
     <div class="foot-inner">
