@@ -161,6 +161,9 @@
   @media(max-width:760px){.why-grid{grid-template-columns:1fr;gap:32px;}}
   .why h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-.01em;line-height:1.2;}
   .why h2 .em{color:var(--accent-ink);}
+  .why-lead .section-eyebrow{margin-bottom:12px;}
+  .why-blurb{margin-top:20px;font-size:16px;line-height:1.65;color:#3A3A3A;max-width:44ch;}
+  .why-blurb strong{color:var(--ink);}
   .why-points{display:flex;flex-direction:column;gap:22px;}
   .pt .pt-h{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;margin-bottom:5px;}
   .pt .pt-b{font-size:15px;line-height:1.6;color:#3A3A3A;}
@@ -278,7 +281,11 @@
   <!-- WHY ME -->
   <section class="why">
     <div class="wrap why-grid">
-      <h2>Not a hobbyist.<br>A production veteran who <span class="em">chose</span> this.</h2>
+      <div class="why-lead">
+        <div class="section-eyebrow">Who you'll be working with</div>
+        <h2>Not a hobbyist.<br>A production veteran who <span class="em">chose</span> this.</h2>
+        <p class="why-blurb">One Day Games is <strong>CJ Connoy</strong> — 32 years in AAA production and creative leadership, now building digital companions for tabletop creators. No account team, no hand-off: you work with him directly, start to ship.</p>
+      </div>
       <div class="why-points">
         <div class="pt"><div class="pt-h">Three decades of shipping</div><div class="pt-b">32 years in AAA production and creative leadership — Call of Duty: Black Ops at Treyarch, PlayStation. I know how to take something to Final and get it out the door.</div></div>
         <div class="pt"><div class="pt-h">One focused month, start to ship</div><div class="pt-b">A companion goes from your game to live and playable in about a month — solo, end-to-end, with a modern AI-native pipeline that keeps it fast without cutting the craft.</div></div>
