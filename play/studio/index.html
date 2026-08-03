@@ -22,16 +22,23 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
+  /* Brand tokens mirror playonedaygames.com exactly so this page reads as the same
+     site. The sunrise hues are only legible on dark surfaces (that is how the main
+     site uses them too), so light-background accent text uses --accent-ink, a darker
+     sibling of the same hue that clears WCAG AA. */
   :root{
-    --obsidian:#0C0D10;
-    --obsidian-soft:#15161B;
-    --ivory:#F7F1E6;
+    --obsidian:#121216;
+    --obsidian-soft:#1B1B21;
+    --ivory:#F8F6F2;
     --ivory-card:#FFFDF8;
-    --ink:#1A1A1A;
+    --ink:#252527;
     --mute:#6B6B6B;
-    --coral:#F0662E;
-    --gold:#F5A623;
-    --line-dark:#24252C;
+    --gold:#FFC96E;
+    --orange:#FF8A5F;
+    --coral:#FF6E75;
+    --pink:#E64B93;
+    --accent-ink:#B8481A;
+    --line-dark:#2A2A31;
     --line-warm:#E7DECF;
     --bone:#EDE9E0;
   }
@@ -43,7 +50,7 @@
   @media(max-width:640px){.wrap{padding:0 24px;}}
 
   /* ---------- SITE HEADER (quick nav, matches playonedaygames.com) ---------- */
-  .sunrise-strip{height:6px;background:linear-gradient(90deg,var(--gold),var(--coral));}
+  .sunrise-strip{height:6px;background:linear-gradient(90deg,var(--gold),var(--orange),var(--coral),var(--pink));}
   .site-header{position:sticky;top:0;z-index:100;background:var(--obsidian);color:var(--ivory);border-bottom:1px solid var(--line-dark);}
   .header-inner{width:min(1080px,calc(100% - 40px));margin:0 auto;min-height:62px;padding:9px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
   .brand{display:inline-flex;align-items:center;gap:12px;min-width:0;text-decoration:none;flex:0 0 auto;}
@@ -51,7 +58,7 @@
   .brand span{white-space:nowrap;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;letter-spacing:.02em;}
   .site-header nav{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:22px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;min-width:0;}
   .site-header nav a{color:rgba(247,241,230,.78);text-decoration:none;border-bottom:2px solid transparent;padding:5px 0;transition:color .15s,border-color .15s;}
-  .site-header nav a:hover,.site-header nav a:focus-visible{color:var(--ivory);border-bottom-color:var(--coral);outline:none;}
+  .site-header nav a:hover,.site-header nav a:focus-visible{color:#fff;border-bottom-color:var(--orange);outline:none;}
   .site-header nav a[aria-current="page"]{color:var(--gold);}
   /* 7 links need ~377px at full size; a 375px phone has ~343px. Tighten so the nav
      stays one row instead of wrapping into a 151px sticky bar (19% of the screen). */
@@ -79,7 +86,7 @@
     max-width:16ch;margin-bottom:28px;
   }
   h1 .accent{
-    background:linear-gradient(100deg,var(--gold),var(--coral));
+    background:linear-gradient(100deg,var(--gold),var(--orange),var(--coral));
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   }
   .hero-sub{font-size:clamp(17px,2.1vw,21px);line-height:1.5;color:#C7C7CE;max-width:52ch;margin-bottom:44px;}
@@ -90,7 +97,7 @@
     font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;
     padding:16px 28px;border-radius:12px;text-decoration:none;transition:transform .15s ease, box-shadow .15s ease;
   }
-  .cta-primary{background:linear-gradient(100deg,var(--gold),var(--coral));color:#1A0E06;box-shadow:0 8px 30px rgba(240,102,46,.28);}
+  .cta-primary{background:linear-gradient(100deg,var(--gold),var(--orange));color:var(--obsidian);box-shadow:0 8px 30px rgba(255,138,95,.26);}
   .cta-primary:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(240,102,46,.4);}
   .cta-ghost{color:var(--ivory);border:1px solid var(--line-dark);}
   .cta-ghost:hover{border-color:#3A3B44;background:rgba(255,255,255,.03);}
@@ -102,13 +109,13 @@
     font-size:clamp(24px,3.4vw,36px);line-height:1.28;letter-spacing:-.01em;
     max-width:24ch;
   }
-  .lead-statement .em{color:var(--coral);}
+  .lead-statement .em{color:var(--accent-ink);}
   .lead-body{font-size:17px;line-height:1.7;color:#3A3A3A;max-width:60ch;margin-top:24px;}
 
   /* ---------- PROOF (the two games) ---------- */
   .proof{background:var(--ivory-card);border-top:1px solid var(--line-warm);border-bottom:1px solid var(--line-warm);}
   .proof-inner{padding:78px 0;}
-  .section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:14px;}
+  .section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:14px;}
   .section-head{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-.01em;margin-bottom:8px;}
   .section-note{color:var(--mute);font-size:16px;max-width:54ch;margin-bottom:44px;}
 
@@ -116,12 +123,27 @@
   .game + .game{border-top:1px solid var(--line-warm);}
   @media(max-width:760px){.game{grid-template-columns:1fr;gap:24px;}}
 
+  /* WUYB star block: the two approved teasers, portrait, click-to-play.
+     preload="none" keeps the page light until a visitor actually asks for video. */
+  .star{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin:6px 0 30px;}
+  .star-clip{margin:0;display:flex;flex-direction:column;align-items:center;gap:10px;max-width:100%;}
+  .star-clip video{height:min(58vh,520px);width:auto;max-width:100%;border-radius:14px;border:1px solid var(--line-warm);background:var(--obsidian);display:block;}
+  .star-clip figcaption{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center;max-width:32ch;}
+  .star-foot{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding-bottom:8px;}
+  .star-note{font-size:14px;color:var(--mute);}
+  .range-lead{border-top:1px solid var(--line-warm);padding-top:52px;margin-top:44px;}
+  .range-lead .section-note{margin-bottom:0;}
+  @media(max-width:760px){
+    .star{gap:30px;}
+    .star-clip video{height:auto;width:min(320px,100%);}
+  }
+
   .game-flag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:12px;}
-  .game-flag b{color:var(--coral);font-weight:500;}
+  .game-flag b{color:var(--accent-ink);font-weight:500;}
   .game-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;letter-spacing:-.01em;margin-bottom:12px;}
   .game-desc{font-size:16px;line-height:1.65;color:#3A3A3A;margin-bottom:20px;max-width:44ch;}
-  .game-link{display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--coral);text-decoration:none;border-bottom:2px solid transparent;transition:border-color .15s;}
-  .game-link:hover{border-color:var(--coral);}
+  .game-link{display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--accent-ink);text-decoration:none;border-bottom:2px solid transparent;transition:border-color .15s;}
+  .game-link:hover{border-color:var(--accent-ink);}
 
   .game-visual{
     aspect-ratio:16/10;border-radius:14px;overflow:hidden;position:relative;
@@ -138,7 +160,7 @@
   .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
   @media(max-width:760px){.why-grid{grid-template-columns:1fr;gap:32px;}}
   .why h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-.01em;line-height:1.2;}
-  .why h2 .em{color:var(--coral);}
+  .why h2 .em{color:var(--accent-ink);}
   .why-points{display:flex;flex-direction:column;gap:22px;}
   .pt .pt-h{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;margin-bottom:5px;}
   .pt .pt-b{font-size:15px;line-height:1.6;color:#3A3A3A;}
@@ -209,27 +231,35 @@
   <!-- PROOF -->
   <section class="proof" id="work">
     <div class="wrap proof-inner">
-      <div class="section-eyebrow">Shipped work</div>
-      <h2 class="section-head">Two games. Two completely different feels.</h2>
-      <p class="section-note">The point isn't one game — it's range. Whatever your game's vibe, we can capture it.</p>
+      <div class="section-eyebrow">Featured work · with Lethal Chicken Games</div>
+      <h2 class="section-head">What's Under Your Bed?</h2>
+      <p class="section-note">The tabletop game, reinterpreted as an instant-play companion — built hand in hand with its creators. Match your Monster Cards against the clock; miss, and the monster under the bed comes out for you.</p>
 
-      <!-- WUYB -->
-      <div class="game">
-        <div>
-          <div class="game-flag">Featured · with <b>Lethal Chicken Games</b></div>
-          <div class="game-title">What's Under Your Bed?</div>
-          <p class="game-desc">A spooky, instant-play companion to the tabletop game — match your Monster Cards against the clock, and if you miss, the monster under the bed comes out for you. Built with the game's own creators.</p>
-          <a class="game-link" href="https://playonedaygames.com/wuyb/play/">Play it →</a>
-        </div>
-        <div class="game-visual">
-          <img src="assets/wuyb-screenshot.jpg" alt="What's Under Your Bed? gameplay screenshot" loading="lazy" decoding="async" width="1200" height="750">
-          <span class="visual-scrim" aria-hidden="true"></span>
-          <span class="visual-label">Digital companion · horror</span>
-        </div>
+      <!-- WUYB STAR -->
+      <div class="star">
+        <figure class="star-clip">
+          <video src="assets/wuyb-teaser-attacks.mp4" poster="assets/poster-attacks.jpg" preload="none" controls playsinline width="720" height="1280"></video>
+          <figcaption>The attack — miss your match and it comes for you</figcaption>
+        </figure>
+        <figure class="star-clip">
+          <video src="assets/wuyb-teaser-winner.mp4" poster="assets/poster-winner.jpg" preload="none" controls playsinline width="720" height="1280"></video>
+          <figcaption>The win — clear all twelve and beat the game</figcaption>
+        </figure>
+      </div>
+
+      <div class="star-foot">
+        <a class="cta cta-primary" href="https://playonedaygames.com/wuyb/play/">Play the companion →</a>
+        <span class="star-note">Portrait, instant-play, no install — the same build shown above.</span>
       </div>
 
       <!-- TTT -->
-      <div class="game">
+      <div class="range-lead">
+        <div class="section-eyebrow">Also shipped</div>
+        <h2 class="section-head">And the range to go somewhere else entirely.</h2>
+        <p class="section-note">The point isn't one game — it's range. Whatever your game's vibe, we can capture it.</p>
+      </div>
+
+      <div class="game game-range">
         <div>
           <div class="game-flag">Range · a completely different vibe</div>
           <div class="game-title">Tic-Tac-Toe</div>
