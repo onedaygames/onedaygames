@@ -123,19 +123,42 @@
   .game + .game{border-top:1px solid var(--line-warm);}
   @media(max-width:760px){.game{grid-template-columns:1fr;gap:24px;}}
 
-  /* WUYB star block: the two approved teasers, portrait, click-to-play.
-     preload="none" keeps the page light until a visitor actually asks for video. */
-  .star{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin:6px 0 30px;}
-  .star-clip{margin:0;display:flex;flex-direction:column;align-items:center;gap:10px;max-width:100%;}
-  .star-clip video{height:min(58vh,520px);width:auto;max-width:100%;border-radius:14px;border:1px solid var(--line-warm);background:var(--obsidian);display:block;}
-  .star-clip figcaption{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center;max-width:32ch;}
-  .star-foot{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding-bottom:8px;}
-  .star-note{font-size:14px;color:var(--mute);}
-  .range-lead{border-top:1px solid var(--line-warm);padding-top:52px;margin-top:44px;}
-  .range-lead .section-note{margin-bottom:0;}
+  /* FEATURED (WUYB): full-bleed dark band so the horror clips sit in their own
+     blackness instead of floating in ivory. Everything shares one centre axis —
+     eyebrow, headline, note, clips and CTA — so the block reads as composed.
+     Clips autoplay muted+looping only once scrolled into view (see script), which
+     keeps first paint light and avoids native browser player chrome. */
+  .featured{background:var(--obsidian);color:var(--ivory);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);}
+  .featured-inner{max-width:1080px;margin:0 auto;padding:84px 40px 76px;text-align:center;}
+  .featured .section-eyebrow{color:var(--gold);}
+  .featured .section-head{color:var(--ivory);font-size:clamp(28px,3.6vw,40px);}
+  .featured .section-note{color:#C4C4CE;max-width:66ch;margin:0 auto 46px;}
+  @media(max-width:640px){.featured-inner{padding:60px 24px 56px;}}
+
+  .star{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-bottom:38px;}
+  .star-clip{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;max-width:100%;}
+  .clip-frame{position:relative;display:block;border-radius:16px;overflow:hidden;border:1px solid rgba(248,246,242,.12);box-shadow:0 30px 70px rgba(0,0,0,.55);background:#000;}
+  .clip-frame video{height:min(64vh,600px);width:auto;max-width:100%;display:block;}
+  .clip-sound{
+    position:absolute;right:10px;bottom:10px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ivory);background:rgba(12,13,16,.72);border:1px solid rgba(248,246,242,.28);
+    padding:7px 11px;border-radius:999px;cursor:pointer;backdrop-filter:blur(6px);
+    transition:background .15s,border-color .15s;
+  }
+  .clip-sound:hover,.clip-sound:focus-visible{background:rgba(12,13,16,.9);border-color:var(--gold);outline:none;}
+  .clip-sound[aria-pressed="true"]{border-color:var(--gold);color:var(--gold);}
+  .star-clip figcaption{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9AA4;text-align:center;max-width:30ch;}
+  .star-foot{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;}
+  .star-note{font-size:14px;color:#9A9AA4;max-width:44ch;text-align:left;}
+  .range-lead{margin-bottom:8px;}
   @media(max-width:760px){
-    .star{gap:30px;}
-    .star-clip video{height:auto;width:min(320px,100%);}
+    .star{gap:34px;}
+    .clip-frame video{height:auto;width:min(330px,100%);}
+    .star-note{text-align:center;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .clip-frame video{outline:none;}
   }
 
   .game-flag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:12px;}
@@ -231,30 +254,40 @@
     </div>
   </section>
 
-  <!-- PROOF -->
-  <section class="proof" id="work">
-    <div class="wrap proof-inner">
+  <!-- FEATURED: WUYB -->
+  <section class="featured" id="work">
+    <div class="featured-inner">
       <div class="section-eyebrow">Featured work · with Lethal Chicken Games</div>
       <h2 class="section-head">What's Under Your Bed?</h2>
       <p class="section-note">The tabletop game by Lethal Chicken Games, reinterpreted as an instant-play companion — built hand in hand with its creators, Alex Mackey and Mike Szalajko. Match your Monster Cards against the clock; miss, and the monster under the bed comes out for you.</p>
 
-      <!-- WUYB STAR -->
       <div class="star">
         <figure class="star-clip">
-          <video src="assets/wuyb-teaser-attacks.mp4" poster="assets/poster-attacks.jpg" preload="none" controls playsinline width="720" height="1280"></video>
+          <div class="clip-frame">
+            <video src="assets/wuyb-teaser-attacks.mp4" poster="assets/poster-attacks.jpg" preload="none" muted loop playsinline width="720" height="1280" aria-label="What's Under Your Bed? attack sequence"></video>
+            <button class="clip-sound" type="button" aria-pressed="false">Sound on</button>
+          </div>
           <figcaption>The attack — miss your match and it comes for you</figcaption>
         </figure>
         <figure class="star-clip">
-          <video src="assets/wuyb-teaser-winner.mp4" poster="assets/poster-winner.jpg" preload="none" controls playsinline width="720" height="1280"></video>
+          <div class="clip-frame">
+            <video src="assets/wuyb-teaser-winner.mp4" poster="assets/poster-winner.jpg" preload="none" muted loop playsinline width="720" height="1280" aria-label="What's Under Your Bed? winning run"></video>
+            <button class="clip-sound" type="button" aria-pressed="false">Sound on</button>
+          </div>
           <figcaption>The win — clear all twelve and beat the game</figcaption>
         </figure>
       </div>
 
       <div class="star-foot">
         <a class="cta cta-primary" href="https://playonedaygames.com/wuyb/play/">Play the companion →</a>
-        <span class="star-note">Portrait, instant-play, no install — the same build shown above.</span>
+        <span class="star-note">One-handed in any phone browser — no app store, no install. The same build shown above.</span>
       </div>
+    </div>
+  </section>
 
+  <!-- PROOF -->
+  <section class="proof">
+    <div class="wrap proof-inner">
       <!-- TTT -->
       <div class="range-lead">
         <div class="section-eyebrow">Also shipped</div>
@@ -307,6 +340,83 @@
   </section>
 
   </main>
+
+  <script>
+    (() => {
+      const clips = [...document.querySelectorAll('.clip-frame')];
+      if (!clips.length) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Reduced motion: never autoplay. Hand the visitor the native player instead
+      // so the teasers are still watchable on their terms.
+      if (reduced) {
+        clips.forEach(frame => {
+          frame.querySelector('video').controls = true;
+          frame.querySelector('.clip-sound').remove();
+        });
+        return;
+      }
+
+      clips.forEach(frame => {
+        const video = frame.querySelector('video');
+        const sound = frame.querySelector('.clip-sound');
+
+        sound.addEventListener('click', () => {
+          const unmuting = video.muted;
+          if (unmuting) {
+            // Only one clip audible at a time, or the two teasers fight each other.
+            clips.forEach(other => {
+              if (other === frame) return;
+              const v = other.querySelector('video');
+              const b = other.querySelector('.clip-sound');
+              v.muted = true;
+              b.setAttribute('aria-pressed', 'false');
+              b.textContent = 'Sound on';
+            });
+            video.play().catch(() => {});
+          }
+          video.muted = !unmuting;
+          sound.setAttribute('aria-pressed', String(unmuting));
+          sound.textContent = unmuting ? 'Sound off' : 'Sound on';
+        });
+      });
+
+      // If autoplay is unavailable for any reason, fall back to the native player
+      // rather than leaving a poster the visitor cannot play.
+      const fallbackToControls = (frame) => {
+        const video = frame.querySelector('video');
+        if (video.controls) return;
+        video.controls = true;
+        const b = frame.querySelector('.clip-sound');
+        if (b) b.remove();
+      };
+
+      if (!('IntersectionObserver' in window)) {
+        clips.forEach(fallbackToControls);
+        return;
+      }
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target.querySelector('video');
+          if (entry.isIntersecting) {
+            if (video.preload === 'none') video.preload = 'auto';
+            video.play().catch(() => fallbackToControls(entry.target));
+          } else {
+            video.pause();
+            if (!video.muted) {
+              const b = entry.target.querySelector('.clip-sound');
+              video.muted = true;
+              b.setAttribute('aria-pressed', 'false');
+              b.textContent = 'Sound on';
+            }
+          }
+        });
+      }, { threshold: 0.35 });
+
+      clips.forEach(frame => io.observe(frame));
+    })();
+  </script>
 
   <footer class="foot">
     <div class="foot-inner">
