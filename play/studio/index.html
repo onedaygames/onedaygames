@@ -135,9 +135,25 @@
   .featured .section-note{color:#C4C4CE;max-width:66ch;margin:0 auto 46px;}
   @media(max-width:640px){.featured-inner{padding:60px 24px 56px;}}
 
-  .star{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-bottom:38px;}
+  /* The clips are near-black on a near-black band, so the page's headline proof was
+     its murkiest block. The stage raises them onto a lifted surface with a warm
+     sunrise wash behind, and the frames carry a gold rim + glow so both phones —
+     especially the dark win screen — separate from the background. */
+  .star-stage{
+    background:
+      radial-gradient(ellipse 66% 58% at 50% 38%, rgba(255,138,95,.13), transparent 72%),
+      var(--obsidian-soft);
+    border:1px solid rgba(255,201,110,.16);
+    border-radius:24px;
+    padding:46px 34px 32px;
+    margin-bottom:36px;
+  }
+  @media(max-width:640px){.star-stage{padding:32px 18px 24px;border-radius:18px;}}
+
+  .star{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-bottom:26px;}
   .star-clip{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;max-width:100%;}
-  .clip-frame{position:relative;display:block;border-radius:16px;overflow:hidden;border:1px solid rgba(248,246,242,.12);box-shadow:0 30px 70px rgba(0,0,0,.55);background:#000;}
+  .clip-frame{position:relative;display:block;border-radius:16px;overflow:hidden;border:1px solid rgba(255,201,110,.26);box-shadow:0 26px 60px rgba(0,0,0,.6), 0 0 46px rgba(255,138,95,.14);background:#000;}
+  .star-rules{margin:0;font-size:15px;line-height:1.6;color:#B7B7C0;max-width:56ch;margin-inline:auto;}
   .clip-frame video{height:min(64vh,600px);width:auto;max-width:100%;display:block;}
   .clip-sound{
     position:absolute;right:10px;bottom:10px;
@@ -152,6 +168,27 @@
   .star-foot{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;}
   .star-note{font-size:14px;color:#9A9AA4;max-width:44ch;text-align:left;}
   .range-lead{margin-bottom:8px;}
+
+  /* Slot for Alex Mackey's testimonial — styled and ready, currently commented out
+     in the markup so it can drop in without a rebuild. */
+  .star-quote{margin:0 auto 40px;max-width:60ch;border-left:3px solid var(--gold);padding:4px 0 4px 24px;text-align:left;}
+  .star-quote p{font-family:'Space Grotesk',sans-serif;font-size:clamp(19px,2.2vw,24px);line-height:1.42;color:var(--ivory);margin-bottom:12px;}
+  .star-quote cite{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-style:normal;}
+
+  /* HOW THIS WORKS — sells judgment rather than a methodology. Sits on the card
+     surface so it reads as its own panel between the two ivory narrative blocks. */
+  .how{background:var(--ivory-card);border-top:1px solid var(--line-warm);border-bottom:1px solid var(--line-warm);padding:78px 0;}
+  .how-head{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(24px,3.1vw,34px);line-height:1.22;letter-spacing:-.01em;max-width:26ch;margin-bottom:22px;}
+  .how-head .em{color:var(--accent-ink);}
+  .how-body{font-size:17px;line-height:1.7;color:#3A3A3A;max-width:62ch;}
+  .how-kicker{margin-top:22px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(17px,2vw,21px);line-height:1.4;color:var(--ink);max-width:44ch;}
+
+  /* OWNERSHIP PROMISE — the protective buyer's first question, answered at
+     promise scale on a dark band so it carries weight. */
+  .promise{background:var(--obsidian);color:var(--ivory);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:74px 0;}
+  .promise-line{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4.4vw,50px);letter-spacing:-.02em;line-height:1.05;margin-bottom:18px;}
+  .promise-line .accent{background:linear-gradient(100deg,var(--gold),var(--orange),var(--coral));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .promise-body{font-size:18px;line-height:1.6;color:#C4C4CE;max-width:58ch;}
   @media(max-width:760px){
     .star{gap:34px;}
     .clip-frame video{height:auto;width:min(330px,100%);}
@@ -254,13 +291,33 @@
     </div>
   </section>
 
+  <!-- HOW THIS WORKS: sells judgment, not a methodology. Sits directly above the WUYB
+       block so the claim lands next to the proof that the judgment works. -->
+  <section class="how">
+    <div class="wrap">
+      <div class="section-eyebrow">How this works</div>
+      <h2 class="how-head">I won't run you through a process. I'll find the thing that makes your game <span class="em">yours</span>.</h2>
+      <p class="how-body">There's no discovery phase, no committee, no six rounds of review. I play your game until I find the one thing that makes it feel like itself — the feel underneath the rules — and I rebuild that in a form people can play in five seconds, anywhere. Finding it fast is the part that took a career.</p>
+      <p class="how-kicker">You hand me the game. I hand you back its soul in a new medium.</p>
+    </div>
+  </section>
+
   <!-- FEATURED: WUYB -->
   <section class="featured" id="work">
     <div class="featured-inner">
       <div class="section-eyebrow">Featured work</div>
-      <h2 class="section-head">What's Under Your Bed?</h2>
-      <p class="section-note">The tabletop game by Lethal Chicken Games, created by Alex Mackey and Mike Szalajko. One Day Games built the digital companion. Match your Monster Cards against the clock; miss, and the monster under the bed comes out for you.</p>
+      <h2 class="section-head">Lethal Chicken Games handed a solo studio their monsters.</h2>
+      <p class="section-note"><em>What's Under Your Bed?</em>, created by Alex Mackey and Mike Szalajko, is a published tabletop game. One Day Games built its digital companion — faithful enough that it feels like theirs. This is what trusting me with your IP looks like.</p>
 
+      <!-- Pull-quote slot: drop in Alex Mackey's testimonial here when CJ has it.
+           Styling is ready — just uncomment and fill in.
+      <blockquote class="star-quote">
+        <p>QUOTE TEXT HERE</p>
+        <cite>Alex Mackey · co-creator, What's Under Your Bed?</cite>
+      </blockquote>
+      -->
+
+      <div class="star-stage">
       <div class="star">
         <figure class="star-clip">
           <div class="clip-frame">
@@ -277,10 +334,15 @@
           <figcaption>The win — clear all twelve and beat the game</figcaption>
         </figure>
       </div>
+      <p class="star-rules">Match your Monster Cards against the clock; miss, and the monster under the bed comes out for you.</p>
+      </div>
 
       <div class="star-foot">
-        <a class="cta cta-primary" href="https://playonedaygames.com/wuyb/play/">Play the companion →</a>
-        <span class="star-note">One-handed in any phone browser — no app store, no install. The same build shown above.</span>
+        <!-- Points at TTT while /wuyb/play/ is still login-gated: a primary proof
+             button must never dead-end on a login screen. Revert to
+             https://playonedaygames.com/wuyb/play/ once public play is unblocked. -->
+        <a class="cta cta-primary" href="https://playonedaygames.com/live/tic-tac-toe">Play a live build →</a>
+        <span class="star-note">One-handed in any phone browser — no app store, no install.</span>
       </div>
     </div>
   </section>
@@ -311,18 +373,27 @@
     </div>
   </section>
 
+  <!-- OWNERSHIP PROMISE: the #1 fear-answer for a protective IP owner, at promise
+       scale rather than buried in a bio bullet. -->
+  <section class="promise">
+    <div class="wrap">
+      <p class="promise-line">Your game stays <span class="accent">yours.</span></p>
+      <p class="promise-body">I build the companion — you keep the IP, and it sends players back to your table to buy the real thing.</p>
+    </div>
+  </section>
+
   <!-- WHY ME -->
   <section class="why">
     <div class="wrap why-grid">
       <div class="why-lead">
         <div class="section-eyebrow">Who you'll be working with</div>
-        <h2>Not a hobbyist.<br>A production veteran who <span class="em">chose</span> this.</h2>
+        <h2>A production veteran who <span class="em">chose</span> this.</h2>
         <p class="why-blurb">One Day Games is <strong>CJ Connoy's</strong> studio. I've spent 32 years in AAA production and creative leadership — now I build digital companions for tabletop creators. No account team, no hand-off: you work with me directly, start to ship.</p>
       </div>
       <div class="why-points">
-        <div class="pt"><div class="pt-h">Three decades of shipping</div><div class="pt-b">32 years in AAA production and creative leadership — Call of Duty: Black Ops at Treyarch, PlayStation. I know how to take something to Final and get it out the door.</div></div>
-        <div class="pt"><div class="pt-h">One focused month, start to ship</div><div class="pt-b">A companion goes from your game to live and playable in about a month — solo, end-to-end, with a modern AI-native pipeline that keeps it fast without cutting the craft.</div></div>
-        <div class="pt"><div class="pt-h">Faithful, never a knock-off</div><div class="pt-b">I reinterpret, I don't reinvent. Your IP stays yours; the companion sends players back to your table to buy the physical game.</div></div>
+        <div class="pt"><div class="pt-h">Three decades of shipping</div><div class="pt-b">Call of Duty: Black Ops at Treyarch. PlayStation. I know how to take something all the way to Final and get it out the door — on a date, in front of players.</div></div>
+        <div class="pt"><div class="pt-h">One focused month, start to ship</div><div class="pt-b">A companion goes from your game to live and playable in about a month — solo, end-to-end. One senior operator who knows exactly what to protect and what to cut. That's what makes it fast without cutting the craft.</div></div>
+        <div class="pt"><div class="pt-h">Faithful, never a knock-off</div><div class="pt-b">I reinterpret, I don't reinvent. The companion carries your game's feel into a new medium — it never competes with the box on your shelf.</div></div>
       </div>
     </div>
   </section>
