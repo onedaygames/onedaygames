@@ -163,15 +163,25 @@
   .clip-frame{position:relative;display:block;border-radius:16px;overflow:hidden;border:1px solid rgba(255,201,110,.26);box-shadow:0 26px 60px rgba(0,0,0,.6), 0 0 46px rgba(255,138,95,.14);background:#000;}
   .star-rules{margin:0;font-size:15px;line-height:1.6;color:#B7B7C0;max-width:56ch;margin-inline:auto;}
   .clip-frame video{height:min(64vh,600px);width:auto;max-width:100%;display:block;}
+  /* The clips contain the game's own speaker icon, so this control has to read as
+     page chrome rather than a second in-game button — hence the brand gradient,
+     dark text and a speaker glyph. Pressed state inverts to dark-on-gold so the
+     two states are unmistakable. */
   .clip-sound{
-    position:absolute;right:10px;bottom:10px;
-    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--ivory);background:rgba(12,13,16,.72);border:1px solid rgba(248,246,242,.28);
-    padding:7px 11px;border-radius:999px;cursor:pointer;backdrop-filter:blur(6px);
-    transition:background .15s,border-color .15s;
+    position:absolute;right:12px;bottom:12px;
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;
+    color:var(--obsidian);
+    background:linear-gradient(100deg,var(--gold),var(--orange));
+    border:1px solid rgba(255,255,255,.3);
+    padding:9px 14px;border-radius:999px;cursor:pointer;
+    box-shadow:0 8px 22px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.4);
+    transition:transform .15s, filter .15s, background .15s, color .15s;
   }
-  .clip-sound:hover,.clip-sound:focus-visible{background:rgba(12,13,16,.9);border-color:var(--gold);outline:none;}
-  .clip-sound[aria-pressed="true"]{border-color:var(--gold);color:var(--gold);}
+  .clip-sound:hover,.clip-sound:focus-visible{transform:translateY(-1px);filter:brightness(1.07);outline:none;}
+  .clip-sound:focus-visible{box-shadow:0 8px 22px rgba(0,0,0,.55), 0 0 0 3px rgba(255,201,110,.55);}
+  .clip-sound[aria-pressed="true"]{background:rgba(12,13,16,.88);color:var(--gold);border-color:var(--gold);}
+  .clip-sound-ico{flex:none;display:block;}
   .star-clip figcaption{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9AA4;text-align:center;max-width:30ch;}
   .star-foot{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;}
   .star-note{font-size:14px;color:#9A9AA4;max-width:44ch;text-align:left;}
@@ -336,14 +346,14 @@
         <figure class="star-clip">
           <div class="clip-frame">
             <video src="assets/wuyb-teaser-attacks.mp4" poster="assets/poster-attacks.jpg" preload="none" muted loop playsinline width="720" height="1280" aria-label="What's Under Your Bed? attack sequence"></video>
-            <button class="clip-sound" type="button" aria-pressed="false">Sound on</button>
+            <button class="clip-sound" type="button" aria-pressed="false"><svg class="clip-sound-ico" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false"><path d="M3 9.5v5h4L12 19V5L7 9.5H3Z" fill="currentColor"/><path d="M15.4 8.3c1 1 1.5 2.2 1.5 3.7s-.5 2.7-1.5 3.7" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><path d="M18.6 5.6c1.8 1.7 2.7 3.7 2.7 6.4s-.9 4.7-2.7 6.4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg><span class="clip-sound-label">Sound on</span></button>
           </div>
           <figcaption>The attack — miss your match and it comes for you</figcaption>
         </figure>
         <figure class="star-clip">
           <div class="clip-frame">
             <video src="assets/wuyb-teaser-winner.mp4" poster="assets/poster-winner.jpg" preload="none" muted loop playsinline width="720" height="1280" aria-label="What's Under Your Bed? winning run"></video>
-            <button class="clip-sound" type="button" aria-pressed="false">Sound on</button>
+            <button class="clip-sound" type="button" aria-pressed="false"><svg class="clip-sound-ico" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false"><path d="M3 9.5v5h4L12 19V5L7 9.5H3Z" fill="currentColor"/><path d="M15.4 8.3c1 1 1.5 2.2 1.5 3.7s-.5 2.7-1.5 3.7" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><path d="M18.6 5.6c1.8 1.7 2.7 3.7 2.7 6.4s-.9 4.7-2.7 6.4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg><span class="clip-sound-label">Sound on</span></button>
           </div>
           <figcaption>The win — clear all twelve and beat the game</figcaption>
         </figure>
@@ -442,6 +452,14 @@
         return;
       }
 
+      // Only the label span is rewritten — setting textContent on the button itself
+      // would delete the speaker icon.
+      const setSoundState = (btn, on) => {
+        btn.setAttribute('aria-pressed', String(on));
+        const label = btn.querySelector('.clip-sound-label');
+        if (label) label.textContent = on ? 'Sound off' : 'Sound on';
+      };
+
       clips.forEach(frame => {
         const video = frame.querySelector('video');
         const sound = frame.querySelector('.clip-sound');
@@ -455,14 +473,12 @@
               const v = other.querySelector('video');
               const b = other.querySelector('.clip-sound');
               v.muted = true;
-              b.setAttribute('aria-pressed', 'false');
-              b.textContent = 'Sound on';
+              setSoundState(b, false);
             });
             video.play().catch(() => {});
           }
           video.muted = !unmuting;
-          sound.setAttribute('aria-pressed', String(unmuting));
-          sound.textContent = unmuting ? 'Sound off' : 'Sound on';
+          setSoundState(sound, unmuting);
         });
       });
 
@@ -492,8 +508,7 @@
             if (!video.muted) {
               const b = entry.target.querySelector('.clip-sound');
               video.muted = true;
-              b.setAttribute('aria-pressed', 'false');
-              b.textContent = 'Sound on';
+              if (b) setSoundState(b, false);
             }
           }
         });
