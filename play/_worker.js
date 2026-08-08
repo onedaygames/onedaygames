@@ -11,7 +11,7 @@ const WUYB_LEGACY_ALPHA_PREFIX = "/wuyb/alpha-complete";
 const WUYB_LOGIN_PATH = `${WUYB_PLAY_PREFIX}/login`;
 const WUYB_LOGOUT_PATH = `${WUYB_PLAY_PREFIX}/logout`;
 const WUYB_PREVIEW_PREFIX = "/private/wuyb-preview";
-const WUYB_PLAY_VERSION = "0eaaaa3";
+const WUYB_PLAY_VERSION = "ef58a80";
 const WUYB_SESSION_COOKIE = "odg_wuyb_play_session";
 const WUYB_SESSION_TTL_SECONDS = 60 * 60 * 24 * 7;
 const IOS_PREVIEW_PREFIX = "/trash-dice/ios-preview";
@@ -385,6 +385,10 @@ async function protectedAssetResponse(request, env) {
   });
 }
 
+async function unlistedAssetResponse(request, env) {
+  return protectedAssetResponse(request, env);
+}
+
 async function alphaResponse(request, env, realm) {
   const allowed = hasAlphaAccess(request, env);
   if (allowed === null) return authNotConfigured();
@@ -623,11 +627,7 @@ async function handleWuybLogin(request, env) {
 }
 
 async function wuybPlayResponse(request, env) {
-  const allowed = await hasReviewRequestAccess(request, env, WUYB_PLAY_GATE);
-  if (allowed === null) return authNotConfigured();
-  if (!allowed) return redirectToReviewLogin(WUYB_PLAY_GATE, new URL(request.url));
-
-  return protectedAssetResponse(request, env);
+  return unlistedAssetResponse(request, env);
 }
 
 async function reviewGateResponse(request, env, gate) {
@@ -656,6 +656,16 @@ export default {
 
     if (isWuybPlayHomePath(url.pathname) && !url.searchParams.has("match") && !url.searchParams.has("hunt")) {
       return redirectToWuybPlay(url);
+    }
+
+    if (isWuybLoginPath(url.pathname)) {
+      return protectedRedirect(defaultWuybPlayUrl(url));
+    }
+
+    if (isWuybLogoutPath(url.pathname)) {
+      return protectedRedirect(defaultWuybPlayUrl(url), 303, {
+        "set-cookie": clearReviewSessionCookie(WUYB_PLAY_GATE),
+      });
     }
 
     const loginGate = REVIEW_GATES.find((gate) => isGateLoginPath(gate, url.pathname));

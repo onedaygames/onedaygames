@@ -1,6 +1,6 @@
 ﻿# WUYB Play
 
-Canonical protected review home for the CJ-designated WUYB Game 2 build.
+Canonical public unlisted review home for the CJ-designated WUYB Game 2 build.
 
 Canonical URL:
 `https://playonedaygames.com/wuyb/play/`
@@ -8,10 +8,8 @@ Canonical URL:
 Default play URL:
 `https://playonedaygames.com/wuyb/play/?match=1&v=ef58a80`
 
-Evaluator login:
-`https://playonedaygames.com/wuyb/play/login/`
-
-Login uses the shared ODG Alpha credentials source (`ODG_ALPHA_PASSWORD`, falling back to `TRASH_DICE_ALPHA_PASSWORD`) and sets a scoped WUYB Play session cookie.
+Access:
+No login or password is required. Stale `/wuyb/play/login/` and `/wuyb/play/logout/` requests redirect back to the play link.
 
 Approved source commit: `ef58a80 Reduce WUYB title audio preload`
 
