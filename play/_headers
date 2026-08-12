@@ -49,6 +49,13 @@
   X-Robots-Tag: noindex, nofollow, noarchive
   Cache-Control: no-store
 
-/trash-dice/play/*
+/trash-dice/play/login/*
   X-Robots-Tag: noindex, nofollow, noarchive
   Cache-Control: no-store
+
+/trash-dice/play/logout/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
+
+/trash-dice/play/assets/*
+  Cache-Control: public, max-age=14400, must-revalidate

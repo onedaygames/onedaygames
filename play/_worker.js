@@ -17,6 +17,8 @@ const WUYB_SESSION_TTL_SECONDS = 60 * 60 * 24 * 7;
 const IOS_PREVIEW_PREFIX = "/trash-dice/ios-preview";
 const BOPIT_PREFIX = "/private/bop-it";
 const PLAY_REVIEW_PREFIX = "/trash-dice/play";
+const PLAY_LOGIN_PATH = `${PLAY_REVIEW_PREFIX}/login`;
+const PLAY_LOGOUT_PATH = `${PLAY_REVIEW_PREFIX}/logout`;
 const ALPHA_USER = "odg";
 const textEncoder = new TextEncoder();
 const textDecoder = new TextDecoder();
@@ -37,8 +39,8 @@ const WUYB_PLAY_GATE = {
 
 const PLAY_REVIEW_GATE = {
   prefix: PLAY_REVIEW_PREFIX,
-  loginPath: `${PLAY_REVIEW_PREFIX}/login`,
-  logoutPath: `${PLAY_REVIEW_PREFIX}/logout`,
+  loginPath: PLAY_LOGIN_PATH,
+  logoutPath: PLAY_LOGOUT_PATH,
   cookieName: "odg_trash_dice_play_session",
   title: "Trash Dice Play Review",
   mark: "TD",
@@ -76,7 +78,6 @@ const BOPIT_GATE = {
 
 const REVIEW_GATES = [
   WUYB_PLAY_GATE,
-  PLAY_REVIEW_GATE,
   IOS_PREVIEW_GATE,
   BOPIT_GATE,
 ];
@@ -121,6 +122,14 @@ function isBopItPath(pathname) {
 
 function isPlayReviewPath(pathname) {
   return pathname === PLAY_REVIEW_PREFIX || pathname.startsWith(`${PLAY_REVIEW_PREFIX}/`);
+}
+
+function isPlayLoginPath(pathname) {
+  return pathname === PLAY_LOGIN_PATH || pathname === `${PLAY_LOGIN_PATH}/`;
+}
+
+function isPlayLogoutPath(pathname) {
+  return pathname === PLAY_LOGOUT_PATH || pathname === `${PLAY_LOGOUT_PATH}/`;
 }
 
 function isOfflinePath(pathname) {
@@ -180,6 +189,13 @@ function redirectToWuybPlay(url) {
     target.searchParams.set("v", WUYB_PLAY_VERSION);
   }
   return protectedRedirect(target);
+}
+
+function defaultTrashDicePlayUrl(url) {
+  const target = new URL(url);
+  target.pathname = `${PLAY_REVIEW_PREFIX}/`;
+  target.search = "";
+  return target;
 }
 
 function sanitizeWuybNext(rawNext, baseUrl) {
@@ -378,6 +394,20 @@ async function protectedAssetResponse(request, env) {
   const headers = new Headers(response.headers);
   headers.set("cache-control", "no-store");
   headers.set("x-robots-tag", "noindex, nofollow, noarchive");
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
+async function publicAssetResponse(request, env) {
+  const response = await env.ASSETS.fetch(request);
+  const headers = new Headers(response.headers);
+  headers.delete("x-robots-tag");
+  if ((headers.get("cache-control") || "").toLowerCase().includes("no-store")) {
+    headers.delete("cache-control");
+  }
   return new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
@@ -630,6 +660,10 @@ async function wuybPlayResponse(request, env) {
   return unlistedAssetResponse(request, env);
 }
 
+async function trashDicePlayResponse(request, env) {
+  return publicAssetResponse(request, env);
+}
+
 async function reviewGateResponse(request, env, gate) {
   const allowed = await hasReviewRequestAccess(request, env, gate);
   if (allowed === null) return authNotConfigured();
@@ -668,6 +702,16 @@ export default {
       });
     }
 
+    if (isPlayLoginPath(url.pathname)) {
+      return protectedRedirect(defaultTrashDicePlayUrl(url));
+    }
+
+    if (isPlayLogoutPath(url.pathname)) {
+      return protectedRedirect(defaultTrashDicePlayUrl(url), 303, {
+        "set-cookie": clearReviewSessionCookie(PLAY_REVIEW_GATE),
+      });
+    }
+
     const loginGate = REVIEW_GATES.find((gate) => isGateLoginPath(gate, url.pathname));
     if (loginGate) {
       return handleReviewLogin(request, env, loginGate);
@@ -694,7 +738,7 @@ export default {
     }
 
     if (isPlayReviewPath(url.pathname)) {
-      return reviewGateResponse(request, env, PLAY_REVIEW_GATE);
+      return trashDicePlayResponse(request, env);
     }
 
     if (isBopItPath(url.pathname)) {
