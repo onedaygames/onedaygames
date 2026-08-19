@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="CJ Connoy's One Day Games builds faithful digital companions to physical games: a love letter, not a copy.">
+  <meta name="description" content="One Day Games takes tabletop games digital: faithful digital companions to physical games — a love letter, not a copy. Two companions shipped for two tabletop studios.">
   <meta name="theme-color" content="#121216">
   <meta property="og:title" content="One Day Games">
-  <meta property="og:description" content="Faithful digital companions to physical games, led by CJ Connoy.">
+  <meta property="og:description" content="Faithful digital companions to physical games — a love letter, not a copy. Led by CJ Connoy.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://playonedaygames.com/">
   <meta property="og:image" content="https://playonedaygames.com/assets/odg/odg-social-card-dark.png">
@@ -14,7 +14,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="One Day Games">
-  <meta name="twitter:description" content="Faithful digital companions to physical games, led by CJ Connoy.">
+  <meta name="twitter:description" content="Faithful digital companions to physical games — a love letter, not a copy. Led by CJ Connoy.">
   <meta name="twitter:image" content="https://playonedaygames.com/assets/odg/odg-social-card-dark.png">
   <link rel="icon" href="/favicon.ico">
   <title>One Day Games - Faithful Digital Companions</title>
@@ -157,11 +157,10 @@
 
     .hero-inner {
       width: min(1080px, calc(100% - 40px));
-      min-height: 540px;
       margin: 0 auto;
       padding: 54px 0 50px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.74fr);
+      grid-template-columns: minmax(0, 1fr);
       align-items: center;
       gap: 46px;
     }
@@ -385,6 +384,44 @@
       width: 100%;
       aspect-ratio: 16 / 10;
       object-fit: cover;
+    }
+
+    .work-note {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 16px 0 0;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      margin-top: 38px;
+    }
+
+    .work-flag {
+      margin: 18px 0 0;
+      color: var(--terracotta);
+      font-size: 0.88rem;
+      font-weight: 850;
+    }
+
+    .work-card h3 {
+      margin: 6px 0 0;
+      font-size: 1.5rem;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .work-card > p:not(.work-flag) {
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 10px 0 0;
+    }
+
+    .work-card .release-actions {
+      margin-top: 18px;
     }
 
     .watch-grid {
@@ -624,7 +661,8 @@
       .release-grid,
       .watch-grid,
       .studio-grid,
-      .contact-grid {
+      .contact-grid,
+      .work-grid {
         grid-template-columns: 1fr;
       }
 
@@ -709,9 +747,8 @@
       </a>
       <nav aria-label="Primary navigation">
         <a href="/">Home</a>
-        <a href="#play">Play</a>
+        <a href="/live/tic-tac-toe/">Play</a>
         <a href="/devlog/">Devlog</a>
-        <a href="#watch">Watch</a>
         <a href="/live/tic-tac-toe/presskit">Press</a>
         <a href="/studio/">Studio</a>
         <a href="#contact">Contact</a>
@@ -724,75 +761,51 @@
       <div class="hero-inner">
         <div class="hero-copy-block">
           <img class="hero-logo" src="assets/odg/odg-logo-white.png" alt="One Day Games">
-          <p class="kicker">One Day Games</p>
-          <h1 class="hero-title">One Day Games makes faithful digital companions to physical games &mdash; <strong>a love letter, not a copy.</strong></h1>
+          <p class="kicker">Take your tabletop game digital</p>
+          <h1 class="hero-title">Faithful digital companions to physical games &mdash; <strong>a love letter, not a copy.</strong></h1>
+          <p class="hero-copy">You made the tabletop game. One Day Games makes the version people can play in five seconds, anywhere &mdash; instant play, no install &mdash; and it points them straight back to your table.</p>
           <p class="hero-proof">Founded by CJ Connoy &mdash; 32 years in AAA games (Call of Duty: Black Ops, PlayStation/SIE).</p>
-          <p class="building">Currently building: digital companions for tabletop games.</p>
-        </div>
-        <figure class="hero-product" aria-label="Live Tic-Tac-Toe companion">
-          <a class="image-link" href="/live/tic-tac-toe/" aria-label="Play Tic-Tac-Toe on One Day Games">
-            <img src="/assets/games/tic-tac-toe/ttt-homepage-day-gameplay-birds-squirrels-desktop.png" alt="Tic-Tac-Toe daytime gameplay with birds and squirrels">
-          </a>
-          <figcaption>Now playing: Tic-Tac-Toe</figcaption>
           <div class="hero-actions">
-            <a class="button primary" href="/live/tic-tac-toe/">Play Tic-Tac-Toe</a>
-            <a class="button" href="#watch">Watch The Loop</a>
+            <a class="button primary" href="/studio/">Bring me your game</a>
+            <a class="button" href="#work">See the shipped companions</a>
           </div>
-        </figure>
+          <p class="building">Two companions shipped and live &mdash; for two different tabletop studios.</p>
+        </div>
       </div>
     </section>
 
-    <section class="section sand" id="play">
-      <div class="wrap release-grid">
-        <div class="release-copy">
-          <p class="section-label">Now playing</p>
-          <h2>Tic-Tac-Toe Night Shift</h2>
-          <p>A browser Tic-Tac-Toe with day and night mood, music, and a friendly CPU.</p>
-          <p>It runs directly on the ODG site and stays mirrored on itch.io for players who follow games there.</p>
-          <div class="release-actions">
-            <a class="button dark" href="/live/tic-tac-toe/">Play on ODG</a>
-            <a class="button light" href="https://onedaygames.itch.io/tic-tac-toe" target="_blank" rel="noopener">Play on itch.io</a>
-            <a class="button light" href="/live/tic-tac-toe/presskit">Press Kit</a>
-          </div>
-        </div>
-        <figure class="game-shot" aria-label="Tic-Tac-Toe Night Shift screenshot">
-          <a class="image-link" href="/live/tic-tac-toe/" aria-label="Play Tic-Tac-Toe on One Day Games">
-            <img src="/assets/games/tic-tac-toe/ttt-homepage-night-gameplay-shooting-star.png" alt="Tic-Tac-Toe Night Shift gameplay with a shooting star">
-          </a>
-        </figure>
-      </div>
-    </section>
-
-    <section class="section dark" id="watch">
-      <div class="wrap watch-grid">
-        <div class="watch-copy">
-          <p class="section-label">Watch and follow</p>
-          <h2>One-hour ambient loop</h2>
-          <p>The Tic-Tac-Toe soundtrack has a one-hour YouTube loop for the room, a browser tab, or the background while you work.</p>
-          <div class="watch-actions">
-            <a class="button primary" href="/live/tic-tac-toe/assets/audio/july-long-12min.mp3">LISTEN NOW</a>
-            <a class="button" href="https://www.youtube.com/watch?v=eU768UtVfC8" target="_blank" rel="noopener">Watch 1-hour loop</a>
-          </div>
-          <div class="follow-list" aria-label="One Day Games links">
-            <div class="follow-row">
-              <strong>YouTube</strong>
-              <a href="https://youtube.com/@One_Day_Games" target="_blank" rel="noopener">youtube.com/@One_Day_Games</a>
+    <section class="section sand" id="work">
+      <div class="wrap">
+        <p class="section-label">Featured work</p>
+        <h2>Two tabletop games. Two live companions.</h2>
+        <p class="work-note">Two different studios have handed me their games. Both companions shipped &mdash; faithful to the original, built to drive discovery and point players straight back to the real thing.</p>
+        <div class="work-grid">
+          <article class="work-card">
+            <figure class="game-shot" aria-label="What's Under Your Bed? companion screenshot">
+              <a class="image-link" href="/wuyb/play/" aria-label="Play the What's Under Your Bed? companion">
+                <img src="/assets/games/wuyb/wuyb-screenshot.jpg" alt="What's Under Your Bed? digital companion gameplay: matching monster cards against the clock">
+              </a>
+            </figure>
+            <p class="work-flag">Lethal Chicken Games</p>
+            <h3>What's Under Your Bed?</h3>
+            <p>Alex Mackey and Mike Szalajko at Lethal Chicken Games handed their monsters to me. Their tabletop horror game got a faithful digital companion &mdash; match your Monster Cards against the clock before the thing under the bed comes out for you.</p>
+            <div class="release-actions">
+              <a class="button dark" href="/wuyb/play/">Play the companion</a>
             </div>
-            <div class="follow-row">
-              <strong>X</strong>
-              <a href="https://x.com/onedaygames_" target="_blank" rel="noopener">x.com/onedaygames_</a>
+          </article>
+          <article class="work-card">
+            <figure class="game-shot" aria-label="Trash Dice companion screenshot">
+              <a class="image-link" href="/trash-dice/play/" aria-label="Play the Trash Dice companion">
+                <img src="/assets/games/trash-dice/td-screenshot.jpg" alt="Trash Dice digital companion gameplay: dice tray, branded trash can, and an unlocked pink dice skin">
+              </a>
+            </figure>
+            <p class="work-flag">Big Discoveries</p>
+            <h3>Trash Dice</h3>
+            <p>Big Discoveries handed me Trash Dice. Their push-your-luck dice game became an instant-play companion &mdash; roll to win, dodge the bin, and unlock new dice as the round wins stack up. Same craft, different studio's IP.</p>
+            <div class="release-actions">
+              <a class="button dark" href="/trash-dice/play/">Play the companion</a>
             </div>
-            <div class="follow-row">
-              <strong>CJ LinkedIn</strong>
-              <a href="https://linkedin.com/in/cjconnoy" target="_blank" rel="noopener">linkedin.com/in/cjconnoy</a>
-            </div>
-          </div>
-        </div>
-        <div class="video-frame">
-          <a class="video-link" href="https://www.youtube.com/watch?v=eU768UtVfC8" target="_blank" rel="noopener" aria-label="Watch Tic-Tac-Toe one-hour ambient loop on YouTube">
-            <img src="/live/tic-tac-toe/assets/ttt-night-shooting-star-x.png" alt="Tic-Tac-Toe Night Shift ambient loop artwork">
-            <span>Watch on YouTube</span>
-          </a>
+          </article>
         </div>
       </div>
     </section>
@@ -812,11 +825,14 @@
           </ul>
           <div class="callout">
             <b>I don't just produce &mdash; I design and build.</b>
-            As Founding Senior Lead, Design at SIE Dark Outlaw, I started the co-op prototype that became the foundation of the studio's main AAA IP. One person interpreting and building &mdash; the same approach behind every ODG game.
+            As Founding Senior Lead, Design at SIE Dark Outlaw, I started the co-op prototype that became the foundation of the studio's main AAA IP. One person interpreting and building &mdash; the same approach behind every ODG companion.
           </div>
           <div class="callout">
             <b>Upkeep is increasingly automated.</b>
             ODG runs production checks that can detect issues, make bounded repairs, validate results, and ship or promote fixes with an audit trail. Creative and feature work stay human-led.
+          </div>
+          <div class="release-actions">
+            <a class="button dark" href="/studio/">See how the companion service works</a>
           </div>
         </div>
         <a class="studio-mark" href="cj/" aria-label="Meet CJ Connoy">
