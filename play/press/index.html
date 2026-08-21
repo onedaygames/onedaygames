@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Press kit for One Day Games: faithful instant-play digital companions to physical tabletop games — a love letter, not a copy. Founded by 32-year AAA veteran CJ Connoy.">
+  <meta name="theme-color" content="#121216">
+  <meta property="og:title" content="Press Kit - One Day Games">
+  <meta property="og:description" content="Faithful instant-play digital companions to tabletop games, built by 32-year AAA veteran CJ Connoy. Two shipped. Creators keep their IP.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://playonedaygames.com/press/">
+  <meta property="og:image" content="https://playonedaygames.com/assets/odg/odg-social-card-dark.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Press Kit - One Day Games">
+  <meta name="twitter:description" content="Faithful instant-play digital companions to tabletop games, built by 32-year AAA veteran CJ Connoy. Two shipped. Creators keep their IP.">
+  <meta name="twitter:image" content="https://playonedaygames.com/assets/odg/odg-social-card-dark.png">
+  <link rel="canonical" href="https://playonedaygames.com/press/">
+  <link rel="icon" href="/favicon.ico">
+  <title>Press Kit - One Day Games</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --night: #121216;
+      --charcoal: #303033;
+      --warm-white: #F8F6F2;
+      --soft-sand: #EFE9DF;
+      --sunrise-gold: #FFC96E;
+      --sunrise-orange: #FF8A5F;
+      --sunrise-coral: #FF6E75;
+      --sunrise-pink: #E64B93;
+      --terracotta: #A8442A;
+      --ink: #252527;
+      --muted: #595959;
+      --line: rgba(48, 48, 51, 0.16);
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: var(--warm-white);
+      color: var(--ink);
+      letter-spacing: 0;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .sunrise-strip {
+      height: 6px;
+      background: linear-gradient(90deg, var(--sunrise-gold), var(--sunrise-orange), var(--sunrise-coral), var(--sunrise-pink));
+    }
+
+    .wrap,
+    .header-inner {
+      width: min(980px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--night);
+      color: var(--warm-white);
+      border-bottom: 1px solid rgba(248, 246, 242, 0.12);
+    }
+
+    .header-inner {
+      min-height: 62px;
+      padding: 9px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      text-decoration: none;
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+
+    .brand img { width: 34px; height: 34px; object-fit: contain; }
+    .brand span { white-space: nowrap; font-size: 1rem; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 22px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      min-width: 0;
+    }
+
+    nav a {
+      color: rgba(248, 246, 242, 0.78);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      padding: 5px 0;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--white);
+      border-bottom-color: var(--sunrise-orange);
+      outline: none;
+    }
+
+    nav a[aria-current="page"] { color: var(--sunrise-gold); }
+
+    .hero {
+      background: var(--night);
+      color: var(--warm-white);
+      padding: clamp(54px, 9vw, 90px) 0;
+    }
+
+    .hero-logo {
+      width: min(240px, 60%);
+      height: auto;
+      margin-bottom: 24px;
+    }
+
+    .kicker {
+      margin: 0 0 14px;
+      color: var(--sunrise-gold);
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(2.2rem, 5.4vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      max-width: 720px;
+      margin: 20px 0 0;
+      color: rgba(248, 246, 242, 0.85);
+      font-size: 1.12rem;
+      line-height: 1.6;
+    }
+
+    .quotable {
+      max-width: 720px;
+      margin: 22px 0 0;
+      padding: 16px 20px;
+      border-left: 4px solid var(--sunrise-gold);
+      background: rgba(248, 246, 242, 0.06);
+      color: rgba(248, 246, 242, 0.92);
+      font-size: 1.02rem;
+      line-height: 1.6;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .quotable b { color: var(--sunrise-gold); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; display: block; margin-bottom: 6px; }
+
+    .kit { padding: 56px 0 80px; }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 32px 36px;
+      margin-bottom: 28px;
+      box-shadow: 0 14px 34px rgba(48, 48, 51, 0.08);
+    }
+
+    .card h2 {
+      margin: 0 0 20px;
+      font-size: 1.55rem;
+      line-height: 1.15;
+      letter-spacing: 0;
+      padding-bottom: 14px;
+      border-bottom: 2px solid rgba(168, 68, 42, 0.16);
+    }
+
+    .card p {
+      line-height: 1.7;
+      margin: 0 0 14px;
+      color: #3a3a3c;
+      font-size: 0.99rem;
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    .facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 44px;
+    }
+
+    .fact-row { display: flex; flex-direction: column; gap: 4px; }
+
+    .fact-label {
+      font-size: 0.66rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--terracotta);
+    }
+
+    .fact-value { font-size: 0.99rem; font-weight: 700; color: var(--ink); line-height: 1.45; }
+    .fact-value a { color: var(--terracotta); text-decoration: none; font-weight: 800; }
+    .fact-value a:hover { text-decoration: underline; }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .game-shot {
+      border: 1px solid rgba(48, 48, 51, 0.18);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--night);
+      box-shadow: 0 12px 30px rgba(48, 48, 51, 0.14);
+      margin: 0;
+    }
+
+    .game-shot img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .work-flag {
+      margin: 14px 0 0;
+      color: var(--terracotta);
+      font-size: 0.84rem;
+      font-weight: 850;
+    }
+
+    .work-card h3 { margin: 4px 0 0; font-size: 1.3rem; line-height: 1.15; }
+    .work-card p { margin: 8px 0 0; color: var(--muted); }
+    .work-card .play-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--terracotta);
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .work-card .play-link:hover { text-decoration: underline; }
+
+    blockquote.press-quote {
+      margin: 0 0 18px;
+      padding: 4px 0 4px 22px;
+      border-left: 3px solid var(--sunrise-orange);
+    }
+
+    blockquote.press-quote:last-of-type { margin-bottom: 6px; }
+
+    blockquote.press-quote p {
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.55;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .quote-attrib {
+      margin-top: 18px !important;
+      font-size: 0.85rem !important;
+      color: var(--muted) !important;
+    }
+
+    .brand-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .brand-item {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: 0 6px 18px rgba(48, 48, 51, 0.08);
+    }
+
+    .brand-preview {
+      padding: 24px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 112px;
+    }
+
+    .brand-preview.light { background: var(--white); }
+    .brand-preview.dark { background: var(--night); }
+    .brand-preview img { max-width: 100%; max-height: 88px; object-fit: contain; }
+
+    .brand-meta { padding: 12px 14px; background: var(--soft-sand); }
+    .brand-name { font-size: 0.76rem; font-weight: 800; color: var(--terracotta); display: block; margin-bottom: 8px; }
+
+    .brand-dl {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: var(--terracotta);
+      text-decoration: none;
+      padding: 4px 12px;
+      border: 2px solid var(--sunrise-orange);
+      border-radius: 20px;
+    }
+
+    .brand-dl:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--white); }
+
+    .usage-note { font-size: 0.84rem !important; color: var(--muted) !important; }
+
+    .contact-email { font-size: 1.16rem; font-weight: 800; }
+    .contact-email a { color: var(--terracotta); text-decoration: none; }
+    .contact-email a:hover { text-decoration: underline; }
+    .contact-note { font-size: 0.9rem !important; color: var(--muted) !important; }
+
+    .kit-links { display: flex; flex-direction: column; gap: 12px; }
+    .link-row { display: flex; align-items: baseline; gap: 18px; }
+    .link-label {
+      font-size: 0.66rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--terracotta);
+      min-width: 92px;
+    }
+    .link-row a { font-size: 0.96rem; font-weight: 700; color: var(--terracotta); text-decoration: none; overflow-wrap: anywhere; }
+    .link-row a:hover { text-decoration: underline; }
+
+    footer {
+      background: var(--night);
+      color: rgba(248, 246, 242, 0.68);
+      padding: 24px 0;
+      font-size: 0.92rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-row a {
+      color: rgba(248, 246, 242, 0.9);
+      text-decoration-color: var(--sunrise-orange);
+      text-underline-offset: 4px;
+    }
+
+    @media (max-width: 820px) {
+      nav { gap: 14px; font-size: 0.88rem; }
+      .facts, .work-grid { grid-template-columns: 1fr; }
+      .brand-grid { grid-template-columns: 1fr; }
+      .card { padding: 24px 20px; }
+    }
+
+    @media (max-width: 520px) {
+      .wrap,
+      .header-inner {
+        width: min(362px, calc(100% - 28px));
+        margin-left: 14px;
+        margin-right: auto;
+      }
+      .brand span { font-size: 0.94rem; }
+      nav {
+        flex-basis: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+        font-size: 0.84rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sunrise-strip" aria-hidden="true"></div>
+
+  <header class="site-header" aria-label="Site header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="One Day Games home">
+        <img src="/assets/odg/odg-icon.png" alt="">
+        <span>One Day Games</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/play/">Play</a>
+        <a href="/devlog/">Devlog</a>
+        <a href="/press/" aria-current="page">Press</a>
+        <a href="/studio/">About CJ</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Press kit">
+      <div class="wrap">
+        <img class="hero-logo" src="/assets/odg/odg-logo-white.png" alt="One Day Games">
+        <p class="kicker">Press kit</p>
+        <h1>Faithful digital companions to physical tabletop games &mdash; a love letter, not a copy.</h1>
+        <p class="lede">One Day Games builds instant-play digital companions for tabletop creators: no install, live in any browser, faithful to the original. Founded by CJ Connoy.</p>
+        <div class="quotable">
+          <b>One-line description</b>
+          One Day Games builds faithful, instant-play digital companions to physical tabletop games &mdash; a love letter, not a copy &mdash; founded by 32-year AAA veteran CJ Connoy.
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap kit">
+
+      <!-- The story -->
+      <div class="card">
+        <h2>The story</h2>
+        <p>CJ Connoy spent 32 years in AAA production and creative leadership: over a decade at Treyarch on <em>Call of Duty: Black Ops 1&ndash;4</em>, shipped sports titles at Sony PlayStation (NFL, NCAA, NBA, MLB), and was twice trusted by Sony to help stand up brand-new AAA studios from zero &mdash; Founding Senior Producer at Deviation Games, then Founding Senior Lead, Design at SIE's Dark Outlaw Games, where he started the co-op prototype that became the foundation of the studio's main AAA IP.</p>
+        <p>One Day Games is what he does with that now: he personally builds faithful digital companions for tabletop creators &mdash; instant-play browser versions of physical games that carry the original's feel into a new medium. Each companion goes from the creator's game to live and playable in about a month, and two have shipped so far, for two different tabletop studios. The creators keep their IP; the companion drives discovery and points players back to the physical game.</p>
+      </div>
+
+      <!-- Fact sheet -->
+      <div class="card">
+        <h2>Fact sheet</h2>
+        <div class="facts">
+          <div class="fact-row">
+            <span class="fact-label">Studio</span>
+            <span class="fact-value">One Day Games</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Founder</span>
+            <span class="fact-value">CJ Connoy</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Founded</span>
+            <span class="fact-value">2026</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Location</span>
+            <span class="fact-value">Redondo Beach, CA</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">What it does</span>
+            <span class="fact-value">Faithful, instant-play digital companions for tabletop games</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Model</span>
+            <span class="fact-value">Creator keeps the IP; the companion drives discovery and points players back to the physical game</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Shipped</span>
+            <span class="fact-value">2 companions &mdash; What's Under Your Bed?, Trash Dice</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Recent speaker</span>
+            <span class="fact-value">LFG Con 2026, Burbank &mdash; "From Tabletop to Digital"</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Site</span>
+            <span class="fact-value"><a href="https://playonedaygames.com/">playonedaygames.com</a></span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Press contact</span>
+            <span class="fact-value"><a href="mailto:cj@playonedaygames.com">cj@playonedaygames.com</a></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shipped work -->
+      <div class="card">
+        <h2>Two studios have trusted One Day Games with their games</h2>
+        <div class="work-grid">
+          <article class="work-card">
+            <figure class="game-shot">
+              <img src="/assets/games/wuyb/wuyb-screenshot.jpg?v=2" alt="What's Under Your Bed? digital companion: TIME'S UP — the sneaker monster attacks">
+            </figure>
+            <p class="work-flag">Digital companion &middot; Lethal Chicken Games</p>
+            <h3>What's Under Your Bed?</h3>
+            <p>The tabletop horror game by Alex Mackey and Mike Szalajko at Lethal Chicken Games, reinterpreted as an instant-play companion &mdash; match your Monster Cards against the clock before the thing under the bed comes out.</p>
+            <a class="play-link" href="https://playonedaygames.com/wuyb/play/">Play the companion &rarr;</a>
+          </article>
+          <article class="work-card">
+            <figure class="game-shot">
+              <img src="/assets/games/trash-dice/td-screenshot.jpg?v=3" alt="Trash Dice digital companion gameplay: YOU ARE ROLLING — a giant die tumbling over the dice tray and branded trash can">
+            </figure>
+            <p class="work-flag">Digital companion &middot; Big Discoveries</p>
+            <h3>Trash Dice</h3>
+            <p>The push-your-luck dice game by Big Discoveries, reborn as an instant-play companion &mdash; roll to win, dodge the bin, and unlock new dice as the round wins stack up.</p>
+            <a class="play-link" href="https://playonedaygames.com/trash-dice/play/">Play the companion &rarr;</a>
+          </article>
+        </div>
+      </div>
+
+      <!-- Quotes -->
+      <div class="card">
+        <h2>Quotable</h2>
+        <blockquote class="press-quote">
+          <p>&ldquo;A faithful companion is a love letter, not a copy. It never competes with the box on your shelf.&rdquo;</p>
+        </blockquote>
+        <blockquote class="press-quote">
+          <p>&ldquo;I reinterpret, I don't reinvent. The companion carries the game's feel into a new medium &mdash; and the creator keeps the IP.&rdquo;</p>
+        </blockquote>
+        <blockquote class="press-quote">
+          <p>&ldquo;The companion's job is discovery. It gives people a taste of the game's heart anywhere, then points them straight back to the table.&rdquo;</p>
+        </blockquote>
+        <p class="quote-attrib">All quotes attributable to CJ Connoy, founder, One Day Games.</p>
+      </div>
+
+      <!-- Brand assets -->
+      <div class="card">
+        <h2>Brand assets</h2>
+        <div class="brand-grid">
+          <div class="brand-item">
+            <div class="brand-preview light">
+              <img src="/assets/odg/odg-logo-charcoal.png" alt="One Day Games logo for light backgrounds">
+            </div>
+            <div class="brand-meta">
+              <span class="brand-name">Logo &mdash; Light BG</span>
+              <a class="brand-dl" href="/assets/odg/odg-logo-charcoal.png" download>Download PNG</a>
+            </div>
+          </div>
+          <div class="brand-item">
+            <div class="brand-preview dark">
+              <img src="/assets/odg/odg-logo-white.png" alt="One Day Games logo for dark backgrounds">
+            </div>
+            <div class="brand-meta">
+              <span class="brand-name">Logo &mdash; Dark BG</span>
+              <a class="brand-dl" href="/assets/odg/odg-logo-white.png" download>Download PNG</a>
+            </div>
+          </div>
+          <div class="brand-item">
+            <div class="brand-preview light">
+              <img src="/assets/odg/odg-icon.png" alt="One Day Games sunrise icon mark">
+            </div>
+            <div class="brand-meta">
+              <span class="brand-name">Icon / Avatar Mark</span>
+              <a class="brand-dl" href="/assets/odg/odg-icon.png" download>Download PNG</a>
+            </div>
+          </div>
+        </div>
+        <p class="usage-note">Use on white or dark backgrounds as indicated. Do not stretch or recolor. Attribution: One Day Games.</p>
+      </div>
+
+      <!-- Links -->
+      <div class="card">
+        <h2>Links</h2>
+        <div class="kit-links">
+          <div class="link-row">
+            <span class="link-label">Site</span>
+            <a href="https://playonedaygames.com/">playonedaygames.com</a>
+          </div>
+          <div class="link-row">
+            <span class="link-label">Play</span>
+            <a href="https://playonedaygames.com/play/">playonedaygames.com/play</a>
+          </div>
+          <div class="link-row">
+            <span class="link-label">About CJ</span>
+            <a href="https://playonedaygames.com/studio/">playonedaygames.com/studio</a>
+          </div>
+          <div class="link-row">
+            <span class="link-label">Game kit</span>
+            <a href="/live/tic-tac-toe/presskit">Tic-Tac-Toe per-game press kit</a>
+          </div>
+          <div class="link-row">
+            <span class="link-label">X / Twitter</span>
+            <a href="https://x.com/onedaygames_" target="_blank" rel="noopener">x.com/onedaygames_</a>
+          </div>
+          <div class="link-row">
+            <span class="link-label">LinkedIn</span>
+            <a href="https://linkedin.com/in/cjconnoy" target="_blank" rel="noopener">linkedin.com/in/cjconnoy</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="card" id="contact">
+        <h2>Contact</h2>
+        <p>For press inquiries, interviews, or companion partnership questions:</p>
+        <p class="contact-email"><a href="mailto:cj@playonedaygames.com">cj@playonedaygames.com</a></p>
+        <p class="contact-note">Response within 48 hours. You're talking directly to CJ.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span>&copy; 2026 One Day Games &mdash; one game at a time, one day at a time.</span>
+      <span><a href="/">Home</a> &middot; <a href="/play/">Play</a> &middot; <a href="/devlog/">Devlog</a> &middot; <a href="/studio/">About CJ</a> &middot; <a href="/#contact">Contact</a></span>
+    </div>
+  </footer>
+</body>
+</html>
