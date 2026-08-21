@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play One Day Games' digital companions in any browser — What's Under Your Bed? and Trash Dice — plus the original that named the studio.">
+  <meta name="theme-color" content="#121216">
+  <meta property="og:title" content="Play - One Day Games">
+  <meta property="og:description" content="Two digital companions, live in any browser — no install. Plus the original that named the studio.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://playonedaygames.com/play/">
+  <meta property="og:image" content="https://playonedaygames.com/assets/odg/odg-social-card-dark.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Play - One Day Games">
+  <meta name="twitter:description" content="Two digital companions, live in any browser — no install. Plus the original that named the studio.">
+  <meta name="twitter:image" content="https://playonedaygames.com/assets/odg/odg-social-card-dark.png">
+  <link rel="canonical" href="https://playonedaygames.com/play/">
+  <link rel="icon" href="/favicon.ico">
+  <title>Play - One Day Games</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --night: #121216;
+      --charcoal: #303033;
+      --warm-white: #F8F6F2;
+      --soft-sand: #EFE9DF;
+      --sunrise-gold: #FFC96E;
+      --sunrise-orange: #FF8A5F;
+      --sunrise-coral: #FF6E75;
+      --sunrise-pink: #E64B93;
+      --terracotta: #A8442A;
+      --ink: #252527;
+      --muted: #595959;
+      --line: rgba(48, 48, 51, 0.16);
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: var(--warm-white);
+      color: var(--ink);
+      letter-spacing: 0;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .sunrise-strip {
+      height: 6px;
+      background: linear-gradient(90deg, var(--sunrise-gold), var(--sunrise-orange), var(--sunrise-coral), var(--sunrise-pink));
+    }
+
+    .wrap,
+    .header-inner {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--night);
+      color: var(--warm-white);
+      border-bottom: 1px solid rgba(248, 246, 242, 0.12);
+    }
+
+    .header-inner {
+      min-height: 62px;
+      padding: 9px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      text-decoration: none;
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+
+    .brand img { width: 34px; height: 34px; object-fit: contain; }
+    .brand span { white-space: nowrap; font-size: 1rem; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 22px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      min-width: 0;
+    }
+
+    nav a {
+      color: rgba(248, 246, 242, 0.78);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      padding: 5px 0;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--white);
+      border-bottom-color: var(--sunrise-orange);
+      outline: none;
+    }
+
+    nav a[aria-current="page"] { color: var(--sunrise-gold); }
+
+    .hero {
+      background: var(--night);
+      color: var(--warm-white);
+      padding: clamp(54px, 9vw, 90px) 0;
+    }
+
+    .kicker {
+      margin: 0 0 14px;
+      color: var(--sunrise-gold);
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.6rem, 6.5vw, 4.15rem);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      max-width: 660px;
+      margin: 20px 0 0;
+      color: rgba(248, 246, 242, 0.82);
+      font-size: 1.15rem;
+      line-height: 1.55;
+    }
+
+    .section { padding: 76px 0; }
+    .section.sand { background: var(--soft-sand); }
+
+    .section-label {
+      margin: 0 0 12px;
+      color: var(--terracotta);
+      font-size: 0.88rem;
+      font-weight: 850;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 2.3rem;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    p { line-height: 1.65; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      font: inherit;
+      border: 1px solid rgba(248, 246, 242, 0.28);
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: var(--warm-white);
+      text-decoration: none;
+      font-weight: 800;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .button.dark {
+      border-color: var(--night);
+      background: var(--night);
+      color: var(--warm-white);
+    }
+
+    .button.light {
+      color: var(--night);
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .game-shot {
+      border: 1px solid rgba(48, 48, 51, 0.18);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--night);
+      box-shadow: 0 18px 44px rgba(48, 48, 51, 0.18);
+      margin: 0;
+    }
+
+    .game-shot img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .image-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .image-link img {
+      transition: filter 160ms ease, transform 160ms ease;
+    }
+
+    .image-link:hover img,
+    .image-link:focus-visible img {
+      filter: brightness(1.06) saturate(1.04);
+    }
+
+    .image-link:focus-visible {
+      outline: 3px solid var(--sunrise-gold);
+      outline-offset: -3px;
+    }
+
+    .work-note {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 16px 0 0;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      margin-top: 38px;
+    }
+
+    .work-flag {
+      margin: 18px 0 0;
+      color: var(--terracotta);
+      font-size: 0.88rem;
+      font-weight: 850;
+    }
+
+    .work-card h3 {
+      margin: 6px 0 0;
+      font-size: 1.5rem;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .work-card > p:not(.work-flag) {
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 10px 0 0;
+    }
+
+    .release-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    /* The original sits in a smaller two-column row so it reads as heritage,
+       not a third flagship: modest image, plain surface, origin framing. */
+    .original-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
+      gap: 42px;
+      align-items: center;
+    }
+
+    .original-copy p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 16px 0 0;
+    }
+
+    footer {
+      background: var(--night);
+      color: rgba(248, 246, 242, 0.68);
+      padding: 24px 0;
+      font-size: 0.92rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-row a {
+      color: rgba(248, 246, 242, 0.9);
+      text-decoration-color: var(--sunrise-orange);
+      text-underline-offset: 4px;
+    }
+
+    @media (max-width: 820px) {
+      nav { gap: 14px; font-size: 0.88rem; }
+
+      .work-grid,
+      .original-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h2 { font-size: 1.95rem; }
+    }
+
+    @media (max-width: 520px) {
+      .wrap,
+      .header-inner {
+        width: min(362px, calc(100% - 28px));
+        margin-left: 14px;
+        margin-right: auto;
+      }
+
+      .brand span { font-size: 0.94rem; }
+
+      nav {
+        flex-basis: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+        font-size: 0.84rem;
+      }
+
+      .section { padding: 58px 0; }
+
+      .release-actions .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sunrise-strip" aria-hidden="true"></div>
+
+  <header class="site-header" aria-label="Site header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="One Day Games home">
+        <img src="/assets/odg/odg-icon.png" alt="">
+        <span>One Day Games</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/play/" aria-current="page">Play</a>
+        <a href="/devlog/">Devlog</a>
+        <a href="/live/tic-tac-toe/presskit">Press</a>
+        <a href="/studio/">About CJ</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Play">
+      <div class="wrap">
+        <p class="kicker">Play</p>
+        <h1>Live in any browser. No install.</h1>
+        <p class="lede">Two digital companions built for tabletop studios &mdash; that's the work &mdash; and the original that named the studio.</p>
+      </div>
+    </section>
+
+    <section class="section sand" aria-label="Digital companions">
+      <div class="wrap">
+        <p class="section-label">Digital companions</p>
+        <h2>The work, playable right now.</h2>
+        <p class="work-note">Faithful companions to two tabletop games &mdash; a love letter, not a copy &mdash; built to drive discovery and point players straight back to the real thing.</p>
+        <div class="work-grid">
+          <article class="work-card">
+            <figure class="game-shot" aria-label="What's Under Your Bed? companion screenshot">
+              <a class="image-link" href="/wuyb/play/" aria-label="Play the What's Under Your Bed? companion">
+                <img src="/assets/games/wuyb/wuyb-screenshot.jpg?v=2" alt="What's Under Your Bed? digital companion: TIME'S UP — the sneaker monster attacks">
+              </a>
+            </figure>
+            <p class="work-flag">Digital companion &middot; Lethal Chicken Games</p>
+            <h3>What's Under Your Bed?</h3>
+            <p>Match your Monster Cards against the clock before the thing under the bed comes out for you. One-handed in any phone browser.</p>
+            <div class="release-actions">
+              <a class="button dark" href="/wuyb/play/">Play the companion</a>
+            </div>
+          </article>
+          <article class="work-card">
+            <figure class="game-shot" aria-label="Trash Dice companion screenshot">
+              <a class="image-link" href="/trash-dice/play/" aria-label="Play the Trash Dice companion">
+                <img src="/assets/games/trash-dice/td-screenshot.jpg?v=3" alt="Trash Dice digital companion gameplay: YOU ARE ROLLING — a giant die tumbling over the dice tray and branded trash can">
+              </a>
+            </figure>
+            <p class="work-flag">Digital companion &middot; Big Discoveries</p>
+            <h3>Trash Dice</h3>
+            <p>Roll to win, dodge the bin, and unlock new dice as the round wins stack up. Instant play, straight from a link.</p>
+            <div class="release-actions">
+              <a class="button dark" href="/trash-dice/play/">Play the companion</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="The original">
+      <div class="wrap original-grid">
+        <div class="original-copy">
+          <p class="section-label">The original &middot; origin story</p>
+          <h2>Tic-Tac-Toe Night Shift</h2>
+          <p>The game that named the studio &mdash; designed, built, and shipped in a single day, and still live. Not a companion; just the proof of how this studio works. <a href="/devlog/shipped-in-a-day/">The devlog tells that story.</a></p>
+          <div class="release-actions">
+            <a class="button dark" href="/live/tic-tac-toe/">Play Tic-Tac-Toe</a>
+            <a class="button light" href="https://onedaygames.itch.io/tic-tac-toe" target="_blank" rel="noopener">Play on itch.io</a>
+          </div>
+        </div>
+        <figure class="game-shot" aria-label="Tic-Tac-Toe Night Shift screenshot">
+          <a class="image-link" href="/live/tic-tac-toe/" aria-label="Play Tic-Tac-Toe on One Day Games">
+            <img src="/assets/games/tic-tac-toe/ttt-homepage-night-gameplay-shooting-star.png" alt="Tic-Tac-Toe Night Shift gameplay with a shooting star">
+          </a>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span>&copy; 2026 One Day Games &mdash; one game at a time, one day at a time.</span>
+      <span><a href="/">Home</a> &middot; <a href="/devlog/">Devlog</a> &middot; <a href="/live/tic-tac-toe/presskit">Press</a> &middot; <a href="/cj/">CJ</a> &middot; <a href="/#contact">Contact</a></span>
+    </div>
+  </footer>
+</body>
+</html>
