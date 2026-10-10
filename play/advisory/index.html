@@ -78,6 +78,22 @@ a:focus-visible{outline:3px solid var(--charcoal);outline-offset:4px}.hero a:foc
 .contact .button:hover{background:var(--charcoal)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media(max-width:760px){.navlinks a:not(.navcontact),.navcontact{min-height:44px}.nav{min-height:118px}}
+/* Readable mobile typography and career artwork. */
+:root{--muted:#454449}
+.portrait figcaption{color:#e4e3e7}
+@media(max-width:760px){
+ body{font-family:Arial,sans-serif;font-size:18px}
+ .hero-proof{grid-template-columns:1fr;gap:18px}
+ .hero-proof .proof-label{font-size:11px}
+ .hero-proof img{height:64px}
+ .hero-proof .sie-logo{object-fit:cover;height:70px}
+ .hero-proof figcaption,.hero-proof strong{font-size:14px;line-height:1.5}
+ .hero:before{width:210px;height:210px;right:-80px;bottom:-190px;box-shadow:none}
+ .portrait figcaption{font-size:15px}
+ .lead,.intro-grid p,.method p,.approach-note p,.momentum-grid>div>p:not(.assessment-intro),.career-case>p:not(.case-company),.working-example p,.example-steps span,.service .service-copy p,.studio p{font-size:18px;line-height:1.65}
+ .section-top p,.working-example .example-end,.engagement-note,.contact-note{font-size:16px!important;line-height:1.65}
+ .availability{font-size:14px;color:#e4e3e7}
+}
 </style>
 <link rel="canonical" href="https://playonedaygames.com/advisory/">
 <meta property="og:url" content="https://playonedaygames.com/advisory/">
