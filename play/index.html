@@ -395,13 +395,29 @@
     .genscouts-phone {
       margin: 0;
       justify-self: center;
-      width: min(100%, 228px);
+      width: min(100%, 242px);
+      padding: 7px;
+      border: 3px solid #bdbdbb;
+      border-radius: 32px;
+      background: #121216;
+      box-shadow: 0 12px 30px #12121618;
+    }
+
+    .genscouts-screen {
+      overflow: hidden;
+      border-radius: 22px;
     }
 
     .genscouts-phone img {
-      width: 100%;
+      /* Clip only the browser scrollbar from the unaltered 375px capture. */
+      width: calc(100% * 375 / 360);
+      max-width: none;
       height: auto;
-      object-fit: contain;
+    }
+
+    .genscouts-copy > .genscouts-reassurance {
+      margin-top: 12px;
+      font-size: 0.88rem;
     }
 
     @media (max-width: 820px) {
@@ -410,7 +426,7 @@
     }
 
     @media (max-width: 520px) {
-      .genscouts-feature { scroll-margin-top: 160px; }
+      .genscouts-feature { scroll-margin-top: 80px; }
       .genscouts-actions .button { width: 100%; }
     }
 
@@ -804,17 +820,20 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="/assets/odg/site-nav.css">
+  <script src="/assets/odg/site-nav.js" defer></script>
 </head>
 <body>
   <div class="sunrise-strip" aria-hidden="true"></div>
 
-  <header class="site-header" aria-label="Site header">
-    <div class="header-inner">
+  <header data-mobile-header class="site-header" aria-label="Site header">
+    <div data-mobile-nav-row class="header-inner">
       <a class="brand" href="/" aria-label="One Day Games home">
         <img src="assets/odg/odg-icon.png" alt="">
         <span>One Day Games</span>
       </a>
-      <nav aria-label="Primary navigation">
+      <button class="odg-menu-toggle" type="button" aria-expanded="false" aria-controls="odg-primary-nav" hidden><span class="odg-menu-icon" aria-hidden="true">☰</span><span data-menu-label>Menu</span></button>
+      <nav id="odg-primary-nav" data-mobile-nav aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="/advisory/">Advisory <span class="nav-new">NEW</span></a>
         <a href="/play/">Play</a>
@@ -886,14 +905,15 @@
           <p class="section-label">BEYOND THE TABLETOP</p>
           <h2 id="genscouts-title">Meet genScouts.</h2>
           <p>One Day Games created genScouts to help girls flag football players discover opportunities on the field and beyond.</p>
-          <p>The genScouts College Finder helps players and families explore college programs, academic pathways, and recruiting opportunities—all from their phones.</p>
+          <p>Find college flag football programs that fit what you want to study and where you want to go. Compare schools, hear from coaches, and organize your next steps—all in one place.</p>
           <div class="genscouts-actions">
             <a class="button primary" href="https://genscouts.com/college/">Explore the College Finder →</a>
             <a class="genscouts-story" href="https://www.linkedin.com/pulse/how-we-built-genscouts-college-finder-cj-connoy-hnduc/">How we built it →</a>
           </div>
+          <p class="genscouts-reassurance">No account needed to start.</p>
         </div>
         <figure class="genscouts-phone">
-          <img src="/assets/odg/odg-genscouts-phone.webp" width="517" height="910" loading="lazy" decoding="async" alt="genScouts College Finder displayed on a phone, showing a flag football player and college search controls.">
+          <div class="genscouts-screen"><img src="/assets/odg/odg-finder-live-20261022.png" width="375" height="812" loading="lazy" decoding="async" alt="Screenshot of the live genScouts College Finder, with the current flag football photo, academic search, filters, and map controls."></div>
         </figure>
       </div>
     </section>
